@@ -85,6 +85,9 @@ DATABASES = {
     'default': dj_database_url.parse(get_env_variable('DATABASE_URL'))
 }
 
+# Auth
+AUTH_USER_MODEL = 'diagnostic.User'
+
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
