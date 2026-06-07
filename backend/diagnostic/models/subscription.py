@@ -1,6 +1,6 @@
 from datetime import timedelta
 from django.conf import settings
-from django.db import models
+from django.db import models, transaction
 from django.utils import timezone
 
 class SubscriptionQuerySet(models.QuerySet):
@@ -40,6 +40,35 @@ class SubscriptionManager(models.Manager):
             current_period_start=timezone.now().date(),
             current_period_end=timezone.now().date() + timedelta(days=plan.duration_days)
         )
+    
+    def renew(self, user):
+        with transaction.atomic():
+            current = self.active().filter(user=user).first()
+            if current is None:
+                raise ValueError("No active subscription to renew.")
+            current.expire()
+            return self.create(
+                user=user,
+                plan=current.plan,
+                current_period_start=timezone.now().date(),
+                current_period_end=timezone.now().date() + timedelta(days=current.plan.duration_days)
+            )
+    
+    def upgrade(self, user, new_plan):
+        with transaction.atomic():
+            current = self.active().filter(user=user).first()
+            if current is None:
+                raise ValueError("No active subscription to upgrade from.")
+            if current.plan == new_plan:
+                raise ValueError("User is already on this plan.")
+            
+            current.expire()
+            return self.create(
+                user=user,
+                plan=new_plan,
+                current_period_start=timezone.now().date(),
+                current_period_end=timezone.now().date() + timedelta(days=new_plan.duration_days)
+            )
 
 class Subscription(models.Model):
     class StatusChoice(models.TextChoices):
@@ -96,6 +125,10 @@ class Subscription(models.Model):
         self.quota_used = models.F('quota_used') + amount
         self.save(update_fields=['quota_used'])
         self.refresh_from_db(fields=['quota_used'])
+
+    def reset_quota(self):
+        self.quota_used = 0
+        self.save(update_fields=['quota_used'])
 
     def __str__(self):
         return f"{self.user} - {self.plan} ({self.status}, ends {self.current_period_end})"
