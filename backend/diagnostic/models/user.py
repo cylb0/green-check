@@ -1,6 +1,10 @@
-import uuid
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.db import models
+from django.utils import timezone
+import uuid
+
+from diagnostic.models.plan import Plan
+from diagnostic.models.subscription import Subscription
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
@@ -26,12 +30,24 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    quota_used = models.PositiveIntegerField(default=0)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    def active_subscriptions(self):
+        return self.subscriptions.active()
+
+    def active_plans(self):
+        return Plan.objects.filter(
+            subscriptions__user=self,
+            subscriptions__status=Subscription.StatusChoice.ACTIVE,
+            subscriptions__current_period_end__gte=timezone.now().date()
+        ).distinct()
+    
+    def subscribe(self, plan):
+        return Subscription.objects.subscribe(user=self, plan=plan)
 
     def __str__(self):
         return self.email
