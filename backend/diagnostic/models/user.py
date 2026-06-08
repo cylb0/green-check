@@ -3,9 +3,6 @@ from django.db import models
 from django.utils import timezone
 import uuid
 
-from diagnostic.models.plan import Plan
-from diagnostic.models.subscription import Subscription
-
 class UserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
         if not email:
@@ -40,6 +37,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.subscriptions.active()
 
     def active_plans(self):
+        from diagnostic.models.plan import Plan
+        from diagnostic.models.subscription import Subscription
         return Plan.objects.filter(
             subscriptions__user=self,
             subscriptions__status=Subscription.StatusChoice.ACTIVE,
@@ -47,6 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ).distinct()
     
     def subscribe(self, plan):
+        from diagnostic.models.subscription import Subscription
         return Subscription.objects.subscribe(user=self, plan=plan)
 
     def __str__(self):
