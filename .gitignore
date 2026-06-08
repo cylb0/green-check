@@ -24,8 +24,6 @@ frontend/package-lock.json
 # --- Backend (Django/Python) ---
 backend/db.sqlite3
 backend/media/
-# --- Local Uploads ---
-backend/plant_submissions/
 
 # --- IA Service (FastAPI) ---
 
