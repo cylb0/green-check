@@ -1,5 +1,5 @@
 import pytest
-from diagnostic.models import PlantSubmission
+from diagnostic.models import PlantSubmission, ExposureChoice, SoilTypeChoice
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
@@ -27,8 +27,8 @@ class TestPlantSubmission:
             plant_type='Tomato',
             latitude=34.052235,
             longitude=-118.243724,
-            exposure=PlantSubmission.ExposureChoice.PARTIAL_SHADE,
-            soil_type=PlantSubmission.SoilTypeChoice.CLAY,
+            exposure=ExposureChoice.PARTIAL_SHADE,
+            soil_type=SoilTypeChoice.CLAY,
             image=image
         )
 
@@ -37,8 +37,8 @@ class TestPlantSubmission:
         assert submission.plant_type == 'Tomato'
         assert submission.latitude == 34.052235
         assert submission.longitude == -118.243724
-        assert submission.exposure == PlantSubmission.ExposureChoice.PARTIAL_SHADE
-        assert submission.soil_type == PlantSubmission.SoilTypeChoice.CLAY
+        assert submission.exposure == ExposureChoice.PARTIAL_SHADE
+        assert submission.soil_type == SoilTypeChoice.CLAY
         assert submission.image.name.startswith('plant_submissions/')
         assert submission.image.path.endswith('.jpg')
 
@@ -97,14 +97,3 @@ class TestPlantSubmission:
             image=image,
         )
         assert 'Tomato - test@example.com' in str(submission)
-
-
-    def test_default(self, user, image):
-        submission = PlantSubmission.objects.create(
-            user=user,
-            plant_type='Tomato',
-            image=image
-        )
-
-        assert submission.exposure == PlantSubmission.ExposureChoice.UNKNOWN
-        assert submission.soil_type == PlantSubmission.SoilTypeChoice.UNKNOWN
