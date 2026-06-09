@@ -1,4 +1,5 @@
 from .advice_rule import AdviceRule
+from .audit_log import AuditLog
 from .choices import ExposureChoice, SoilTypeChoice, PlantTypeChoice, DiseaseLabelChoice
 from .diagnostic import Diagnostic
 from .plan import Plan
@@ -8,6 +9,7 @@ from .user import User
 
 __all__ = [
     'AdviceRule',
+    'AuditLog',
     'Diagnostic',
     'DiseaseLabelChoice',
     'ExposureChoice',
