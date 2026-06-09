@@ -28,6 +28,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    token_version = models.PositiveIntegerField(default=0)
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
