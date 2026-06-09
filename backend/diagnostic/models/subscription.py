@@ -99,7 +99,7 @@ class Subscription(models.Model):
                 name='unique_active_subscription_per_plan'
             )
         ]
-    
+
     @property
     def is_expired(self) -> bool:
         return timezone.now().date() > self.current_period_end
