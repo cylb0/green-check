@@ -55,6 +55,20 @@ class Diagnostic(models.Model):
     def apply_advice(self):
         from diagnostic.models.advice_rule import AdviceRule
         from django.db.models import Case, When, IntegerField, Value
+        from diagnostic import config
+
+        plant_ok = (self.plant_confidence or 0) >= config.PLANT_CONFIDENCE_THRESHOLD
+        disease_ok = (self.disease_confidence or 0) >= config.DISEASE_CONFIDENCE_THRESHOLD
+
+        if not plant_ok:
+            self.status = self.StatusChoice.LOW_CONFIDENCE
+            self.save(update_fields=['status'])
+            return
+
+        if not disease_ok:
+            self.status = self.StatusChoice.LOW_CONFIDENCE
+            self.save(update_fields=['status'])
+            return
 
         soil = self.submission.soil_type
         exposure = self.submission.exposure
@@ -88,7 +102,8 @@ class Diagnostic(models.Model):
         
         self.advice_rule = rule
         self.advice_text = rule.advice_text
-        self.save(update_fields=['advice_rule', 'advice_text'])
+        self.status = self.StatusChoice.SUCCESS
+        self.save(update_fields=['advice_rule', 'advice_text', 'status'])
 
     def __str__(self):
         return f"{self.detected_plant} — {self.detected_disease} ({self.status})"
