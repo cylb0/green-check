@@ -21,4 +21,5 @@ class PlantTypeChoice(models.TextChoices):
 class DiseaseLabelChoice(models.TextChoices):
     HEALTHY = 'healthy', _('Healthy')
     EARLY_BLIGHT = 'early_blight', _('Early Blight')
+    LATE_BLIGHT = 'late_blight', _('Late Blight')
     # TO DO: Complete with PlantVillage Dataset labels
