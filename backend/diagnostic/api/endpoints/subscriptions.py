@@ -1,4 +1,4 @@
-from ninja import Router
+from ninja import Router, Status
 from diagnostic.api.schemas.subscriptions import SubscriptionIn, SubscriptionOut, UpgradeIn
 from diagnostic.models import Plan, Subscription
 from ninja.errors import HttpError
@@ -17,7 +17,7 @@ def get_my_subscription(request):
 def subscribe(request, payload: SubscriptionIn):
     plan = get_object_or_404(Plan, id=payload.plan_id)
     try:
-        return 201, Subscription.objects.subscribe(user=request.auth, plan=plan)
+        return Status(201, Subscription.objects.subscribe(user=request.auth, plan=plan))
     except ValueError as e:
         raise HttpError(400, str(e))
 

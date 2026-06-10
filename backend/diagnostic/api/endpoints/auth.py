@@ -1,6 +1,6 @@
 from auth import create_access_token, create_refresh_token
 from diagnostic.api.schemas.auth import LoginSchema, RegisterSchema, UserOut
-from ninja import Router
+from ninja import Router, Status
 from django.contrib.auth import authenticate, get_user_model
 from django.http import HttpResponse
 from ninja.errors import HttpError
@@ -13,7 +13,7 @@ User = get_user_model()
 def register(request, payload: RegisterSchema):
     if User.objects.filter(email=payload.email).exists():
         raise HttpError(400, "Email already exists")
-    return 201, User.objects.create_user(email=payload.email, password=payload.password)
+    return Status(201, User.objects.create_user(email=payload.email, password=payload.password))
 
 @router.post('/login', response={200: None}, auth=None)
 def login(request, payload: LoginSchema):
