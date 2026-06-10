@@ -1,3 +1,4 @@
+from diagnostic.models.diagnostic import Diagnostic
 import pytest
 from diagnostic.models import PlantSubmission, ExposureChoice, SoilTypeChoice
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -32,6 +33,35 @@ class TestPlantSubmissionManager:
         assert sub.image.name is not None
         assert sub.image.name.endswith('jpg')
         assert os.path.exists(sub.image.path)
+
+    def test_create_with_diagnostic_creates_submission(self, user):
+        image = SimpleUploadedFile('image.jpg', b'filecontent', content_type='image/jpeg')
+        sub = PlantSubmission.objects.create_with_diagnostic(user=user, image=image)
+        assert sub.pk is not None
+        assert PlantSubmission.objects.filter(pk=sub.pk).exists()
+
+    def test_create_with_diagnostic_creates_diagnostic(self, user):
+        image = SimpleUploadedFile('image.jpg', b'filecontent', content_type='image/jpeg')
+        sub = PlantSubmission.objects.create_with_diagnostic(user=user, image=image)
+        assert Diagnostic.objects.filter(submission=sub).exists()
+
+    def test_create_with_diagnostic_status_is_pending(self, user):
+        image = SimpleUploadedFile('image.jpg', b'filecontent', content_type='image/jpeg')
+        sub = PlantSubmission.objects.create_with_diagnostic(user=user, image=image)
+        assert Diagnostic.objects.get(submission=sub).status == Diagnostic.StatusChoice.PENDING
+
+    def test_create_with_diagnostic_rollback_if_diagnostic_fails(self, user, monkeypatch):
+        image = SimpleUploadedFile('image.jpg', b'filecontent', content_type='image/jpeg')
+
+        def fail_create(**kwargs):
+            raise Exception("Forced failure")
+
+        monkeypatch.setattr(Diagnostic.objects, 'create', fail_create)
+
+        with pytest.raises(Exception):
+            PlantSubmission.objects.create_with_diagnostic(user=user, image=image)
+
+        assert PlantSubmission.objects.filter(user=user).count() == 0
 
 @pytest.mark.django_db
 class TestPlantSubmission:

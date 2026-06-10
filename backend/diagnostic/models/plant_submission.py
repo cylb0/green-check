@@ -13,6 +13,13 @@ class PlantSubmissionManager(models.Manager):
             submission = self.create(user=user, **kwargs)
             submission.image.save(filename, image, save=True)
         return submission
+    
+    def create_with_diagnostic(self, user, image, **kwargs):
+        with transaction.atomic():
+            submission = self.create_with_image(user, image, **kwargs)
+            from diagnostic.models.diagnostic import Diagnostic
+            Diagnostic.objects.create(submission=submission)
+        return submission
 
 class PlantSubmission(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
