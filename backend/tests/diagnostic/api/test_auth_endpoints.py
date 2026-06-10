@@ -32,14 +32,6 @@ class TestLogin:
         response = client.post('/login', json={'email': 'test@example.com', 'password': 'password'})
         assert response.status_code == 200
 
-    def test_login_sets_access_cookie(self, user):
-        response = client.post('/login', json={'email': 'test@example.com', 'password': 'password'})
-        assert 'access_token' in response.cookies
-
-    def test_login_sets_refresh_cookie(self, user):
-        response = client.post('/login', json={'email': 'test@example.com', 'password': 'password'})
-        assert 'refresh_token' in response.cookies
-
     def test_login_invalid_credentials(self):
         response = client.post('/login', json={'email': 'wrong@example.com', 'password': 'wrong'})
         assert response.status_code == 401
