@@ -54,7 +54,6 @@ services:
     depends_on:
       - frontend
       - backend
-      - ai-service
 
 volumes:
   db_data:
