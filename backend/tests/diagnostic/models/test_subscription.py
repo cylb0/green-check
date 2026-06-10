@@ -77,6 +77,17 @@ class TestSubscriptionManager:
         with pytest.raises(ValueError, match="No active subscription to renew."):
             Subscription.objects.renew(user)
 
+    def test_cancel_active_subscription_success(self, user, plan_pro):
+        sub = Subscription.objects.subscribe(user, plan_pro)
+        res = Subscription.objects.cancel(user)
+        res.refresh_from_db()
+        assert res.status == Subscription.StatusChoice.CANCELED
+        assert not Subscription.objects.active().filter(user=user).exists()
+
+    def test_cancel_raises_error_when_no_active_subscription(self, user):
+        with pytest.raises(ValueError, match="No active subscription to cancel."):
+            Subscription.objects.cancel(user)
+
 @pytest.mark.django_db
 class TestSubscriptionQuerySets:
     def test_active_queryset(self, active_subscription):
