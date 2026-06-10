@@ -4,18 +4,18 @@ from ninja import Router
 from django.contrib.auth import authenticate, get_user_model
 from django.http import HttpResponse
 from ninja.errors import HttpError
-
+from django.db.models import F
 
 router = Router()
 User = get_user_model()
 
-@router.post('/register', response=UserOut, auth=None)
+@router.post('/register', response={201: UserOut}, auth=None)
 def register(request, payload: RegisterSchema):
     if User.objects.filter(email=payload.email).exists():
         raise HttpError(400, "Email already exists")
-    return User.objects.create_user(email=payload.email, password=payload.password)
+    return 201, User.objects.create_user(email=payload.email, password=payload.password)
 
-@router.post('/login', auth=None)
+@router.post('/login', response={200: None}, auth=None)
 def login(request, payload: LoginSchema):
     user = authenticate(request, email=payload.email, password=payload.password)
     if not user:
@@ -26,15 +26,14 @@ def login(request, payload: LoginSchema):
     response.set_cookie('refresh_token', create_refresh_token(user), httponly=True, samesite='Lax', secure=False)
     return response
 
-@router.post('/logout')
+@router.post('/logout', response={204: None})
 def logout(request):
-    from django.db.models import F
     User.objects.filter(pk=request.auth.pk).update(token_version=F('token_version') + 1)
-    response = HttpResponse()
+    response = HttpResponse(status=204)
     response.delete_cookie('access_token')
     response.delete_cookie('refresh_token')
     return response
 
-@router.get('/me', response=UserOut)
+@router.get('/me', response={200: UserOut})
 def me(request):
     return UserOut(id=str(request.auth.id), email=request.auth.email)
