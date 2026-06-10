@@ -35,3 +35,7 @@ def logout(request):
     response.delete_cookie('access_token')
     response.delete_cookie('refresh_token')
     return response
+
+@router.get('/me', response=UserOut)
+def me(request):
+    return UserOut(id=str(request.auth.id), email=request.auth.email)

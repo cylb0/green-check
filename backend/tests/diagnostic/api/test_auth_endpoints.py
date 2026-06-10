@@ -2,6 +2,7 @@ import pytest
 from django.contrib.auth import get_user_model
 from ninja.testing import TestClient
 from diagnostic.api.endpoints.auth import router
+from auth import create_access_token
 
 User = get_user_model()
 client = TestClient(router)
@@ -55,3 +56,10 @@ class TestLogout:
         response = client.post('/logout', user=user, auth=user)
         assert response.cookies['access_token']['max-age'] == 0
         assert response.cookies['refresh_token']['max-age'] == 0
+
+@pytest.mark.django_db
+class TestMe:
+    def test_me_returns_user(self, user):
+        response = client.get('/me', user=user, auth=user)
+        assert response.status_code == 200
+        assert response.json()['email'] == user.email
