@@ -3,6 +3,7 @@ from diagnostic.models import PlantSubmission, ExposureChoice, SoilTypeChoice
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+import os
 
 User = get_user_model()
 
@@ -18,6 +19,19 @@ def image():
         b'\x02\x44\x01\x00\x3b'
     )
     return SimpleUploadedFile(name='test.jpg', content=image_bytes, content_type='image/gif')
+
+@pytest.mark.django_db
+class TestPlantSubmissionManager:
+    def test_create_with_image(self, user, image):
+        sub = PlantSubmission.objects.create_with_image(user=user, image=image)
+        assert sub.pk is not None
+        assert PlantSubmission.objects.filter(pk=sub.pk).exists()
+
+    def test_create_with_image_image_is_saved(self, user, image):
+        sub = PlantSubmission.objects.create_with_image(user=user, image=image)
+        assert sub.image.name is not None
+        assert sub.image.name.endswith('jpg')
+        assert os.path.exists(sub.image.path)
 
 @pytest.mark.django_db
 class TestPlantSubmission:
