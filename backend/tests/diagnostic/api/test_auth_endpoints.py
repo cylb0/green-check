@@ -15,7 +15,7 @@ def user():
 class TestRegister:
     def test_register_creates_user(self):
         response = client.post('/register', json={'email': 'new@example.com', 'password': 'password'})
-        assert response.status_code == 200
+        assert response.status_code == 201
         assert User.objects.filter(email='new@example.com').exists()
 
     def test_register_returns_user(self):

@@ -38,7 +38,7 @@ class TestGetMySubscription:
 class TestSubscribe:
     def test_subscribe_creates_subscription(self, user, plan_free):
         response = client.post('', json={'plan_id': plan_free.id}, auth=user)
-        assert response.status_code == 200
+        assert response.status_code == 201
         assert Subscription.objects.active().filter(user=user).exists()
 
     def test_subscribe_returns_subscription(self, user, plan_free):

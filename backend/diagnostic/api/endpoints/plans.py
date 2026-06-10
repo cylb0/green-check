@@ -5,7 +5,7 @@ from diagnostic.api.schemas.plans import PlanOut
 
 router = Router()
 
-@router.get('', response={200, list[PlanOut]}, auth=None)
+@router.get('', response={200: list[PlanOut]}, auth=None)
 def list_plans(request):
     return Plan.objects.all()
 
