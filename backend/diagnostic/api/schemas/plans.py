@@ -6,4 +6,4 @@ class PlanOut(ModelSchema):
 
     class Meta:
         model = Plan
-        fields = ['id', 'name', 'description', 'quota_limit', 'price_in_cents', 'is_active', 'duration_days']
+        fields = ['id', 'name', 'description', 'quota_limit', 'price_in_cents', 'duration_days']
