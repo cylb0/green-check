@@ -15,16 +15,16 @@ def register(request, payload: RegisterSchema):
         raise HttpError(400, "Email already exists")
     return Status(201, User.objects.create_user(email=payload.email, password=payload.password))
 
-@router.post('/login', response={200: None}, auth=None)
+@router.post('/login', response={200: UserOut}, auth=None)
 def login(request, payload: LoginSchema):
     user = authenticate(request, email=payload.email, password=payload.password)
     if not user:
         raise HttpError(401, "Invalid credentials")
     
-    response = HttpResponse(status=200)
-    response.set_cookie('access_token', create_access_token(user), httponly=True, samesite='Lax', secure=False)
-    response.set_cookie('refresh_token', create_refresh_token(user), httponly=True, samesite='Lax', secure=False)
-    return response
+    request._response = HttpResponse(status=200)
+    request._response.set_cookie('access_token', create_access_token(user), httponly=True, samesite='Lax', secure=False)
+    request._response.set_cookie('refresh_token', create_refresh_token(user), httponly=True, samesite='Lax', secure=False)
+    return UserOut(id=str(user.id), email=user.email)
 
 @router.post('/logout', response={204: None})
 def logout(request):
