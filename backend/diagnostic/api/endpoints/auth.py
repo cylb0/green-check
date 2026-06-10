@@ -13,8 +13,7 @@ User = get_user_model()
 def register(request, payload: RegisterSchema):
     if User.objects.filter(email=payload.email).exists():
         raise HttpError(400, "Email already exists")
-    user = User.objects.create_user(email=payload.email, password=payload.password)
-    return UserOut(id=str(user.id), email=user.email)
+    return User.objects.create_user(email=payload.email, password=payload.password)
 
 @router.post('/login', auth=None)
 def login(request, payload: LoginSchema):
