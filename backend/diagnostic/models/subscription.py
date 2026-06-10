@@ -69,6 +69,14 @@ class SubscriptionManager(models.Manager):
                 current_period_start=timezone.now().date(),
                 current_period_end=timezone.now().date() + timedelta(days=new_plan.duration_days)
             )
+        
+    def cancel(self, user):
+        active_sub = self.active().filter(user=user).first()
+        if not active_sub:
+            raise ValueError("No active subscription to cancel.")
+
+        active_sub.cancel()
+        return active_sub
 
 class Subscription(models.Model):
     class StatusChoice(models.TextChoices):
