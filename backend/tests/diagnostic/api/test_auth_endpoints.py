@@ -1,11 +1,18 @@
 import pytest
 from django.contrib.auth import get_user_model
 from ninja.testing import TestClient
-from diagnostic.api.endpoints.auth import router
+# from diagnostic.api.endpoints.auth import router
+from api import api
 from auth import create_access_token
 
 User = get_user_model()
-client = TestClient(router)
+client = TestClient(api)
+# client = TestClient(router)
+
+@pytest.fixture
+def clientdjango():
+    from django.test import Client
+    return Client()
 
 @pytest.fixture
 def user():
@@ -38,20 +45,31 @@ class TestLogin:
 
 @pytest.mark.django_db
 class TestLogout:
-    def test_logout_increments_token_version(self, user):
+    def test_logout_increments_token_version(self, clientdjango, user):
         initial_version = user.token_version
-        client.post('/logout', user=user, auth=user)
+        token = create_access_token(user)
+        clientdjango.cookies['access_token'] = token
+        response = clientdjango.post('/api/logout')
+        assert response.status_code == 204
         user.refresh_from_db()
         assert user.token_version == initial_version + 1
 
-    def test_logout_deletes_cookies(self, user):
-        response = client.post('/logout', user=user, auth=user)
+    def test_logout_deletes_cookies(self, clientdjango, user):
+        token = create_access_token(user)
+        clientdjango.cookies['access_token'] = token
+        response = clientdjango.post('/api/logout')
         assert response.cookies['access_token']['max-age'] == 0
         assert response.cookies['refresh_token']['max-age'] == 0
 
 @pytest.mark.django_db
 class TestMe:
-    def test_me_returns_user(self, user):
-        response = client.get('/me', user=user, auth=user)
+    def test_me_returns_user(self, clientdjango, user):
+        token = create_access_token(user)
+        clientdjango.cookies['access_token'] = token
+        response = clientdjango.get('/api/me')
         assert response.status_code == 200
         assert response.json()['email'] == user.email
+
+    def test_me_unauthenticated(self, clientdjango):
+        response = clientdjango.get('/api/me')
+        assert response.status_code == 401
