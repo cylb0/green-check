@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
 import HomePage from '../pages/HomePage'
-import AuthLayout from '../pages/AuthLayout'
+import AuthContainer from '../pages/AuthLayout'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
@@ -26,7 +26,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={
-        isAuthenticated ? <Navigate to="/home" replace /> : <AuthLayout />
+        isAuthenticated ? <Navigate to="/home" replace /> : <AuthContainer />
       } />
       <Route path="/home" element={
         <ProtectedRoute>

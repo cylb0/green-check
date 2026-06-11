@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom"
 import { useAuth } from "../context/authContext"
-import { useState } from "react"
 import { motion, AnimatePresence, type Transition } from "framer-motion"
 import LoginPage from "./LoginPage"
 import LandingPage from "./LandingPage"
 import RegisterPage from "./RegisterPage"
+import { AuthNavProvider, useAuthNav } from "../context/authNavContext"
 
 const variants = {
     enter: (direction: number) => ({ x: direction > 0 ? "100%" : "-100%" }),
@@ -12,25 +12,27 @@ const variants = {
     exit: (direction: number) => ({ x: direction < 0 ? "100%" : "-100%" })
 }
 
-const transition: Transition = { type: 'spring', stiffness: 300, damping: 30 }
+const transition: Transition = { type: 'spring', stiffness: 400, damping: 40 }
 
-export default function AuthLayout() {
+export default function AuthContainer() {
+    return (
+        <AuthNavProvider>
+            <AuthLayout />
+        </AuthNavProvider>
+    )
+}
+
+function AuthLayout() {
     const { isAuthenticated, isLoading } = useAuth()
-    const [step, setStep] = useState(0)
-    const [direction, setDirection] = useState(1)
+    const { step, direction, goTo } = useAuthNav()
     
     if (isLoading) return null
 
     if (isAuthenticated) return <Navigate to="/home" replace />
 
-    const goTo = (nextStep: number) => {
-        setDirection(nextStep > step ? 1 : -1)
-        setStep(nextStep)
-    }
-
     return (
         <div className="relative w-full h-screen overflow-hidder">
-            <AnimatePresence initial={false} custom={direction} mode="wait">
+            <AnimatePresence initial={false} custom={direction} mode="popLayout">
                 <motion.div
                     key={step}
                     custom={direction}
@@ -45,10 +47,10 @@ export default function AuthLayout() {
                     dragElastic={0.2}
                     onDragEnd={(_, info) => {
                         if (info.offset.x < -50 && step < 2) goTo(step + 1)
-                        if (info.offset.x > 50 && step > 0) goTo(step - 1)
-                    }}
-                >
-                    {step === 0 && <LandingPage />}
+                            if (info.offset.x > 50 && step > 0) goTo(step - 1)
+                            }}
+                        >
+                    {step === 0 && <LandingPage/>}
                     {step === 1 && <LoginPage />}
                     {step === 2 && <RegisterPage />}
                 </motion.div>
