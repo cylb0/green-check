@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
-import LoginPage from '../pages/LoginPage'
+import HomePage from '../pages/HomePage'
+import AuthContainer from '../pages/AuthLayout'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
@@ -18,12 +19,18 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
 }
 
 export default function App() {
+  const { isAuthenticated, isLoading } = useAuth()
+  
+  if (isLoading) return null
+
   return (
     <Routes>
-      <Route path="/login" element={<LoginPage />} />
       <Route path="/" element={
+        isAuthenticated ? <Navigate to="/home" replace /> : <AuthContainer />
+      } />
+      <Route path="/home" element={
         <ProtectedRoute>
-          <div>Home</div>
+          <HomePage />
         </ProtectedRoute>
       } />
       <Route path="*" element={<Navigate to="/" replace />} />
