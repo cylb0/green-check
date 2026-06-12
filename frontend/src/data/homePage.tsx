@@ -47,7 +47,7 @@ export interface QuickAccessContent {
 export const QUICK_ACCESS_CONTENT = {
     title: "Quick access",
     content: [
-        { icon: FaRegClock, label: "History", link: HISTORY_PAGE  },
+        { icon: FaRegClock, label: "History", link: HISTORY_PAGE },
         { icon: FaBookMedical, label: "Diseases guides", link: GUIDES_PAGE },
         { icon: FaRegHeart, label: "Advices", link: ADVICES_PAGE },
     ]
