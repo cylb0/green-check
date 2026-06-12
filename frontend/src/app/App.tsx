@@ -3,6 +3,9 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
 import HomePage from '../pages/HomePage'
 import AuthContainer from '../layouts/AuthLayout'
+import MainLayout from '../layouts/MainLayout'
+import HistoryPage from '../pages/HistoryPage'
+import ProfilePage from '../pages/ProfilePage'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
@@ -28,11 +31,15 @@ export default function App() {
       <Route path="/" element={
         isAuthenticated ? <Navigate to="/home" replace /> : <AuthContainer />
       } />
-      <Route path="/home" element={
+      <Route element={
         <ProtectedRoute>
-          <HomePage />
+          <MainLayout />
         </ProtectedRoute>
-      } />
+      }>
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/history" element={<HistoryPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
