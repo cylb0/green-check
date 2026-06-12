@@ -29,10 +29,6 @@ function validate(values: FormState): FormErrors {
     return errors
 }
 
-const inputStyle = "w-full border-2 rounded-lg border-primary/30 p-2 mt-1"
-const labelStyle = "text-primary/80 font-bold"
-const errorStyle = "absolute text-xs text-red-500"
-
 export default function LoginForm() {
     const { register } = useAuth()
     const navigate = useNavigate()
@@ -78,13 +74,13 @@ export default function LoginForm() {
     return (
         <form onSubmit={handleSubmit} noValidate className="relative w-full">
             {errors.global && (
-                <div className={`${errorStyle} absolute`}>
+                <div className="input-error absolute">
                     {errors.global}
                 </div>
             )}
 
             <div className="my-4 relative">
-                <label htmlFor="email" className={labelStyle}>
+                <label htmlFor="email" className="input-label">
                     Email
                 </label>
                 <input
@@ -96,15 +92,15 @@ export default function LoginForm() {
                     onChange={handleChange}
                     disabled={isLoading}
                     placeholder="exemple@email.com"
-                    className={inputStyle}
+                    className="input-field"
                 />
                 {errors.email && (
-                    <p className={errorStyle}>{errors.email}</p>
+                    <p className="input-error">{errors.email}</p>
                 )}
             </div>
 
             <div className="mt-4 relative">
-                <label htmlFor="password" className={labelStyle}>
+                <label htmlFor="password" className="input-label">
                     Password
                 </label>
                 <div className="relative">
@@ -117,7 +113,7 @@ export default function LoginForm() {
                         onChange={handleChange}
                         disabled={isLoading}
                         placeholder="••••••••"
-                        className={`${inputStyle} pr-10`}
+                        className="input-field pr-10"
                     />
                     <button
                         type="button"
@@ -129,12 +125,12 @@ export default function LoginForm() {
                     </button>
                 </div>
                 {errors.password && (
-                    <p className={errorStyle}>{errors.password}</p>
+                    <p className="input-error">{errors.password}</p>
                 )}
             </div>
 
             <div className="mt-4 relative">
-                <label htmlFor="passwordConfirm" className={labelStyle}>
+                <label htmlFor="passwordConfirm" className="input-label">
                     Confirm password
                 </label>
                 <div className="relative">
@@ -146,7 +142,7 @@ export default function LoginForm() {
                         onChange={handleChange}
                         disabled={isLoading}
                         placeholder="••••••••"
-                        className={`${inputStyle} pr-10`}
+                        className="input-field pr-10"
                     />
                     <button
                         type="button"
@@ -158,7 +154,7 @@ export default function LoginForm() {
                     </button>
                 </div>
                 {errors.password && (
-                    <p className={errorStyle}>{errors.passwordConfirm}</p>
+                    <p className="input-error">{errors.passwordConfirm}</p>
                 )}
             </div>
 
@@ -173,11 +169,11 @@ export default function LoginForm() {
                         className="accent-primary"
                     />
                 </div>
-                <label htmlFor="checkbox" className={labelStyle}>
+                <label htmlFor="checkbox" className="input-label">
                     I accept the <a>Terms of Use</a> and the <a>Privacy Policy</a>
                 </label>
                 {errors.acceptTerms && (
-                    <p className={`${errorStyle} top-full left-0 mt-1`}>{errors.acceptTerms}</p>
+                    <p className="input-error top-full left-0 mt-1">{errors.acceptTerms}</p>
                 )}
             </div>
 

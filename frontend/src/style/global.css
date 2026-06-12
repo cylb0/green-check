@@ -3,3 +3,31 @@
 @theme {
     --color-primary: #000;
 }
+
+@layer components {
+    .input-field {
+        @apply w-full border-2 rounded-lg border-primary/30 p-2 mt-1;
+    }
+
+    .input-label {
+        @apply text-primary/80 font-bold
+    }
+
+    .input-error {
+        @apply absolute text-xs text-red-500
+    }
+}
+
+@layer utilities {
+    .text-heading {
+        @apply text-2xl font-bold text-primary;
+    }
+
+    .text-subheading {
+        @apply text-base font-medium text-primary/80;
+    }
+
+    .text-heading-sm {
+        @apply text-xl font-bold text-primary;
+    }
+}
