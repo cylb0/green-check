@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
 import HomePage from '../pages/HomePage'
-import AuthContainer from '../pages/AuthLayout'
+import AuthContainer from '../layouts/AuthLayout'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
