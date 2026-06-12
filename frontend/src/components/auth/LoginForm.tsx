@@ -23,10 +23,6 @@ function validate(values: FormState): FormErrors {
     return errors
 }
 
-const inputStyle = "w-full border-2 rounded-lg border-primary/30 p-2 mt-1"
-const labelStyle = "text-primary/80 font-bold"
-const errorStyle = "absolute text-xs text-red-500"
-
 export default function LoginForm() {
     const { login } = useAuth()
     const navigate = useNavigate()
@@ -72,13 +68,13 @@ export default function LoginForm() {
     return (
         <form onSubmit={handleSubmit} noValidate className="relative w-full">
             {errors.global && (
-                <div className={`${errorStyle} absolute`}>
+                <div className="input-error absolute">
                     {errors.global}
                 </div>
             )}
 
             <div className="my-4 relative">
-                <label htmlFor="email" className={labelStyle}>
+                <label htmlFor="email" className="input-label">
                     Email
                 </label>
                 <input
@@ -90,15 +86,15 @@ export default function LoginForm() {
                     onChange={handleChange}
                     disabled={isLoading}
                     placeholder="exemple@email.com"
-                    className={inputStyle}
+                    className="input-field"
                 />
                 {errors.email && (
-                    <p className={errorStyle}>{errors.email}</p>
+                    <p className="input-error">{errors.email}</p>
                 )}
             </div>
 
             <div className="mt-4 relative">
-                <label htmlFor="password" className={labelStyle}>
+                <label htmlFor="password" className="input-label">
                     Password
                 </label>
                 <div className="relative">
@@ -111,7 +107,7 @@ export default function LoginForm() {
                         onChange={handleChange}
                         disabled={isLoading}
                         placeholder="••••••••"
-                        className={`${inputStyle} pr-10`}
+                        className="input-field pr-10"
                     />
                     <button
                         type="button"
@@ -123,7 +119,7 @@ export default function LoginForm() {
                     </button>
                 </div>
                 {errors.password && (
-                    <p className={errorStyle}>{errors.password}</p>
+                    <p className="input-error">{errors.password}</p>
                 )}
             </div>
 

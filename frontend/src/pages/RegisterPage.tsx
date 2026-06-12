@@ -19,7 +19,7 @@ export default function RegisterPage() {
                 <button onClick={() => goTo(0)} className="z-20">
                     <FaArrowLeft size={20} className="transition-transform duration-200 hover:scale-150" />
                 </button>
-                <h1 className="text-xl font-bold flex-1 text-center py-4 text-primary">Sign up</h1>
+                <h1 className="flex-1 text-center py-4 text-heading">Sign up</h1>
                 <div className="w-4"></div>
             </div>
             <RegisterForm />
