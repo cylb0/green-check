@@ -1,6 +1,7 @@
 import type { IconType } from "react-icons";
 import { FaClock, FaRegClock, FaRegUser, FaUser } from "react-icons/fa6";
 import { IoHomeSharp, IoHomeOutline } from "react-icons/io5";
+import { HISTORY_PAGE, HOME_PAGE, PROFILE_PAGE } from "./pages";
 
 export interface NavItem {
     readonly id: string
@@ -10,7 +11,7 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS = [
-    { id: "home", label: "Home", icon: IoHomeOutline, activeIcon: IoHomeSharp },
-    { id: "history", label: "History", icon: FaRegClock, activeIcon: FaClock },
-    { id: "profile", label: "Profile", icon: FaRegUser, activeIcon: FaUser }
+    { id: HOME_PAGE, label: "Home", icon: IoHomeOutline, activeIcon: IoHomeSharp },
+    { id: HISTORY_PAGE, label: "History", icon: FaRegClock, activeIcon: FaClock },
+    { id: PROFILE_PAGE, label: "Profile", icon: FaRegUser, activeIcon: FaUser }
 ] as const satisfies readonly NavItem[]

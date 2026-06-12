@@ -6,6 +6,12 @@ import AuthContainer from '../layouts/AuthLayout'
 import MainLayout from '../layouts/MainLayout'
 import HistoryPage from '../pages/HistoryPage'
 import ProfilePage from '../pages/ProfilePage'
+import AnalyzePage from '../pages/AnalyzePage'
+import GuidesPage from '../pages/GuidesPage'
+import AdvicesPage from '../pages/AdvicesPage'
+import { ADVICES_PAGE, ANALYZE_PAGE, GUIDES_PAGE, HISTORY_PAGE, HOME_PAGE, LOGIN_PAGE, PRIVACY_POLICY_PAGE, PROFILE_PAGE, TERMS_OF_USE_PAGE } from '../data/pages'
+import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
+import TermsOfUsePage from '../pages/TermsOfUsePage'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
@@ -16,7 +22,7 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
       </div>
     )
 
-    if (!isAuthenticated) return <Navigate to="/login" replace />
+    if (!isAuthenticated) return <Navigate to={LOGIN_PAGE} replace />
 
     return <>{children}</>
 }
@@ -29,17 +35,29 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={
-        isAuthenticated ? <Navigate to="/home" replace /> : <AuthContainer />
+        isAuthenticated ? <Navigate to={HOME_PAGE} replace /> : <AuthContainer />
       } />
+      <Route path={TERMS_OF_USE_PAGE} element={<TermsOfUsePage />} />
+      <Route path={PRIVACY_POLICY_PAGE} element={<PrivacyPolicyPage />} />
+
       <Route element={
         <ProtectedRoute>
           <MainLayout />
         </ProtectedRoute>
       }>
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/history" element={<HistoryPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path={HOME_PAGE} element={<HomePage />} />
+        <Route path={HISTORY_PAGE} element={<HistoryPage />} />
+        <Route path={PROFILE_PAGE} element={<ProfilePage />} />
+        <Route path={GUIDES_PAGE} element={<GuidesPage />} />
+        <Route path={ADVICES_PAGE} element={<AdvicesPage />} />
       </Route>
+      
+      <Route path={ANALYZE_PAGE} element={
+        <ProtectedRoute>
+          <AnalyzePage />
+        </ProtectedRoute>
+      } />
+
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

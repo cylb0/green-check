@@ -1,17 +1,18 @@
-import { NAV_ITEMS, type NavItem } from "../../constants/bottomNavbar"
+import { NAV_ITEMS, type NavItem } from "../../data/bottomNavbar"
 import { IoCameraOutline } from "react-icons/io5"
 import { useLocation, useNavigate } from "react-router-dom"
+import { ANALYZE_PAGE } from "../../data/pages"
 
 function NavItem({ id, label, icon: Icon, activeIcon: ActiveIcon }: NavItem) {
     const navigate = useNavigate()
     const location = useLocation()
 
-    const isActive = location.pathname === `/${id}`
+    const isActive = location.pathname === id
     const DisplayIcon = isActive ? ActiveIcon : Icon
 
     return (
         <button
-            onClick={() => navigate(`/${id}`)}
+            onClick={() => navigate(id)}
             className="flex flex-col items-center gap-0.5 active:scale-90 transition-transform duration-150"
         >
             <DisplayIcon size={22} className={`transition-colors duration-200 ${isActive ? "text-primary/50" : "text-primary/30"}`} />
@@ -23,8 +24,10 @@ function NavItem({ id, label, icon: Icon, activeIcon: ActiveIcon }: NavItem) {
 }
 
 export default function BottomNav() {
+    const navigate = useNavigate()
+
     return (
-        <nav className="fixed bottom-0 w-full border-t border-gray-200 h-20 py-4 z-50 bg-white">
+        <nav className="fixed bottom-0 w-full border-t-2 border-primary/10 h-20 py-4 z-50 bg-white">
             <div className="grid grid-cols-5 h-full items-end px-4">
                 <div aria-hidden="true"/>
                 <NavItem {...NAV_ITEMS[0]} />
@@ -34,6 +37,7 @@ export default function BottomNav() {
 
                 <div className="absolute left-1/2 -translate-x-1/2">
                     <button
+                        onClick={() => navigate(ANALYZE_PAGE)}
                         className="p-4 rounded-full shadow-lg transition-all duration-200 active:scale-90 active:bg-primary/80 bg-primary/50"
                     >
                         <IoCameraOutline

@@ -26,4 +26,8 @@
     .text-subheading {
         @apply text-base font-medium text-primary/80;
     }
+
+    .text-heading-sm {
+        @apply text-xl font-bold text-primary;
+    }
 }
