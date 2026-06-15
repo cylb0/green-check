@@ -10,3 +10,4 @@ class MetadataResponse(Schema):
     exposure: List[ChoiceSchema]
     soil: List[ChoiceSchema]
     disease: List[ChoiceSchema]
+    diagnostic_status: List[ChoiceSchema]

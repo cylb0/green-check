@@ -1,3 +1,4 @@
+from diagnostic.models.choices import DiagnosticStatusChoice
 import pytest
 from django.contrib.auth import get_user_model
 from diagnostic.models import AdviceRule, Diagnostic, DiseaseLabelChoice, ExposureChoice, PlantSubmission, PlantTypeChoice, SoilTypeChoice
@@ -44,7 +45,7 @@ class TestDiagnostic:
         assert diagnostic.pk is not None
         assert diagnostic.submission is submission
         assert diagnostic.advice_rule is None
-        assert diagnostic.status == Diagnostic.StatusChoice.PENDING
+        assert diagnostic.status == DiagnosticStatusChoice.PENDING
         assert diagnostic.detected_plant == PlantTypeChoice.TOMATO
         assert diagnostic.plant_confidence == 0.85
         assert diagnostic.detected_disease == DiseaseLabelChoice.EARLY_BLIGHT
@@ -59,32 +60,32 @@ class TestDiagnostic:
         assert diagnostic.advice_text == rule.advice_text
 
     def test_diagnostic_state_success(self, diagnostic, rule):
-        assert diagnostic.status == Diagnostic.StatusChoice.PENDING
+        assert diagnostic.status == DiagnosticStatusChoice.PENDING
 
         diagnostic.advice_rule = rule
         diagnostic.save()
         diagnostic.apply_advice()
 
-        assert diagnostic.status == Diagnostic.StatusChoice.SUCCESS
+        assert diagnostic.status == DiagnosticStatusChoice.SUCCESS
 
     def test_diagnostic_state_failed_no_rule(self, diagnostic):
         diagnostic.detected_disease = DiseaseLabelChoice.LATE_BLIGHT
         diagnostic.save()
         diagnostic.apply_advice()
 
-        assert diagnostic.status == Diagnostic.StatusChoice.FAILED
+        assert diagnostic.status == DiagnosticStatusChoice.FAILED
 
     def test_apply_advice_low_confidence_plant(self, diagnostic):
         diagnostic.plant_confidence = 0.01
         diagnostic.save()
         diagnostic.apply_advice()
-        assert diagnostic.status == Diagnostic.StatusChoice.LOW_CONFIDENCE
+        assert diagnostic.status == DiagnosticStatusChoice.LOW_CONFIDENCE
 
     def test_apply_advice_low_confidence_disease(self, diagnostic):
         diagnostic.disease_confidence = 0.01
         diagnostic.save()
         diagnostic.apply_advice()
-        assert diagnostic.status == Diagnostic.StatusChoice.LOW_CONFIDENCE
+        assert diagnostic.status == DiagnosticStatusChoice.LOW_CONFIDENCE
 
     def test_advice_text_not_set_on_failure(self, diagnostic):
         diagnostic.detected_disease = DiseaseLabelChoice.LATE_BLIGHT

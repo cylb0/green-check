@@ -1,5 +1,5 @@
 from diagnostic.api.schemas.metadata import MetadataResponse
-from diagnostic.models.choices import DiseaseLabelChoice, ExposureChoice, PlantTypeChoice, SoilTypeChoice
+from diagnostic.models.choices import DiseaseLabelChoice, ExposureChoice, PlantTypeChoice, SoilTypeChoice, DiagnosticStatusChoice
 from ninja import Router
 
 router = Router()
@@ -10,5 +10,6 @@ def get_metadata(request):
         "plant": [{"value": c.value, "label": str(c.label)} for c in PlantTypeChoice],
         "exposure": [{"value": e.value, "label": str(e.label)} for e in ExposureChoice],
         "soil": [{"value": s.value, "label": str(s.label)} for s in SoilTypeChoice],
-        "disease": [{"value": d.value, "label": str(d.label)} for d in DiseaseLabelChoice]
+        "disease": [{"value": d.value, "label": str(d.label)} for d in DiseaseLabelChoice],
+        "diagnostic_status": [{"value": s.value, "label": str(s.label)} for s in DiagnosticStatusChoice]
     }
