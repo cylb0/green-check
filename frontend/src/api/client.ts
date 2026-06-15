@@ -1,3 +1,5 @@
+import { getCsrfToken } from "./auth"
+
 type FetchOptions = RequestInit & {
     params?: Record<string, string>
 }
@@ -14,7 +16,10 @@ async function apiFetch<T>(endpoint: string, options: FetchOptions = {}): Promis
     const response = await fetch(url.toString(), {
         credentials: 'include',
         headers: {
-            'Content-Type': 'application/json',
+            'X-CSRFToken': getCsrfToken(),
+            ...(!fetchOptions.body || fetchOptions.body instanceof FormData)
+                ? {}
+                : {'Content-Type': 'application/json'},
             ...fetchOptions.headers,
         },
         ...fetchOptions,
