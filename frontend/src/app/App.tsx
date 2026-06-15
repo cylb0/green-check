@@ -6,12 +6,13 @@ import AuthContainer from '../layouts/AuthLayout'
 import MainLayout from '../layouts/MainLayout'
 import HistoryPage from '../pages/HistoryPage'
 import ProfilePage from '../pages/ProfilePage'
-import AnalyzePage from '../pages/AnalyzePage'
+import AnalyzePage from '../pages/ScanPage'
 import GuidesPage from '../pages/GuidesPage'
 import AdvicesPage from '../pages/AdvicesPage'
-import { ADVICES_PAGE, ANALYZE_PAGE, GUIDES_PAGE, HISTORY_PAGE, HOME_PAGE, LOGIN_PAGE, PRIVACY_POLICY_PAGE, PROFILE_PAGE, TERMS_OF_USE_PAGE } from '../data/pages'
+import { ADVICES_PAGE, DIAGNOSTIC_PROCESSING_PAGE, GUIDES_PAGE, HISTORY_PAGE, HOME_PAGE, LOGIN_PAGE, PRIVACY_POLICY_PAGE, PROFILE_PAGE, SCAN_PAGE, TERMS_OF_USE_PAGE } from '../constants/pages'
 import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
 import TermsOfUsePage from '../pages/TermsOfUsePage'
+import DiagnosticProcessingPage from '../pages/DiagnosticProcessingPage'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
@@ -52,11 +53,20 @@ export default function App() {
         <Route path={ADVICES_PAGE} element={<AdvicesPage />} />
       </Route>
       
-      <Route path={ANALYZE_PAGE} element={
+      <Route path={SCAN_PAGE} element={
         <ProtectedRoute>
           <AnalyzePage />
         </ProtectedRoute>
       } />
+
+      <Route
+        path={DIAGNOSTIC_PROCESSING_PAGE}
+        element={
+          <ProtectedRoute>
+            <DiagnosticProcessingPage />
+          </ProtectedRoute>
+        }
+      />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

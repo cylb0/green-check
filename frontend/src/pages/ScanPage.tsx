@@ -1,18 +1,19 @@
 import { useRef, useState } from "react"
 import { IoImagesOutline, IoRefreshOutline } from "react-icons/io5"
 import Webcam from "react-webcam"
-import { useSubmission } from "../hooks/useSubmission"
-import { CAMERA_TOOLTIP } from "../data/analyzePage"
+import { CAMERA_TOOLTIP } from "../data/scanPage"
 import { CAMERA_LAYOUT_CONFIG } from "../constants/camera"
 import { useCameraCapture } from "../hooks/useCameraCapture"
+import Preview from "../components/analyze-page/Preview"
+import { SubmissionProvider } from "../context/SubmissionContext"
 
 const cornerStyle = "absolute border-white size-6 w-8 h-8"
 
-export default function AnalyzePage() {
+export default function ScanPage() {
+    const [capturedBlob, setCapturedBlob] = useState<Blob | null>(null)
     const webcamRef = useRef<Webcam>(null!)
     const frameRef = useRef<HTMLDivElement>(null!)
     const [facingMode, setFacingMode] = useState<"user" | "environment">("environment")
-    const { submit } = useSubmission()
     const { capture } = useCameraCapture(webcamRef, frameRef)
 
     const toggleCamera = () => {
@@ -20,7 +21,18 @@ export default function AnalyzePage() {
     }
 
     const handleCapture = () => {
-        capture((blob) => submit(blob))
+        capture((blob) => setCapturedBlob(blob))
+    }
+
+    if (capturedBlob) {
+        return (
+            <SubmissionProvider>
+                <Preview
+                    blob={capturedBlob}
+                    onRetry={() => setCapturedBlob(null)}
+                />
+            </SubmissionProvider>
+        )
     }
 
     return (

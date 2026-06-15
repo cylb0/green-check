@@ -1,13 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-
-export interface SubmissionPayload {
-    plant_type?: string
-    latitude?: string
-    longitude?: string
-    exposure?: string
-    soil_type?: string
-}
+import type { SubmissionPayload, SubmissionResponse } from "../types/plant_submissions"
 
 function getCsrfToken(): string {
     const cookie = document.cookie
@@ -41,8 +34,9 @@ export function useSubmission() {
 
             if (!response.ok) throw new Error('Submission failed')
 
-            const data = await response.json()
-            navigate(`/diagnostic/${data.id}`)
+            const data: SubmissionResponse = await response.json()
+
+            navigate(`/diagnostic/${data.diagnostic_id}/processing`)
         } catch (err) {
             setError('Une erreur est survenue')
         } finally {
