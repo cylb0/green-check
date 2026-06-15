@@ -1,13 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import type { SubmissionPayload, SubmissionResponse } from "../types/plant_submissions"
-
-function getCsrfToken(): string {
-    const cookie = document.cookie
-        .split(';')
-        .find(c => c.trim().startsWith('csrftoken='))
-    return cookie ? cookie.split('=')[1].trim() : ''
-}
+import apiFetch from "../api/client"
 
 export function useSubmission() {
     const [isLoading, setIsLoading] = useState(false)
@@ -23,21 +17,14 @@ export function useSubmission() {
             formData.append('image', blob, 'capture.jpg')
             formData.append('payload', JSON.stringify(payload))
 
-            const response = await fetch('/api/submissions', {
+            const data = await apiFetch<SubmissionResponse>('/api/submissions', {
                 method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'X-CSRFToken': getCsrfToken(),
-                },
                 body: formData
             })
 
-            if (!response.ok) throw new Error('Submission failed')
-
-            const data: SubmissionResponse = await response.json()
-
             navigate(`/diagnostic/${data.diagnostic_id}/processing`)
         } catch (err) {
+            console.error(err)
             setError('Une erreur est survenue')
         } finally {
             setIsLoading(false)
