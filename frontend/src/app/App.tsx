@@ -9,10 +9,10 @@ import ProfilePage from '../pages/ProfilePage'
 import AnalyzePage from '../pages/ScanPage'
 import GuidesPage from '../pages/GuidesPage'
 import AdvicesPage from '../pages/AdvicesPage'
-import { ADVICES_PAGE, DIAGNOSTIC_PROCESSING_PAGE, GUIDES_PAGE, HISTORY_PAGE, HOME_PAGE, LOGIN_PAGE, PRIVACY_POLICY_PAGE, PROFILE_PAGE, SCAN_PAGE, TERMS_OF_USE_PAGE } from '../constants/pages'
+import { ADVICES_PAGE, DIAGNOSTIC_ERROR_PAGE, DIAGNOSTIC_PROCESSING_PAGE, DIAGNOSTIC_RESULT_PAGE, GUIDES_PAGE, HISTORY_PAGE, HOME_PAGE, LOGIN_PAGE, PRIVACY_POLICY_PAGE, PROFILE_PAGE, SCAN_PAGE, TERMS_OF_USE_PAGE } from '../constants/pages'
 import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
 import TermsOfUsePage from '../pages/TermsOfUsePage'
-import DiagnosticProcessingPage from '../pages/DiagnosticProcessingPage'
+import { DiagnosticProcessingPage, DiagnosticErrorPage, DiagnosticResultPage } from '../pages/Diagnostics'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
@@ -64,6 +64,24 @@ export default function App() {
         element={
           <ProtectedRoute>
             <DiagnosticProcessingPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path={DIAGNOSTIC_RESULT_PAGE}
+        element={
+          <ProtectedRoute>
+            <DiagnosticResultPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path={DIAGNOSTIC_ERROR_PAGE}
+        element={
+          <ProtectedRoute>
+            <DiagnosticErrorPage />
           </ProtectedRoute>
         }
       />
