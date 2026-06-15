@@ -3,6 +3,7 @@ from diagnostic.models import Diagnostic
 
 class DiagnosticOut(ModelSchema):
     severity: str | None = Field(None, alias="advice_rule.severity")
+    original_image_url: str | None = Field(None, alias="submission.image.url")
 
     class Meta:
         model = Diagnostic
