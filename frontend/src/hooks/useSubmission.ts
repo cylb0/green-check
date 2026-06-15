@@ -21,14 +21,11 @@ export function useSubmission() {
     const [error, setError] = useState<string | null>(null)
     const navigate = useNavigate()
 
-    const submit = async (imageBase64: string, payload: SubmissionPayload = {}) => {
+    const submit = async (blob: Blob, payload: SubmissionPayload = {}) => {
         setIsLoading(true)
         setError(null)
 
         try {
-            const res = await fetch(imageBase64)
-            const blob = await res.blob()
-
             const formData = new FormData()
             formData.append('image', blob, 'capture.jpg')
             formData.append('payload', JSON.stringify(payload))

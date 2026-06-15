@@ -3,21 +3,24 @@ import { IoImagesOutline, IoRefreshOutline } from "react-icons/io5"
 import Webcam from "react-webcam"
 import { useSubmission } from "../hooks/useSubmission"
 import { CAMERA_TOOLTIP } from "../data/analyzePage"
+import { CAMERA_LAYOUT_CONFIG } from "../constants/camera"
+import { useCameraCapture } from "../hooks/useCameraCapture"
 
 const cornerStyle = "absolute border-white size-6 w-8 h-8"
 
 export default function AnalyzePage() {
-    const webcamRef = useRef<Webcam>(null)
+    const webcamRef = useRef<Webcam>(null!)
+    const frameRef = useRef<HTMLDivElement>(null!)
     const [facingMode, setFacingMode] = useState<"user" | "environment">("environment")
     const { submit } = useSubmission()
-
-    const capture = () => {
-        const screenshot = webcamRef.current?.getScreenshot()
-        if (screenshot) submit(screenshot)
-    }
+    const { capture } = useCameraCapture(webcamRef, frameRef)
 
     const toggleCamera = () => {
         setFacingMode(prev => prev === "environment" ? "user" : "environment")
+    }
+
+    const handleCapture = () => {
+        capture((blob) => submit(blob))
     }
 
     return (
@@ -31,7 +34,7 @@ export default function AnalyzePage() {
             />
 
             <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative w-72 h-72">
+                <div ref={frameRef} className={`relative ${CAMERA_LAYOUT_CONFIG.FRAME_SIZE_TW}`}>
                     <span className={`${cornerStyle} top-0 left-0 border-t-2 border-l-2 rounded-tl-xl`} />
                     <span className={`${cornerStyle} top-0 right-0 border-t-2 border-r-2 rounded-tr-xl`} />
                     <span className={`${cornerStyle} bottom-0 left-0 border-b-2 border-l-2 rounded-bl-xl`} />
@@ -51,7 +54,7 @@ export default function AnalyzePage() {
                 </button>
 
                 <button
-                    onClick={capture}
+                    onClick={handleCapture}
                     className="w-20 h-20 rounded-full border-4 border-white flex items-center justify-center active:scale-95 transition-transform"
                 >
                     <div className="w-14 h-14 rounded-full bg-white" />
