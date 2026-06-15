@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-interface SubmissionPayload {
+export interface SubmissionPayload {
     plant_type?: string
     latitude?: string
     longitude?: string
