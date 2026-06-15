@@ -1,6 +1,6 @@
 from ninja import Router, File, Status
 from ninja.errors import HttpError
-from diagnostic.api.schemas.plant_submissions import PlantSubmissionIn, PlantSubmissionOut
+from diagnostic.api.schemas.plant_submissions import PlantSubmissionCreatedOut, PlantSubmissionIn, PlantSubmissionOut
 from diagnostic.models import Diagnostic, PlantSubmission
 from django.shortcuts import get_object_or_404
 import uuid
@@ -16,7 +16,7 @@ def list_submissions(request):
 def get_submission(request, submission_id: uuid.UUID):
     return get_object_or_404(PlantSubmission, id=submission_id, user=request.auth)
 
-@router.post('', response={201: PlantSubmissionOut})
+@router.post('', response={201: PlantSubmissionCreatedOut})
 def create_submission(request, payload: PlantSubmissionIn, image: UploadedFile=File(...)):
     if not image.content_type.startswith('image/'):
         raise HttpError(400, "Invalid file type. Only images are allowed.")
@@ -29,7 +29,10 @@ def create_submission(request, payload: PlantSubmissionIn, image: UploadedFile=F
     diagnostic = Diagnostic.objects.create(submission=sub)
     # TODO: launch celery task
 
-    return Status(201, sub)
+    return Status(201, {
+        "submission": sub,
+        "diagnostic_id": str(diagnostic.id),
+    })
 
 @router.delete('/{submission_id}', response={204: None})
 def delete_submission(request, submission_id: uuid.UUID):

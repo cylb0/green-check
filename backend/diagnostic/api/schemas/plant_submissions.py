@@ -8,6 +8,10 @@ class PlantSubmissionOut(ModelSchema):
         model = PlantSubmission
         fields = ['id', 'plant_type', 'latitude', 'longitude', 'exposure', 'soil_type', 'image', 'submitted_at']
 
+class PlantSubmissionCreatedOut(Schema):
+    submission: PlantSubmissionOut
+    diagnostic_id: str
+    
 class PlantSubmissionIn(Schema):
     plant_type: Optional[PlantTypeChoice] = None
     latitude: Optional[float] = None

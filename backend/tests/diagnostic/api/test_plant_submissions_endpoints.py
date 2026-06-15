@@ -100,7 +100,7 @@ class TestCreateSubmission:
             auth=user
         )
         assert response.status_code == 201
-        assert response.json()['plant_type'] == 'tomato'
+        assert response.json()['submission']['plant_type'] == 'tomato'
 
 @pytest.mark.django_db
 class TestDeleteSubmission:
