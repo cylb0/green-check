@@ -1,7 +1,7 @@
 import { NAV_ITEMS, type NavItem } from "../../data/bottomNavbar"
 import { IoCameraOutline } from "react-icons/io5"
 import { useLocation, useNavigate } from "react-router-dom"
-import { ANALYZE_PAGE } from "../../data/pages"
+import { SCAN_PAGE } from "../../constants/pages"
 
 function NavItem({ id, label, icon: Icon, activeIcon: ActiveIcon }: NavItem) {
     const navigate = useNavigate()
@@ -37,7 +37,7 @@ export default function BottomNav() {
 
                 <div className="absolute left-1/2 -translate-x-1/2">
                     <button
-                        onClick={() => navigate(ANALYZE_PAGE)}
+                        onClick={() => navigate(SCAN_PAGE)}
                         className="p-4 rounded-full shadow-lg transition-all duration-200 active:scale-90 active:bg-primary/80 bg-primary/50"
                     >
                         <IoCameraOutline

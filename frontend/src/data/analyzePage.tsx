@@ -1,1 +1,0 @@
-export const CAMERA_TOOLTIP = <>Fit the leaf <br/>inside the box</>

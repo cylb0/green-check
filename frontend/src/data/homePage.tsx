@@ -1,9 +1,7 @@
 import type { ReactNode } from "react"
 import type { IconType } from "react-icons"
 import { FaBookMedical, FaRegClock, FaRegHeart } from "react-icons/fa";
-import { ADVICES_PAGE, ANALYZE_PAGE, GUIDES_PAGE, HISTORY_PAGE } from "./pages";
-
-// ------
+import { ADVICES_PAGE, GUIDES_PAGE, HISTORY_PAGE, SCAN_PAGE } from "../constants/pages";
 
 interface HeaderContent {
     readonly title: string
@@ -30,7 +28,7 @@ export interface FeatureCardContent {
 export const FEATURE_CARD: FeatureCardContent = {
     title: "Analyze a tree",
     subtext: "Use the camera to detect diseases",
-    link: ANALYZE_PAGE
+    link: SCAN_PAGE
 }
 
 interface QuickAccessElement {
