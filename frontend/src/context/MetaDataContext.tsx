@@ -19,6 +19,10 @@ export const MetadataProvider = ({ children }: { children: ReactNode }) => {
             .catch(err => console.error("Error fetching metadata: ", err))
     }, [])
 
+    if (!metadata) {
+        return <div>Loading...</div>
+    }
+
     return (
         <MetadataContext.Provider value={metadata}>
             {children}
