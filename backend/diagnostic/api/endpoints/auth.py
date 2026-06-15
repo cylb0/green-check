@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, get_user_model
 from django.http import HttpResponse
 from ninja.errors import HttpError
 from django.db.models import F
+from django.middleware.csrf import get_token
 
 router = Router()
 User = get_user_model()
@@ -21,6 +22,8 @@ def login(request, payload: LoginSchema, response: HttpResponse):
     if not user:
         raise HttpError(401, "Invalid credentials")
     
+    csrf_token = get_token(request)
+    response.set_cookie('csrftoken', csrf_token, samesite='Lax', secure=False)
     response.set_cookie('access_token', create_access_token(user), httponly=True, samesite='Lax', secure=False)
     response.set_cookie('refresh_token', create_refresh_token(user), httponly=True, samesite='Lax', secure=False)
     return UserOut(id=str(user.id), email=user.email)
