@@ -6,6 +6,8 @@ import { CAMERA_LAYOUT_CONFIG } from "../constants/camera"
 import { useCameraCapture } from "../hooks/useCameraCapture"
 import Preview from "../components/analyze-page/Preview"
 import { SubmissionProvider } from "../context/SubmissionContext"
+import { useNavigate } from "react-router-dom"
+import { FaArrowLeft } from "react-icons/fa";
 
 const cornerStyle = "absolute border-white size-6 w-8 h-8"
 
@@ -15,6 +17,7 @@ export default function ScanPage() {
     const frameRef = useRef<HTMLDivElement>(null!)
     const [facingMode, setFacingMode] = useState<"user" | "environment">("environment")
     const { capture } = useCameraCapture(webcamRef, frameRef)
+    const navigate = useNavigate()
 
     const toggleCamera = () => {
         setFacingMode(prev => prev === "environment" ? "user" : "environment")
@@ -37,6 +40,12 @@ export default function ScanPage() {
 
     return (
         <div className="relative h-screen w-full bg-red overflow-hidden">
+            <button
+                onClick={() => navigate("/")}
+                className="absolute top-4 left-4 z-10 justify-self-start text-white active:scale-110 hover:scale-110"
+            >
+                <FaArrowLeft size={24} />
+            </button>
             <Webcam
                 audio={false}
                 ref={webcamRef}
