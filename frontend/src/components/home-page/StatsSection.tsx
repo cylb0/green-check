@@ -14,7 +14,7 @@ export default function StatsSection({ values, className = "" }: StatsSectionPro
                 {STATS_SECTION_CONTENT.content.map((item, i) => (
                     <Card key={`qas-${i}`}>
                         <p className="text-heading flex text-center">{values[i]}</p>
-                        <span className="h-10 flex items-center text-sm font-semibold text-center text-primary/80">{item.label}</span>
+                        <span className="h-10 flex items-center text-sm font-semibold text-center text-foreground">{item.label}</span>
                     </Card>
                 ))}
             </div>

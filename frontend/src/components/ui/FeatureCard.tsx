@@ -13,7 +13,7 @@ export default function FeatureCard({ title, subtext, link, className = "" }: Fe
         <div className={`flex flex-col justify-start border-2 border-primary/10 rounded-xl bg-primary/5 p-4 ${className}`}>
             <h1 className="text-heading">{title}</h1>
             <p className="text-subheading">{subtext}</p>
-            <button onClick={() => navigate(link)} className="self-end text-primary/50 active:text-primary/80">
+            <button onClick={() => navigate(link)} className="self-end text-primary active:text-primary/80">
                 <FaArrowCircleRight size={32} />
             </button>
         </div>
