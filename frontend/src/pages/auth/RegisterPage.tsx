@@ -1,10 +1,10 @@
 import { Navigate } from 'react-router-dom'
-import { useAuth } from '../context/authContext'
-import RegisterForm from '../components/auth/RegisterForm';
-import { useAuthNav } from '../context/authNavContext';
+import { useAuth } from '../../context/authContext'
+import RegisterForm from '../../components/auth/RegisterForm';
+import { useAuthNav } from '../../context/authNavContext';
 import { FaArrowLeft } from 'react-icons/fa';
-import DotAuthNav from '../components/auth/DotAuthNav';
-import { LOGIN_CONTENT } from '../data/auth';
+import DotAuthNav from '../../components/auth/DotAuthNav';
+import { LOGIN_CONTENT } from '../../data/auth';
 
 export default function RegisterPage() {
     const { isAuthenticated, isLoading } = useAuth()

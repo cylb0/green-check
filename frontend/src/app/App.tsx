@@ -12,8 +12,7 @@ import AdvicesPage from '../pages/AdvicesPage'
 import { ADVICES_PAGE, DIAGNOSTIC_ADVICE_PAGE, DIAGNOSTIC_ERROR_PAGE, DIAGNOSTIC_PROCESSING_PAGE, DIAGNOSTIC_RESULT_PAGE, GUIDES_PAGE, HISTORY_PAGE, HOME_PAGE, LOGIN_PAGE, PRIVACY_POLICY_PAGE, PROFILE_PAGE, SCAN_PAGE, TERMS_OF_USE_PAGE } from '../constants/pages'
 import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
 import TermsOfUsePage from '../pages/TermsOfUsePage'
-import { DiagnosticProcessingPage, DiagnosticErrorPage, DiagnosticResultPage } from '../pages/Diagnostics'
-import DiagnosticAdvicePage from '../pages/Diagnostics/DiagnosticAdvicePage'
+import { DiagnosticAdvicePage, DiagnosticProcessingPage, DiagnosticErrorPage, DiagnosticResultPage } from '../pages/diagnostics'
 import DiagnosticLayout from '../layouts/DiagnosticLayout'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
