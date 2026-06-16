@@ -1,17 +1,17 @@
 import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from diagnostic.models.choices import DiseaseLabelChoice, PlantTypeChoice
+from diagnostic.models.choices import DiseaseLabelChoice, PlantTypeChoice, DiagnosticStatusChoice
 
 class DiagnosticQuerySet(models.QuerySet):
     def pending(self):
-        return self.filter(status=Diagnostic.StatusChoice.PENDING)
+        return self.filter(status=DiagnosticStatusChoice.PENDING)
     
     def failed(self):
-        return self.filter(status=Diagnostic.StatusChoice.FAILED)
+        return self.filter(status=DiagnosticStatusChoice.FAILED)
     
     def success(self):
-        return self.filter(status=Diagnostic.StatusChoice.SUCCESS)
+        return self.filter(status=DiagnosticStatusChoice.SUCCESS)
     
 class DiagnosticManager(models.Manager):
     def get_queryset(self):
@@ -27,23 +27,15 @@ class DiagnosticManager(models.Manager):
         return self.get_queryset().success()
 
 class Diagnostic(models.Model):
-    class StatusChoice(models.TextChoices):
-        PENDING = 'pending', _('Pending')
-        PROCESSING = 'processing', _('Processing')
-        SUCCESS = 'success', _('Success')
-        LOW_CONFIDENCE = 'low_confidence', _('Low confidence')
-        FAILED = 'failed', _('Failed')
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     submission = models.OneToOneField('diagnostic.PlantSubmission', on_delete=models.CASCADE, related_name="diagnostic")
     advice_rule = models.ForeignKey('diagnostic.AdviceRule', on_delete=models.SET_NULL, null=True, blank=True, related_name="diagnostics")
 
-    status = models.CharField(max_length=50, choices=StatusChoice.choices, default=StatusChoice.PENDING)
+    status = models.CharField(max_length=50, choices=DiagnosticStatusChoice.choices, default=DiagnosticStatusChoice.PENDING)
 
     detected_plant = models.CharField(max_length=255, choices=PlantTypeChoice.choices, null=True, blank=True)
-    plant_confidence = models.FloatField(null=True, blank=True)
     detected_disease = models.CharField(max_length=255, choices=DiseaseLabelChoice.choices, null=True, blank=True)
-    disease_confidence = models.FloatField(null=True, blank=True)
+    confidence = models.FloatField(null=True, blank=True)
 
     advice_text = models.TextField(null=True, blank=True)
     raw_model_response = models.JSONField(null=True, blank=True)
@@ -57,16 +49,10 @@ class Diagnostic(models.Model):
         from django.db.models import Case, When, IntegerField, Value
         from diagnostic import config
 
-        plant_ok = (self.plant_confidence or 0) >= config.PLANT_CONFIDENCE_THRESHOLD
-        disease_ok = (self.disease_confidence or 0) >= config.DISEASE_CONFIDENCE_THRESHOLD
+        ok = (self.confidence or 0) >= config.CONFIDENCE_TRESHOLD
 
-        if not plant_ok:
-            self.status = self.StatusChoice.LOW_CONFIDENCE
-            self.save(update_fields=['status'])
-            return
-
-        if not disease_ok:
-            self.status = self.StatusChoice.LOW_CONFIDENCE
+        if not ok:
+            self.status = DiagnosticStatusChoice.LOW_CONFIDENCE
             self.save(update_fields=['status'])
             return
 
@@ -96,13 +82,13 @@ class Diagnostic(models.Model):
         )
 
         if not rule:
-            self.status = self.StatusChoice.FAILED
+            self.status = DiagnosticStatusChoice.FAILED
             self.save(update_fields=['status'])
             return
         
         self.advice_rule = rule
         self.advice_text = rule.advice_text
-        self.status = self.StatusChoice.SUCCESS
+        self.status = DiagnosticStatusChoice.SUCCESS
         self.save(update_fields=['advice_rule', 'advice_text', 'status'])
 
     def __str__(self):

@@ -5,6 +5,7 @@ interface Metadata {
     exposure: { value: string, label: string }[]
     soil: { value: string, label: string }[]
     disease: { value: string, label: string }[]
+    diagnostic_status: { value: string, label: string }[]
 }
 
 const MetadataContext = createContext<Metadata | null>(null)

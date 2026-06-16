@@ -21,9 +21,9 @@ export default function QuickAccessSection({ title, content, className = "" }: Q
                     >
                         <Card>
                             <div className="h-10 w-10 flex items-center justify-center">
-                                <item.icon size={32} className="text-primary/50 active:text-primary/80" />
+                                <item.icon size={32} className="text-primary" />
                             </div>
-                            <span className="h-10 flex- items-center text-sm font-semibold text-center text-primary/80">{item.label}</span>
+                            <span className="h-10 flex- items-center text-sm font-semibold text-center text-foreground">{item.label}</span>
                         </Card>
                     </button>
                 ))}

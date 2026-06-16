@@ -5,6 +5,13 @@ export interface User {
     email: string
 }
 
+export function getCsrfToken(): string {
+    const cookie = document.cookie
+        .split(';')
+        .find(c => c.trim().startsWith('csrftoken='))
+    return cookie ? cookie.split('=')[1].trim() : ''
+}
+
 export const authApi = {
     login: (email: string, password: string) =>
         apiFetch<User>('/api/login', {

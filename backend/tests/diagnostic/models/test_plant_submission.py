@@ -1,3 +1,4 @@
+from diagnostic.models.choices import DiagnosticStatusChoice
 from diagnostic.models.diagnostic import Diagnostic
 import pytest
 from diagnostic.models import PlantSubmission, ExposureChoice, SoilTypeChoice
@@ -48,7 +49,7 @@ class TestPlantSubmissionManager:
     def test_create_with_diagnostic_status_is_pending(self, user):
         image = SimpleUploadedFile('image.jpg', b'filecontent', content_type='image/jpeg')
         sub = PlantSubmission.objects.create_with_diagnostic(user=user, image=image)
-        assert Diagnostic.objects.get(submission=sub).status == Diagnostic.StatusChoice.PENDING
+        assert Diagnostic.objects.get(submission=sub).status == DiagnosticStatusChoice.PENDING
 
     def test_create_with_diagnostic_rollback_if_diagnostic_fails(self, user, monkeypatch):
         image = SimpleUploadedFile('image.jpg', b'filecontent', content_type='image/jpeg')

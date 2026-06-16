@@ -15,8 +15,8 @@ function NavItem({ id, label, icon: Icon, activeIcon: ActiveIcon }: NavItem) {
             onClick={() => navigate(id)}
             className="flex flex-col items-center gap-0.5 active:scale-90 transition-transform duration-150"
         >
-            <DisplayIcon size={22} className={`transition-colors duration-200 ${isActive ? "text-primary/50" : "text-primary/30"}`} />
-            <span className={`text-xs font-bold transition-colors duration-200 ${isActive ? "text-primary/50" : "text-primary/30"}`}>
+            <DisplayIcon size={22} className={`transition-colors duration-200 ${isActive ? "text-primary" : "text-foreground/30"}`} />
+            <span className={`text-xs font-bold transition-colors duration-200 ${isActive ? "text-primary" : "text-foreground/30"}`}>
                 {label}
             </span>
         </button>
@@ -38,7 +38,7 @@ export default function BottomNav() {
                 <div className="absolute left-1/2 -translate-x-1/2">
                     <button
                         onClick={() => navigate(SCAN_PAGE)}
-                        className="p-4 rounded-full shadow-lg transition-all duration-200 active:scale-90 active:bg-primary/80 bg-primary/50"
+                        className="p-4 rounded-full shadow-lg transition-all duration-200 active:scale-90 bg-primary"
                     >
                         <IoCameraOutline
                             size={32}

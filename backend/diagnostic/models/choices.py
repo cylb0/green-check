@@ -23,3 +23,10 @@ class DiseaseLabelChoice(models.TextChoices):
     EARLY_BLIGHT = 'early_blight', _('Early Blight')
     LATE_BLIGHT = 'late_blight', _('Late Blight')
     # TO DO: Complete with PlantVillage Dataset labels
+
+class DiagnosticStatusChoice(models.TextChoices):
+    PENDING = 'pending', _('Pending')
+    PROCESSING = 'processing', _('Processing')
+    SUCCESS = 'success', _('Success')
+    LOW_CONFIDENCE = 'low_confidence', _('Low confidence')
+    FAILED = 'failed', _('Failed')
