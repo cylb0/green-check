@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/authContext'
 import { FaRegEye } from "react-icons/fa";
 import { FaEye } from "react-icons/fa6";
+import { LOGIN_CONTENT } from '../../data/auth';
 
 interface FormState {
     email: string
@@ -75,7 +76,7 @@ export default function LoginForm() {
 
             <div className="my-4 relative">
                 <label htmlFor="email" className="input-label">
-                    Email
+                    {LOGIN_CONTENT.email}
                 </label>
                 <input
                     id="email"
@@ -95,7 +96,7 @@ export default function LoginForm() {
 
             <div className="mt-4 relative">
                 <label htmlFor="password" className="input-label">
-                    Password
+                    {LOGIN_CONTENT.password}
                 </label>
                 <div className="relative">
                     <input
@@ -125,8 +126,8 @@ export default function LoginForm() {
 
 
             <div className="text-right mt-4">
-                <a href="/forgot-password" className="text-sm font-bold text-primary/50 underline">
-                    Forgot password ?
+                <a href="/forgot-password" className="text-sm font-bold text-foreground/50 underline">
+                    {LOGIN_CONTENT.forgotPassword}
                 </a>
             </div>
 
