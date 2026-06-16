@@ -9,10 +9,12 @@ import ProfilePage from '../pages/ProfilePage'
 import AnalyzePage from '../pages/ScanPage'
 import GuidesPage from '../pages/GuidesPage'
 import AdvicesPage from '../pages/AdvicesPage'
-import { ADVICES_PAGE, DIAGNOSTIC_ERROR_PAGE, DIAGNOSTIC_PROCESSING_PAGE, DIAGNOSTIC_RESULT_PAGE, GUIDES_PAGE, HISTORY_PAGE, HOME_PAGE, LOGIN_PAGE, PRIVACY_POLICY_PAGE, PROFILE_PAGE, SCAN_PAGE, TERMS_OF_USE_PAGE } from '../constants/pages'
+import { ADVICES_PAGE, DIAGNOSTIC_ADVICE_PAGE, DIAGNOSTIC_ERROR_PAGE, DIAGNOSTIC_PROCESSING_PAGE, DIAGNOSTIC_RESULT_PAGE, GUIDES_PAGE, HISTORY_PAGE, HOME_PAGE, LOGIN_PAGE, PRIVACY_POLICY_PAGE, PROFILE_PAGE, SCAN_PAGE, TERMS_OF_USE_PAGE } from '../constants/pages'
 import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
 import TermsOfUsePage from '../pages/TermsOfUsePage'
 import { DiagnosticProcessingPage, DiagnosticErrorPage, DiagnosticResultPage } from '../pages/Diagnostics'
+import DiagnosticAdvicePage from '../pages/Diagnostics/DiagnosticAdvicePage'
+import DiagnosticLayout from '../layouts/DiagnosticLayout'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
@@ -60,31 +62,17 @@ export default function App() {
       } />
 
       <Route
-        path={DIAGNOSTIC_PROCESSING_PAGE}
         element={
           <ProtectedRoute>
-            <DiagnosticProcessingPage />
+            <DiagnosticLayout />
           </ProtectedRoute>
         }
-      />
-
-      <Route
-        path={DIAGNOSTIC_RESULT_PAGE}
-        element={
-          <ProtectedRoute>
-            <DiagnosticResultPage />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path={DIAGNOSTIC_ERROR_PAGE}
-        element={
-          <ProtectedRoute>
-            <DiagnosticErrorPage />
-          </ProtectedRoute>
-        }
-      />
+      >
+        <Route path={DIAGNOSTIC_PROCESSING_PAGE} element={<DiagnosticProcessingPage />} />
+        <Route path={DIAGNOSTIC_RESULT_PAGE} element={<DiagnosticResultPage />} />
+        <Route path={DIAGNOSTIC_ERROR_PAGE} element={<DiagnosticErrorPage />} />
+        <Route path={DIAGNOSTIC_ADVICE_PAGE} element={<DiagnosticAdvicePage />} />
+      </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
