@@ -7,8 +7,7 @@ class DiagnosticAdmin(admin.ModelAdmin):
     list_filter = ['status', 'detected_plant', 'detected_disease']
     search_fields = ['submission__user__email', 'detected_plant']
     readonly_fields = [
-        'id', 'submission', 'advice_rule', 'status', 'detected_plant', 
-        'plant_confidence', 'detected_disease', 'disease_confidence', 
+        'id', 'submission', 'advice_rule', 'status', 'detected_plant', 'detected_disease', 'confidence', 
         'advice_text', 'raw_model_response', 'created_at'
     ]
 
@@ -19,11 +18,10 @@ class DiagnosticAdmin(admin.ModelAdmin):
         ("Résultats de l'analyse (IA)", {
             'fields': (
                 'detected_plant', 
-                'plant_confidence', 
                 'detected_disease', 
-                'disease_confidence',
+                'confidence',
             ),
-            'description': "Scores de confiance retournés par le modèle."
+            'description': "Score de confiance retourné par le modèle."
         }),
         ("Conseils et résultats", {
             'fields': ('advice_rule', 'advice_text'),

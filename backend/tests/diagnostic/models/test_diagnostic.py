@@ -34,9 +34,8 @@ def diagnostic(submission):
     return Diagnostic.objects.create(
         submission=submission,
         detected_plant=PlantTypeChoice.TOMATO,
-        plant_confidence=0.85,
         detected_disease=DiseaseLabelChoice.EARLY_BLIGHT,
-        disease_confidence=0.95
+        confidence=0.85
     )
 
 @pytest.mark.django_db
@@ -47,9 +46,8 @@ class TestDiagnostic:
         assert diagnostic.advice_rule is None
         assert diagnostic.status == DiagnosticStatusChoice.PENDING
         assert diagnostic.detected_plant == PlantTypeChoice.TOMATO
-        assert diagnostic.plant_confidence == 0.85
         assert diagnostic.detected_disease == DiseaseLabelChoice.EARLY_BLIGHT
-        assert diagnostic.disease_confidence == 0.95
+        assert diagnostic.confidence == 0.85
         assert diagnostic.advice_text is None
 
     def test_apply_advice(self, diagnostic, rule):
@@ -75,14 +73,8 @@ class TestDiagnostic:
 
         assert diagnostic.status == DiagnosticStatusChoice.FAILED
 
-    def test_apply_advice_low_confidence_plant(self, diagnostic):
-        diagnostic.plant_confidence = 0.01
-        diagnostic.save()
-        diagnostic.apply_advice()
-        assert diagnostic.status == DiagnosticStatusChoice.LOW_CONFIDENCE
-
-    def test_apply_advice_low_confidence_disease(self, diagnostic):
-        diagnostic.disease_confidence = 0.01
+    def test_apply_advice_low_confidence(self, diagnostic):
+        diagnostic.confidence = 0.01
         diagnostic.save()
         diagnostic.apply_advice()
         assert diagnostic.status == DiagnosticStatusChoice.LOW_CONFIDENCE

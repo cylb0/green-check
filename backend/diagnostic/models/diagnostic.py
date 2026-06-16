@@ -34,9 +34,8 @@ class Diagnostic(models.Model):
     status = models.CharField(max_length=50, choices=DiagnosticStatusChoice.choices, default=DiagnosticStatusChoice.PENDING)
 
     detected_plant = models.CharField(max_length=255, choices=PlantTypeChoice.choices, null=True, blank=True)
-    plant_confidence = models.FloatField(null=True, blank=True)
     detected_disease = models.CharField(max_length=255, choices=DiseaseLabelChoice.choices, null=True, blank=True)
-    disease_confidence = models.FloatField(null=True, blank=True)
+    confidence = models.FloatField(null=True, blank=True)
 
     advice_text = models.TextField(null=True, blank=True)
     raw_model_response = models.JSONField(null=True, blank=True)
@@ -50,15 +49,9 @@ class Diagnostic(models.Model):
         from django.db.models import Case, When, IntegerField, Value
         from diagnostic import config
 
-        plant_ok = (self.plant_confidence or 0) >= config.PLANT_CONFIDENCE_THRESHOLD
-        disease_ok = (self.disease_confidence or 0) >= config.DISEASE_CONFIDENCE_THRESHOLD
+        ok = (self.confidence or 0) >= config.CONFIDENCE_TRESHOLD
 
-        if not plant_ok:
-            self.status = DiagnosticStatusChoice.LOW_CONFIDENCE
-            self.save(update_fields=['status'])
-            return
-
-        if not disease_ok:
+        if not ok:
             self.status = DiagnosticStatusChoice.LOW_CONFIDENCE
             self.save(update_fields=['status'])
             return
