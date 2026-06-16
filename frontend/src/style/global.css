@@ -2,6 +2,12 @@
 
 @theme {
     --color-primary: #000;
+    --color-success: #16a64a;
+    --color-success-bg: #dcfce7;
+    --color-warning: #ca8a04;
+    --color-warning-bg: #fef9c3;
+    --color-error: #dc2626;
+    --color-error-bg: #fee2e2;
 }
 
 @layer components {
