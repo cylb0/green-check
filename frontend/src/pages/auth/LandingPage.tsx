@@ -1,5 +1,5 @@
-import PlantScannerIcon from "../components/landing-page/PlantScannerIcon";
-import DotAuthNav from "../components/auth/DotAuthNav";
+import PlantScannerIcon from "../../components/landing-page/PlantScannerIcon";
+import DotAuthNav from "../../components/auth/DotAuthNav";
 
 export default function LandingPage() {
 

@@ -12,7 +12,7 @@ export default function PageHeader({ title, className }: PageHeaderProps) {
     return (
         <div className={`grid grid-cols-[auto_1fr_auto] items-center w-full p-4 ${className}`}>
             <button
-                onClick={() => navigate("/")}
+                onClick={() => navigate(-1)}
                 className="justify-self-start active:scale-110 hover:scale-110"
             >
                 <FaArrowLeft size={24} />
