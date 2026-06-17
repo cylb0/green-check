@@ -16,3 +16,5 @@ export const LANGUAGE_LABELS: Record<SupportedLanguage, string> = {
     fr: "Français",
     enGB: "English"
 }
+
+export type Translations<T> = Record<SupportedLanguage, T>
