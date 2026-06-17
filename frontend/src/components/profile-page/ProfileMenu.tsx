@@ -1,10 +1,11 @@
 import { useAuth } from "../../context/authContext"
-import { PROFILE_PAGE_MENU, type ProfilePageMenu } from "../../data/profilePage"
+import { PROFILE_PAGE_LABELS, PROFILE_PAGE_MENU, type ProfilePageMenu } from "../../data/profilePage"
 import { FaChevronRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import ChangeLanguage from "./ChangeLanguage";
 import CollapsibleMenuItem from "./CollapsibleMenuItem";
 import MenuIcon from "../ui/MenuRow";
+import { useTranslation } from "../../hooks/useTranslation";
 
 const getMenuItemClasses = (index: number, total: number) => {
     const isFirst = index === 0
@@ -21,6 +22,7 @@ export const CHEVRON_CLASSES = "hover:scale-110 active:scale-110"
 
 export default function ProfileMenu() {
     const { logout } = useAuth()
+    const labels = useTranslation(PROFILE_PAGE_LABELS)
 
     const handleAction = (item: ProfilePageMenu) => {
         if (item.type === "action" && item.actionKey === "logout") {
@@ -36,26 +38,27 @@ export default function ProfileMenu() {
             <div>
                 {menuItems.map((item, index) => {
                     const itemClasses = getMenuItemClasses(index, menuItems.length)
+                    const label = labels[item.labelKey]
 
                     switch (item.type) {
                         case "collapsible":
                             return (
-                                <CollapsibleMenuItem key={index} item={item} className={itemClasses}>
+                                <CollapsibleMenuItem key={`mi-${index}`} item={item} label={label} className={itemClasses}>
                                     {item.renderChildren()}
                                 </CollapsibleMenuItem>
                             )
 
                         case "language": {
                             return (
-                                <ChangeLanguage key={index} item={item} className={`${itemClasses} flex w-full items-center gap-4`}/>
+                                <ChangeLanguage key={`mi-${index}`} item={item} label={label} className={`${itemClasses} flex w-full items-center gap-4`}/>
                             )
                         }
 
                         case "link":
                             return (
-                                <Link className={`${itemClasses} flex w-full items-center gap-4`} to={item.href} >
+                                <Link key={`mi-${index}`} className={`${itemClasses} flex w-full items-center gap-4`} to={item.href} >
                                     <MenuIcon icon={item.icon} />
-                                    <span className="flex-1 text-left">{item.label}</span> 
+                                    <span className="flex-1 text-left">{label}</span> 
                                     {item.chevron && <FaChevronRight className={`${CHEVRON_CLASSES}`} />}
                                 </Link>
                             )
@@ -67,12 +70,13 @@ export default function ProfileMenu() {
             <div>
                 {actionItems.map((item, index) => (
                     <button
+                        key={`ai-${index}`}
                         type="button"
                         onClick={() => handleAction(item)}
                         className={`${getMenuItemClasses(index, actionItems.length)} flex w-full items-center gap-4`}
                     >
                         <MenuIcon icon={item.icon} />
-                        {item.label}
+                        {labels[item.labelKey]}
                     </button>
                 ))}
             </div>
