@@ -4,6 +4,7 @@ import { useAuth } from '../../context/authContext'
 import { FaRegEye } from "react-icons/fa";
 import { FaEye } from "react-icons/fa6";
 import { LOGIN_CONTENT } from '../../data/auth';
+import { useTranslation } from '../../hooks/useTranslation';
 
 interface FormState {
     email: string
@@ -27,6 +28,7 @@ function validate(values: FormState): FormErrors {
 export default function LoginForm() {
     const { login } = useAuth()
     const navigate = useNavigate()
+    const { email, password, forgotPassword } = useTranslation(LOGIN_CONTENT)
 
     const [values, setValues] = useState<FormState>({ email: '', password: '' })
     const [errors, setErrors] = useState<FormErrors>({})
@@ -76,7 +78,7 @@ export default function LoginForm() {
 
             <div className="my-4 relative">
                 <label htmlFor="email" className="input-label">
-                    {LOGIN_CONTENT.email}
+                    {email}
                 </label>
                 <input
                     id="email"
@@ -96,7 +98,7 @@ export default function LoginForm() {
 
             <div className="mt-4 relative">
                 <label htmlFor="password" className="input-label">
-                    {LOGIN_CONTENT.password}
+                    {password}
                 </label>
                 <div className="relative">
                     <input
@@ -127,7 +129,7 @@ export default function LoginForm() {
 
             <div className="text-right mt-4">
                 <a href="/forgot-password" className="text-sm font-bold text-foreground/50 underline">
-                    {LOGIN_CONTENT.forgotPassword}
+                    {forgotPassword}
                 </a>
             </div>
 
