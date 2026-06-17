@@ -1,4 +1,5 @@
-import { STATS_SECTION_CONTENT } from "../../data/homePage"
+import { STATS_CONFIG, STATS_TRANSLATIONS, type StatsKey } from "../../data/homePage"
+import { useTranslation } from "../../hooks/useTranslation"
 import Card from "../ui/Card"
 
 interface StatsSectionProps {
@@ -7,14 +8,18 @@ interface StatsSectionProps {
 }
 
 export default function StatsSection({ values, className = "" }: StatsSectionProps) {
+    const trad = useTranslation(STATS_TRANSLATIONS)
+
+    const statKeys = Object.keys(STATS_CONFIG) as StatsKey[]
+
     return (
         <div className={`${className}`}>
-            <h2 className="text-heading-sm">{STATS_SECTION_CONTENT.title}</h2>
+            <h2 className="text-heading-sm">{trad.title}</h2>
             <div className="grid grid-cols-3 gap-4 mt-2">
-                {STATS_SECTION_CONTENT.content.map((item, i) => (
+                {statKeys.map((key, i) => (
                     <Card key={`qas-${i}`}>
                         <p className="text-heading flex text-center">{values[i]}</p>
-                        <span className="h-10 flex items-center text-sm font-semibold text-center text-foreground">{item.label}</span>
+                        <span className="h-10 flex items-center text-sm font-semibold text-center text-foreground">{trad.labels[key]}</span>
                     </Card>
                 ))}
             </div>

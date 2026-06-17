@@ -53,7 +53,7 @@ export default function DiagnosticResultPage() {
                 className="w-full bg-primary font-bold text-white rounded-lg p-2 mt-4 active:scale-110 hover:scale-110"
                 disabled={isLoading}
             >
-                {'See advices'}
+                {'See advice'}
             </button>
         </div>
     )
