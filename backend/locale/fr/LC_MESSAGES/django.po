@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:46+0000\n"
+"POT-Creation-Date: 2026-06-18 10:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: diagnostic/models/advice_rule.py:7
 msgid "Low"
 msgstr "Faible"
@@ -52,6 +53,34 @@ msgstr "Abonnement expiré"
 #: diagnostic/models/audit_log.py:13
 msgid "Subscription canceled"
 msgstr "Abonnement annulé"
+
+#: diagnostic/models/choices.py:5
+msgid "Full sun"
+msgstr "Plein soleil"
+
+#: diagnostic/models/choices.py:6
+msgid "Partial shade"
+msgstr "Semi-ombragé"
+
+#: diagnostic/models/choices.py:7
+msgid "Full shade"
+msgstr "Ombragé"
+
+#: diagnostic/models/choices.py:10
+msgid "Clay"
+msgstr "Argileux"
+
+#: diagnostic/models/choices.py:11
+msgid "Sandy"
+msgstr "Sableux"
+
+#: diagnostic/models/choices.py:12
+msgid "Loamy"
+msgstr "Limoneux"
+
+#: diagnostic/models/choices.py:13
+msgid "Chalky"
+msgstr "Calcaire"
 
 #: diagnostic/models/choices.py:16
 msgid "Apple"

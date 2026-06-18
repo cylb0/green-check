@@ -2,15 +2,15 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 class ExposureChoice(models.TextChoices):
-    FULL_SUN = 'full_sun', 'Full sun'
-    PARTIAL_SHADE = 'partial_shade', 'Partial shade'
-    FULL_SHADE = 'full_shade', 'Full shade'
+    FULL_SUN = 'full_sun', _('Full sun')
+    PARTIAL_SHADE = 'partial_shade', _('Partial shade')
+    FULL_SHADE = 'full_shade', _('Full shade')
 
 class SoilTypeChoice(models.TextChoices):
-    CLAY = 'clay', 'clay'
-    SANDY = 'sandy', 'sandy'
-    LOAMY = 'loamy', 'loamy'
-    CHALKY = 'chalky', 'chalky'
+    CLAY = 'clay', _('Clay')
+    SANDY = 'sandy', _('Sandy')
+    LOAMY = 'loamy', _('Loamy')
+    CHALKY = 'chalky', _('Chalky')
 
 class PlantTypeChoice(models.TextChoices):
     APPLE = 'apple', _('Apple')
