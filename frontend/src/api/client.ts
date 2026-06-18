@@ -2,10 +2,11 @@ import { getCsrfToken } from "./auth"
 
 type FetchOptions = RequestInit & {
     params?: Record<string, string>
+    language?: string
 }
 
 async function apiFetch<T>(endpoint: string, options: FetchOptions = {}): Promise<T> {
-    const { params, ...fetchOptions } = options
+    const { params, language, ...fetchOptions } = options
 
     const url = new URL(endpoint, window.location.origin)
 
@@ -13,13 +14,21 @@ async function apiFetch<T>(endpoint: string, options: FetchOptions = {}): Promis
         Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, value))
     }
 
+    const headers: Record<string, string> = {
+        'X-CSRFToken': getCsrfToken(),
+        ...(!fetchOptions.body || fetchOptions.body instanceof FormData)
+            ? {}
+            : {'Content-Type': 'application/json'},
+    }
+
+    if (language) {
+        headers['Accept-Language'] = language
+    }
+
     const response = await fetch(url.toString(), {
         credentials: 'include',
         headers: {
-            'X-CSRFToken': getCsrfToken(),
-            ...(!fetchOptions.body || fetchOptions.body instanceof FormData)
-                ? {}
-                : {'Content-Type': 'application/json'},
+            ...headers,
             ...fetchOptions.headers,
         },
         ...fetchOptions,
