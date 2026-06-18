@@ -5,6 +5,8 @@ export interface Diagnostic {
     status: string
     detected_plant: string
     detected_disease: string
+    plant_label: string
+    disease_label: string
     confidence: number
     advice_text: string
     created_at: string

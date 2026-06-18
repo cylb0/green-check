@@ -15,11 +15,10 @@ export default function DiagnosticCard(props: Diagnostic) {
                 alt={props.detected_plant || "Plant image"}
             />
             <div className="p-2">
-                <p className="text-lg text-foreground font-bold">{capitalize(props.detected_plant)}</p>
-                <p className="text-md text-foreground font-bold">{capitalize(props.detected_disease)}</p>
+                <p className="text-lg text-foreground font-bold">{capitalize(props.plant_label)}</p>
+                <p className="text-md text-foreground font-bold">{capitalize(props.disease_label)}</p>
                 <p className="text-sm text-foreground/50 font-medium"><span>{formatDiagnosticDate(props.created_at)}</span> ‧ <span>{props.confidence}%</span></p>
             </div>
         </Link>
     )
 }
-
