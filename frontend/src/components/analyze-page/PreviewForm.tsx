@@ -2,6 +2,8 @@ import { useState, type SyntheticEvent } from "react";
 import { useSubmissionContext } from "../../context/SubmissionContext";
 import { useMetadata } from "../../context/MetaDataContext";
 import type { SubmissionPayload } from "../../types/plant_submissions";
+import { useTranslation } from "../../hooks/useTranslation";
+import { PREVIEW_CONTENT } from "../../data/scanPage";
 
 interface PreviewFormProps {
     blob: Blob
@@ -12,6 +14,7 @@ export default function PreviewForm({ blob }: PreviewFormProps) {
     const [formState, setFormState] = useState<SubmissionPayload>({})
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string>("")
+    const { plantLabel, soilLabel, exposureLabel } = useTranslation(PREVIEW_CONTENT)
 
     const metadata = useMetadata()
 
@@ -21,9 +24,9 @@ export default function PreviewForm({ blob }: PreviewFormProps) {
         label: string
         options: { value: string; label: string}[]
     }[] = [
-        { id: 'plant', name: 'plant_type', label: "Plant", options: metadata.plant },
-        { id: 'soil', name: 'soil_type', label: "Soil", options: metadata.soil },
-        { id: 'exposure', name: 'exposure', label: "Exposure", options: metadata.exposure },
+        { id: 'plant', name: 'plant_type', label: plantLabel, options: metadata.plant },
+        { id: 'soil', name: 'soil_type', label: soilLabel, options: metadata.soil },
+        { id: 'exposure', name: 'exposure', label: exposureLabel, options: metadata.exposure },
     ]
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -36,8 +39,12 @@ export default function PreviewForm({ blob }: PreviewFormProps) {
         setError("")
         setIsLoading(true)
 
+        const cleanedPayload = Object.fromEntries(
+            Object.entries(formState).filter(([_default, value]) => value !== "" && value !== null && value !== undefined)
+        ) as SubmissionPayload
+
         try {
-            await submit(blob, formState)
+            await submit(blob, cleanedPayload)
         } catch (error) {
             console.error(error)
             setError("An error occured, please try again.")

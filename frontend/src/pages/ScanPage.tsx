@@ -8,6 +8,7 @@ import Preview from "../components/analyze-page/Preview"
 import { SubmissionProvider } from "../context/SubmissionContext"
 import { useNavigate } from "react-router-dom"
 import { FaArrowLeft } from "react-icons/fa";
+import { useTranslation } from "../hooks/useTranslation"
 
 const cornerStyle = "absolute border-white size-6 w-8 h-8"
 
@@ -18,6 +19,7 @@ export default function ScanPage() {
     const [facingMode, setFacingMode] = useState<"user" | "environment">("environment")
     const { capture } = useCameraCapture(webcamRef, frameRef)
     const navigate = useNavigate()
+    const cameraLabel = useTranslation(CAMERA_TOOLTIP)
 
     const toggleCamera = () => {
         setFacingMode(prev => prev === "environment" ? "user" : "environment")
@@ -65,7 +67,7 @@ export default function ScanPage() {
 
             <div className="absolute left-1/2 -translate-x-1/2 bottom-52">
                 <div className="bg-black/50 backdrop-blur-sm rounded-2xl px-5 py-3 text-white text-sm text-center leading-snug">
-                    {CAMERA_TOOLTIP}
+                    {cameraLabel}
                 </div>
             </div>
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { FaArrowsRotate } from "react-icons/fa6";
 import PreviewForm from "./PreviewForm";
 import { PREVIEW_CONTENT } from "../../data/scanPage";
+import { useTranslation } from "../../hooks/useTranslation";
 
 interface PreviewProps {
     blob: Blob
@@ -10,6 +11,7 @@ interface PreviewProps {
 
 export default function Preview({ blob, onRetry }: PreviewProps) {
     const [imagePreview, setImagePreview] = useState("")
+    const { title, formTitle, limitations } = useTranslation(PREVIEW_CONTENT)
 
     useEffect(() => {
         const url = URL.createObjectURL(blob)
@@ -19,7 +21,7 @@ export default function Preview({ blob, onRetry }: PreviewProps) {
 
     return (
         <div className="flex flex-col h-full p-4">
-            <h1 className="text-heading">{PREVIEW_CONTENT.title}</h1>
+            <h1 className="text-heading">{title}</h1>
 
             <div className="relative self-center mt-6">
                 <img className="rounded-lg" src={imagePreview} />
@@ -29,11 +31,11 @@ export default function Preview({ blob, onRetry }: PreviewProps) {
             </div>
             <div className="mt-8 mb-4">
                 <h2 className="text-subheading">
-                    {PREVIEW_CONTENT.formTitle}
+                    {formTitle}
                 </h2>
             </div>
             <p className="text-xs text-primary/50 italic my-2">
-                {PREVIEW_CONTENT.limitations}
+                {limitations}
             </p>
             <PreviewForm blob={blob} />
         </div>
