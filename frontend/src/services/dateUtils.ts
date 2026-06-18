@@ -3,10 +3,10 @@ import { type SupportedLanguage, DATE_FNS_LOCALES } from "../constants/languages
 
 const TERMS: Record<SupportedLanguage, { today: string, yesterday: string }> = {
     fr: { today: "Aujourd'hui", yesterday: "Hier" },
-    enGB: { today: "Today", yesterday: "Yesterday" }
+    en: { today: "Today", yesterday: "Yesterday" }
 }
 
-export const formatDiagnosticDate = (isoDate: string, lang: SupportedLanguage = 'enGB') => {
+export const formatDiagnosticDate = (isoDate: string, lang: SupportedLanguage = 'en') => {
     const date = parseISO(isoDate)
     
     const locale = DATE_FNS_LOCALES[lang]

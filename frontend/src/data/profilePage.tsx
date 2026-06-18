@@ -11,7 +11,7 @@ import type { Translations } from "../constants/languages";
 
 export const PROFILE_PAGE_TITLE: Translations<string> = {
     fr: "Profil",
-    enGB: "Profile"
+    en: "Profile"
 }
 
 type ProfileLabelKey =
@@ -29,7 +29,7 @@ export const PROFILE_PAGE_LABELS: Translations<Record<ProfileLabelKey, string>> 
         about: "À propos",
         logout: "Deconnection"
     },
-    enGB: {
+    en: {
         personalInformation: "Personal Information",
         settings: "Settings",
         language: "Language",

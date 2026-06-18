@@ -1,20 +1,20 @@
-import { fr, enGB, type Locale } from "date-fns/locale"
+import { fr, enGB as en, type Locale } from "date-fns/locale"
 
 export const SUPPORTED_LANGUAGES = {
     FR: 'fr',
-    EN: 'enGB'
+    EN: 'en'
 } as const
 
 export type SupportedLanguage = typeof SUPPORTED_LANGUAGES[keyof typeof SUPPORTED_LANGUAGES]
 
 export const DATE_FNS_LOCALES: Record<SupportedLanguage, Locale> = {
     fr: fr,
-    enGB: enGB
+    en: en
 }
 
 export const LANGUAGE_LABELS: Record<SupportedLanguage, string> = {
     fr: "Français",
-    enGB: "English"
+    en: "English"
 }
 
 export type Translations<T> = Record<SupportedLanguage, T>

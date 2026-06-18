@@ -25,7 +25,7 @@ export const LOGIN_CONTENT = {
         accountAlready: "Vous avez déjà un compte ?",
         acceptTerms: <>J'accepte les <a>Conditions d'Utilisation</a> et la <a>Politique de Confidentialité</a></>
     },
-    enGB: {
+    en: {
         signIn: "Sign in",
         email: "Email",
         password: "Password",

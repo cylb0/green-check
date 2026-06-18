@@ -20,7 +20,7 @@ export const HEADER_TRANSLATIONS: Translations<HeaderTranslation> = {
             </>
         )
     },
-    enGB: {
+    en: {
         title: "Hello!",
         subtext: (
             <>
@@ -42,7 +42,7 @@ export const FEATURE_CARD_TRANSLATIONS: Translations<FeatureCardTranslation> = {
         title: "Analiser une plante",
         subtext: "Utilisez la caméra pour détecter les maladies",
     },
-    enGB: {
+    en: {
         title: "Analyze a tree",
         subtext: "Use the camera to detect diseases",
     }
@@ -70,7 +70,7 @@ export const QUICK_ACCESS_TRANSLATIONS: Translations<QuickAccessTranslation> = {
             advice: "Conseils"
         }
     },
-    enGB: {
+    en: {
         title: "Quick Access",
         labels: {
             history: "History",
@@ -111,7 +111,7 @@ export const STATS_TRANSLATIONS: Translations<{
             accuracy: "Précision"
         }
     },
-    enGB: {
+    en: {
         title: "Statistics",
         labels: {
             analysis: "Analysis",

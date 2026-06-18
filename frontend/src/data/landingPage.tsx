@@ -10,7 +10,7 @@ export const LANDING_PAGE_CONTENT: Translations<Record<LandingPageContentKey, Re
         title: <>Détecteur de<br/>plantes malades</>,
         catchphrase: <>Prenez soin de vos plantes,<br/>la nature vous remerciera</>
     },
-    enGB: {
+    en: {
         title: <>Plant disease<br/>Detection</>,
         catchphrase: <>Take care of your plants,<br/> nature will thank you</>
     }
