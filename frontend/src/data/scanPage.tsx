@@ -14,6 +14,8 @@ interface PreviewContent {
     plantLabel: string
     soilLabel: string
     exposureLabel: string
+    button: string
+    loading: string
 }
 
 export const PREVIEW_CONTENT: Translations<PreviewContent> = {
@@ -23,14 +25,18 @@ export const PREVIEW_CONTENT: Translations<PreviewContent> = {
         limitations: "*Seules les plantes listées sont supportées par le modèle.",
         plantLabel: "Sélectionner une espèce de plante",
         soilLabel: "Renseigner le type de sol",
-        exposureLabel: "Renseigner le type d'exposition"
+        exposureLabel: "Renseigner le type d'exposition",
+        button: "Envoyer",
+        loading: "Chargement..."
     },
-en: {
+    en: {
         title: "Preview",
         formTitle: "Additional Details (optional)",
         limitations: "*Only listed plants are supported by the model.",
         plantLabel: "Select a plant species",
         soilLabel: "Indicate the soil type",
-        exposureLabel: "Indicate the exposure type"
+        exposureLabel: "Indicate the exposure type",
+        button: "Submit",
+        loading: "Loading..."
     }
 }
