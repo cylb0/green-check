@@ -1,4 +1,4 @@
-import { useState, type SyntheticEvent } from "react";
+import { useEffect, useState, type SyntheticEvent } from "react";
 import { useSubmissionContext } from "../../context/SubmissionContext";
 import { useMetadata } from "../../context/MetaDataContext";
 import type { SubmissionPayload } from "../../types/plant_submissions";
@@ -12,14 +12,15 @@ interface PreviewFormProps {
 }
 
 export default function PreviewForm({ blob }: PreviewFormProps) {
-    const { submit } = useSubmissionContext()
+    const { mutate:submit, error, isPending } = useSubmissionContext()
     const [formState, setFormState] = useState<SubmissionPayload>({})
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState<string>("")
-    const { plantLabel, soilLabel, exposureLabel } = useTranslation(PREVIEW_CONTENT)
-    const { GENERIC } = useTranslation(ERRORS)
-
+    const { button, exposureLabel, loading, plantLabel, soilLabel } = useTranslation(PREVIEW_CONTENT)
+    const { SUBMISSION_FAIL } = useTranslation(ERRORS)
     const metadata = useMetadata()
+
+    useEffect(() => {
+        if (error) toast.error(SUBMISSION_FAIL)
+    }, [error, SUBMISSION_FAIL ])
 
     const fields: {
         id: string
@@ -34,33 +35,23 @@ export default function PreviewForm({ blob }: PreviewFormProps) {
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target
-        setFormState(prev => ({ ...prev, [name]: value }))
+        setFormState(prev => {
+            const next = { ...prev, [name]: value }
+            if (!value) delete next[name as keyof SubmissionPayload]
+            return next
+        })
     }
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
-        setError("")
-        setIsLoading(true)
-
-        const cleanedPayload = Object.fromEntries(
-            Object.entries(formState).filter(([_default, value]) => value !== "" && value !== null && value !== undefined)
-        ) as SubmissionPayload
-
-        try {
-            await submit(blob, cleanedPayload)
-        } catch (error) {
-            console.error(error)
-            toast.error(GENERIC)
-        } finally {
-            setIsLoading(false)
-        }
+        submit({ blob, payload: formState })
     }
 
     return (
         <form onSubmit={handleSubmit} noValidate className="relative w-full">
             {error && (
                 <div className="input-error absolute">
-                    {error}
+                    {error.message}
                 </div>
             )}
 
@@ -85,9 +76,9 @@ export default function PreviewForm({ blob }: PreviewFormProps) {
             <button
                 type="submit"
                 className="w-full bg-primary/80 text-white rounded-lg p-2 mt-4"
-                disabled={isLoading}
+                disabled={isPending}
             >
-                {isLoading ? 'Loading...' : 'Submit'}
+                {isPending ? loading : button}
             </button>
         </form>
 

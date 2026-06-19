@@ -8,6 +8,8 @@ import { CAMERA_LAYOUT_CONFIG } from "../../constants/camera"
 import { useEffect } from "react"
 import { DIAGNOSTIC_RESULT_PAGE_CONTENT } from "../../data/diagnosticPage"
 import { useTranslation } from "../../hooks/useTranslation"
+import { ERRORS } from "../../data/messages"
+import toast from "react-hot-toast"
 
 export default function DiagnosticResultPage() {
     const { diagnosticId } = useParams()
@@ -15,14 +17,18 @@ export default function DiagnosticResultPage() {
     const navigate = useNavigate()
     const { setTitle } = useOutletContext<{ setTitle: (t: string) => void }>()
     const trad = useTranslation(DIAGNOSTIC_RESULT_PAGE_CONTENT)
+    const { DIAGNOSTIC_FETCH_FAIL } = useTranslation(ERRORS)
 
     useEffect(() => {
         setTitle(trad.title)
     }, [setTitle])
+
+    useEffect(() => {
+        if (error) toast.error(DIAGNOSTIC_FETCH_FAIL)
+    }, [error, DIAGNOSTIC_FETCH_FAIL ])
     
     if (isLoading) return <div>Loading ...</div>
-    if (error) return <div>{error}</div>
-    if (!data) return null
+    if (error || !data) return null
 
     const isHealthy = data.detected_disease == "healthy"
 

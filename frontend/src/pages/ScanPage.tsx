@@ -4,7 +4,7 @@ import Webcam from "react-webcam"
 import { CAMERA_TOOLTIP } from "../data/scanPage"
 import { CAMERA_LAYOUT_CONFIG } from "../constants/camera"
 import { useCameraCapture } from "../hooks/useCameraCapture"
-import Preview from "../components/analyze-page/Preview"
+import Preview from "../components/scan-page/Preview"
 import { SubmissionProvider } from "../context/SubmissionContext"
 import { useNavigate } from "react-router-dom"
 import { FaArrowLeft } from "react-icons/fa";

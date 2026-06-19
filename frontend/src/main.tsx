@@ -5,15 +5,22 @@ import { AuthProvider } from './context/authContext'
 import { BrowserRouter } from 'react-router-dom'
 import { MetadataProvider } from './context/MetaDataContext'
 import { LanguageProvider } from './context/LanguageContext'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
-    <LanguageProvider>
-      <AuthProvider>
-        <MetadataProvider>
-          <App />
-        </MetadataProvider>
-      </AuthProvider>
-    </LanguageProvider>
-  </BrowserRouter>
+  <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+      <LanguageProvider>
+        <AuthProvider>
+          <MetadataProvider>
+            <App />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </MetadataProvider>
+        </AuthProvider>
+      </LanguageProvider>
+    </BrowserRouter>
+  </QueryClientProvider>
 )

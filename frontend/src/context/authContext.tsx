@@ -1,8 +1,9 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, type ReactNode } from "react";
 import { authApi, type User } from "../api/auth";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 interface AuthContextType {
-    user: User | null
+    user: User | null | undefined
     isAuthenticated: boolean
     isLoading: boolean
     login: (email: string, password: string) => Promise<void>
@@ -13,29 +14,27 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<User | null>(null)
-    const [isLoading, setIsLoading] = useState(true)
+    const queryClient = useQueryClient()
 
-    useEffect(() => {
-        authApi.me()
-            .then(setUser)
-            .catch(() => setUser(null))
-            .finally(() => setIsLoading(false))
-    }, [])
+    const { data: user, isLoading } = useQuery({
+        queryKey: ["me"],
+        queryFn: authApi.me,
+        retry: false
+    })
 
     const login = async (email: string, password: string) => {
-        const user = await authApi.login(email, password)
-        setUser(user)
+        await authApi.login(email, password)
+        queryClient.invalidateQueries({ queryKey: ["me"] })
     }
 
     const logout = async () => {
         await authApi.logout()
-        setUser(null)
+        queryClient.setQueryData(["me"], null)
     }
 
     const register = async (email: string, password: string) => {
-        const user = await authApi.register(email, password)
-        setUser(user)
+        await authApi.register(email, password)
+        queryClient.invalidateQueries({ queryKey: ["me"] })
     }
 
     return (

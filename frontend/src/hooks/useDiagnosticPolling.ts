@@ -1,38 +1,34 @@
 import { useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import apiFetch from "../api/client"
-import { type DiagnosticStatus, type DiagnosticStatusResponse } from "../types/diagnostics"
+import { isDiagnosticStatus, type DiagnosticStatus, type DiagnosticStatusResponse } from "../types/diagnostics"
 import { DIAGNOSTIC_STATUS_SUCCESS, DIAGNOSTIC_STATUS_ERROR } from "../constants/diagnostics"
+import { useQuery } from "@tanstack/react-query"
 
 export function useDiagnosticPolling(diagnosticId: string | undefined) {
-    const [status, setStatus] = useState<DiagnosticStatus>('pending')
     const navigate = useNavigate()
 
+    const { data } = useQuery({
+        queryKey: ["diagnostic-status", diagnosticId],
+        queryFn: () => apiFetch<DiagnosticStatusResponse>(`/api/diagnostics/${diagnosticId}`),
+        enabled: !!diagnosticId,
+        refetchInterval: 2000,
+        refetchIntervalInBackground: true
+    })
+
+    const status: DiagnosticStatus = (data && isDiagnosticStatus(data.status))
+        ? data.status
+        : "pending"
+
     useEffect(() => {
-        if (!diagnosticId) return
-
-        const checkStatus = async () => {
-            try {
-                const data = await apiFetch<DiagnosticStatusResponse>(`/api/diagnostics/${diagnosticId}`)
-
-                setStatus(data.status as any)
-
-                if (DIAGNOSTIC_STATUS_SUCCESS.includes(data.status)) {
-                    navigate(`/diagnostic/${diagnosticId}/result`)
-                } else if (DIAGNOSTIC_STATUS_ERROR.includes(data.status)) {
-                    navigate(`/diagnostic/${diagnosticId}/error`)
-                }
-            } catch (err) {
-                console.error("Error polling", err)
+        if (data?.status && isDiagnosticStatus(data.status)) {
+            if (DIAGNOSTIC_STATUS_SUCCESS.includes(data.status)) {
+                navigate(`/diagnostic/${diagnosticId}/result`)
+            } else if (DIAGNOSTIC_STATUS_ERROR.includes(data.status)) {
+                navigate(`/diagnostic/${diagnosticId}/error`)
             }
         }
-
-        checkStatus()
-        const interval = setInterval(checkStatus, 2000)
-
-        return () => clearInterval(interval)
-
-    }, [diagnosticId, navigate])
+    }, [data, diagnosticId, navigate])
 
     return { status }
 }
