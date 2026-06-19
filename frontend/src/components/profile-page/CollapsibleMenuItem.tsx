@@ -15,7 +15,7 @@ interface CollapsibleMenuItemProps {
 export default function CollapsibleMenuItem({ item, className = "", label, children }: CollapsibleMenuItemProps) {
     return (
         <Collapsible.Root className={className}>
-            <Collapsible.Trigger className="group flex w-full items-center gap-4">
+            <Collapsible.Trigger className="group flex w-full items-center gap-4 data-[state=open]:mb-2">
                 <MenuIcon icon={item.icon} />
                 <span className="flex-1 text-left">{label}</span> 
                 {item.chevron && (
