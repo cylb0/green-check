@@ -4,6 +4,7 @@ import { useAuth } from '../../context/authContext'
 import { FaRegEye } from "react-icons/fa";
 import { FaEye } from "react-icons/fa6";
 import { LOGIN_CONTENT } from '../../data/auth';
+import { useTranslation } from '../../hooks/useTranslation';
 
 interface FormState {
     email: string
@@ -33,6 +34,7 @@ function validate(values: FormState): FormErrors {
 export default function LoginForm() {
     const { register } = useAuth()
     const navigate = useNavigate()
+    const { email, password, confirmPassword, acceptTerms } = useTranslation(LOGIN_CONTENT)
 
     const [values, setValues] = useState<FormState>({ email: '', password: '', passwordConfirm: '', acceptTerms: false })
     const [errors, setErrors] = useState<FormErrors>({})
@@ -82,7 +84,7 @@ export default function LoginForm() {
 
             <div className="my-4 relative">
                 <label htmlFor="email" className="input-label">
-                    {LOGIN_CONTENT.email}
+                    {email}
                 </label>
                 <input
                     id="email"
@@ -102,7 +104,7 @@ export default function LoginForm() {
 
             <div className="mt-4 relative">
                 <label htmlFor="password" className="input-label">
-                    {LOGIN_CONTENT.password}
+                    {password}
                 </label>
                 <div className="relative">
                     <input
@@ -132,7 +134,7 @@ export default function LoginForm() {
 
             <div className="mt-4 relative">
                 <label htmlFor="passwordConfirm" className="input-label">
-                    {LOGIN_CONTENT.confirmPassword}
+                    {confirmPassword}
                 </label>
                 <div className="relative">
                     <input
@@ -171,7 +173,7 @@ export default function LoginForm() {
                     />
                 </div>
                 <label htmlFor="checkbox" className="input-label">
-                    I accept the <a>Terms of Use</a> and the <a>Privacy Policy</a>
+                    {acceptTerms}
                 </label>
                 {errors.acceptTerms && (
                     <p className="input-error top-full left-0 mt-1">{errors.acceptTerms}</p>

@@ -6,10 +6,12 @@ import { useAuthNav } from '../../context/authNavContext'
 import { FaArrowLeft } from 'react-icons/fa'
 import DotAuthNav from '../../components/auth/DotAuthNav'
 import { LOGIN_CONTENT } from '../../data/auth'
+import { useTranslation } from '../../hooks/useTranslation'
 
 export default function LoginPage() {
     const { isAuthenticated, isLoading } = useAuth()
     const { goTo } = useAuthNav()
+    const { signIn, noAccount, signUp } = useTranslation(LOGIN_CONTENT)
 
     if (isLoading) return null
 
@@ -21,15 +23,15 @@ export default function LoginPage() {
                 <button onClick={() => goTo(0)} className="z-20">
                     <FaArrowLeft size={20} className="transition-transform duration-200 hover:scale-150" />
                 </button>
-                <h1 className="flex-1 text-heading text-center py-4">{LOGIN_CONTENT.signIn}</h1>
+                <h1 className="flex-1 text-heading text-center py-4">{signIn}</h1>
                 <div className="w-4"></div>
             </div>
             <CgProfile className="w-1/4 h-auto text-primary/30 my-4" />
             <LoginForm />
             <div className="flex text-right mt-4 gap-4">
-                <span className="text-sm text-foreground font-bold">{LOGIN_CONTENT.noAccount}</span>
+                <span className="text-sm text-foreground font-bold">{noAccount}</span>
                 <button onClick={() => goTo(2)} className="text-sm font-bold text-foreground/50 underline active:scale-110 hover:scale-110">
-                    <span>{LOGIN_CONTENT.signUp}</span>
+                    <span>{signUp}</span>
                 </button>
             </div>
             <DotAuthNav />

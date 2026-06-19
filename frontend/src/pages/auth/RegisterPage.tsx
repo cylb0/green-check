@@ -5,10 +5,12 @@ import { useAuthNav } from '../../context/authNavContext';
 import { FaArrowLeft } from 'react-icons/fa';
 import DotAuthNav from '../../components/auth/DotAuthNav';
 import { LOGIN_CONTENT } from '../../data/auth';
+import { useTranslation } from '../../hooks/useTranslation';
 
 export default function RegisterPage() {
     const { isAuthenticated, isLoading } = useAuth()
     const { goTo } = useAuthNav()
+    const { signUp, accountAlready, signIn } = useTranslation(LOGIN_CONTENT)
 
     if (isLoading) return null
 
@@ -20,14 +22,14 @@ export default function RegisterPage() {
                 <button onClick={() => goTo(0)} className="z-20">
                     <FaArrowLeft size={20} className="transition-transform duration-200 hover:scale-150" />
                 </button>
-                <h1 className="flex-1 text-center py-4 text-heading">{LOGIN_CONTENT.signUp}</h1>
+                <h1 className="flex-1 text-center py-4 text-heading">{signUp}</h1>
                 <div className="w-4"></div>
             </div>
             <RegisterForm />
             <div className="flex text-right gap-4">
-                <span className="text-sm text-foreground/80 font-bold">{LOGIN_CONTENT.accountAlready}</span>
+                <span className="text-sm text-foreground/80 font-bold">{accountAlready}</span>
                 <button onClick={() => goTo(1)} className="text-sm font-bold text-foreground/50 underline active:scale-110 hover:scale-110">
-                    <span>{LOGIN_CONTENT.signIn}</span>
+                    <span>{signIn}</span>
                 </button>
             </div>
             <DotAuthNav />

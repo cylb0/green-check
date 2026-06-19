@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import type { FeatureCardContent } from "../../data/homePage";
 import { FaArrowCircleRight } from "react-icons/fa";
 
-interface FeatureCardContentProps extends FeatureCardContent {
-    className?: string
+interface FeatureCardProps {
+    title: string
+    subtext: string
+    className: string
+    link: string
 }
 
-export default function FeatureCard({ title, subtext, link, className = "" }: FeatureCardContentProps) {
+export default function FeatureCard({ title, subtext, link, className = "" }: FeatureCardProps) {
     const navigate = useNavigate()
 
     return (

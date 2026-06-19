@@ -1,17 +1,25 @@
 import { useNavigate } from "react-router-dom";
-import type { QuickAccessContent } from "../../data/homePage";
+import { QUICK_ACCESS_CONFIG, QUICK_ACCESS_TRANSLATIONS } from "../../data/homePage";
 import Card from "../ui/Card";
+import { useTranslation } from "../../hooks/useTranslation";
 
-interface QuickAccessSectionProps extends QuickAccessContent {
+interface QuickAccessSectionProps {
     className?: string
 }
 
-export default function QuickAccessSection({ title, content, className = "" }: QuickAccessSectionProps) {
+export default function QuickAccessSection({ className = "" }: QuickAccessSectionProps) {
     const navigate = useNavigate()
+    const trad = useTranslation(QUICK_ACCESS_TRANSLATIONS)
+
+    const content = (Object.keys(QUICK_ACCESS_CONFIG) as Array<keyof typeof QUICK_ACCESS_CONFIG>).map(key => ({
+        icon: QUICK_ACCESS_CONFIG[key].icon,
+        link: QUICK_ACCESS_CONFIG[key].link,
+        label: trad.labels[key],
+    }))
         
     return (
         <div className={`${className}`}>
-            <h2 className="text-heading-sm">{title}</h2>
+            <h2 className="text-heading-sm">{trad.title}</h2>
             <div className="grid grid-cols-3 gap-4 mt-2">
                 {content.map((item, i) => (
                     <button
@@ -23,7 +31,7 @@ export default function QuickAccessSection({ title, content, className = "" }: Q
                             <div className="h-10 w-10 flex items-center justify-center">
                                 <item.icon size={32} className="text-primary" />
                             </div>
-                            <span className="h-10 flex- items-center text-sm font-semibold text-center text-foreground">{item.label}</span>
+                            <span className="h-10 flex items-center text-sm font-semibold text-center text-foreground">{item.label}</span>
                         </Card>
                     </button>
                 ))}

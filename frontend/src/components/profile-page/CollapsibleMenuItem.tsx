@@ -8,15 +8,16 @@ import MenuIcon from "../ui/MenuRow";
 interface CollapsibleMenuItemProps {
     item: ProfilePageMenu
     className: string
+    label: string
     children: ReactNode
 }
 
-export default function CollapsibleMenuItem({ item, className = "", children }: CollapsibleMenuItemProps) {
+export default function CollapsibleMenuItem({ item, className = "", label, children }: CollapsibleMenuItemProps) {
     return (
         <Collapsible.Root className={className}>
             <Collapsible.Trigger className="group flex w-full items-center gap-4">
                 <MenuIcon icon={item.icon} />
-                <span className="flex-1 text-left">{item.label}</span> 
+                <span className="flex-1 text-left">{label}</span> 
                 {item.chevron && (
                     <FaChevronRight className={`transition-transform group-data-[state=open]:rotate-90 shrink-0 ${CHEVRON_CLASSES}`} />
                 )}

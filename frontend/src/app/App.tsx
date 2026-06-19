@@ -8,8 +8,8 @@ import HistoryPage from '../pages/HistoryPage'
 import ProfilePage from '../pages/ProfilePage'
 import AnalyzePage from '../pages/ScanPage'
 import GuidesPage from '../pages/GuidesPage'
-import AdvicesPage from '../pages/AdvicesPage'
-import { ADVICES_PAGE, DIAGNOSTIC_ADVICE_PAGE, DIAGNOSTIC_ERROR_PAGE, DIAGNOSTIC_PROCESSING_PAGE, DIAGNOSTIC_RESULT_PAGE, GUIDES_PAGE, HISTORY_PAGE, HOME_PAGE, LOGIN_PAGE, PRIVACY_POLICY_PAGE, PROFILE_PAGE, SCAN_PAGE, TERMS_OF_USE_PAGE } from '../constants/pages'
+import AdvicePage from '../pages/AdvicePage'
+import { ADVICE_PAGE, DIAGNOSTIC_ADVICE_PAGE, DIAGNOSTIC_ERROR_PAGE, DIAGNOSTIC_PROCESSING_PAGE, DIAGNOSTIC_RESULT_PAGE, GUIDES_PAGE, HISTORY_PAGE, HOME_PAGE, LOGIN_PAGE, PRIVACY_POLICY_PAGE, PROFILE_PAGE, SCAN_PAGE, TERMS_OF_USE_PAGE } from '../constants/pages'
 import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
 import TermsOfUsePage from '../pages/TermsOfUsePage'
 import { DiagnosticAdvicePage, DiagnosticProcessingPage, DiagnosticErrorPage, DiagnosticResultPage } from '../pages/diagnostics'
@@ -51,7 +51,7 @@ export default function App() {
         <Route path={HISTORY_PAGE} element={<HistoryPage />} />
         <Route path={PROFILE_PAGE} element={<ProfilePage />} />
         <Route path={GUIDES_PAGE} element={<GuidesPage />} />
-        <Route path={ADVICES_PAGE} element={<AdvicesPage />} />
+        <Route path={ADVICE_PAGE} element={<AdvicePage />} />
       </Route>
       
       <Route path={SCAN_PAGE} element={

@@ -7,9 +7,10 @@ import MenuIcon from "../ui/MenuRow";
 interface ChangeLanguageProps {
     item: ProfilePageMenu
     className: string
+    label: string
 }
 
-export default function ChangeLanguage({ item, className = "" }: ChangeLanguageProps) {
+export default function ChangeLanguage({ item, className = "", label }: ChangeLanguageProps) {
     const { language, setLanguage } = useLanguage()
 
     return (
@@ -19,7 +20,7 @@ export default function ChangeLanguage({ item, className = "" }: ChangeLanguageP
                     className={`flex w-full items-center gap-4 ${className}`}
                 >
                     <MenuIcon icon={item.icon} />
-                    <span className="flex-1 text-left">{item.label}</span> 
+                    <span className="flex-1 text-left">{label}</span> 
                     <button
                         className="ml-auto flex items-center gap-2 text-sm text-foreground/50"
                     >

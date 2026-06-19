@@ -8,7 +8,7 @@ from django.db import IntegrityError
 def rule():
     return AdviceRule.objects.create(
         plant_type=PlantTypeChoice.TOMATO,
-        disease_label=DiseaseLabelChoice.EARLY_BLIGHT,
+        disease_label=DiseaseLabelChoice.BACTERIAL_SPOT,
         severity=AdviceRule.SeverityChoice.MEDIUM,
         exposure=ExposureChoice.FULL_SUN,
         soil_type=SoilTypeChoice.CLAY,
@@ -20,7 +20,7 @@ class TestAdviceRule:
     def test_create_advice_rule(self, rule):
         assert rule.pk is not None
         assert rule.plant_type == PlantTypeChoice.TOMATO
-        assert rule.disease_label == DiseaseLabelChoice.EARLY_BLIGHT
+        assert rule.disease_label == DiseaseLabelChoice.BACTERIAL_SPOT
         assert rule.severity == AdviceRule.SeverityChoice.MEDIUM
         assert rule.exposure == ExposureChoice.FULL_SUN
         assert rule.soil_type == SoilTypeChoice.CLAY
@@ -75,7 +75,7 @@ class TestAdviceRule:
         with pytest.raises(IntegrityError):
             AdviceRule.objects.create(
                 plant_type=PlantTypeChoice.TOMATO,
-                disease_label=DiseaseLabelChoice.EARLY_BLIGHT,
+                disease_label=DiseaseLabelChoice.BACTERIAL_SPOT,
                 severity=AdviceRule.SeverityChoice.MEDIUM,
                 exposure=ExposureChoice.FULL_SUN,
                 soil_type=SoilTypeChoice.CLAY,

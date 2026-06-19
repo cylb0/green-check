@@ -22,6 +22,7 @@ frontend/dist/
 frontend/package-lock.json
 
 # --- Backend (Django/Python) ---
+*.mo
 backend/db.sqlite3
 backend/media/
 

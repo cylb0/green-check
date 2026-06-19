@@ -25,7 +25,7 @@ def submission(user):
 def rule():
     return AdviceRule.objects.create(
         plant_type=PlantTypeChoice.TOMATO,
-        disease_label=DiseaseLabelChoice.EARLY_BLIGHT,
+        disease_label=DiseaseLabelChoice.BACTERIAL_SPOT,
         advice_text='Advice text'
     )
 
@@ -34,7 +34,7 @@ def diagnostic(submission):
     return Diagnostic.objects.create(
         submission=submission,
         detected_plant=PlantTypeChoice.TOMATO,
-        detected_disease=DiseaseLabelChoice.EARLY_BLIGHT,
+        detected_disease=DiseaseLabelChoice.BACTERIAL_SPOT,
         confidence=0.85
     )
 
@@ -46,7 +46,7 @@ class TestDiagnostic:
         assert diagnostic.advice_rule is None
         assert diagnostic.status == DiagnosticStatusChoice.PENDING
         assert diagnostic.detected_plant == PlantTypeChoice.TOMATO
-        assert diagnostic.detected_disease == DiseaseLabelChoice.EARLY_BLIGHT
+        assert diagnostic.detected_disease == DiseaseLabelChoice.BACTERIAL_SPOT
         assert diagnostic.confidence == 0.85
         assert diagnostic.advice_text is None
 
@@ -67,7 +67,7 @@ class TestDiagnostic:
         assert diagnostic.status == DiagnosticStatusChoice.SUCCESS
 
     def test_diagnostic_state_failed_no_rule(self, diagnostic):
-        diagnostic.detected_disease = DiseaseLabelChoice.LATE_BLIGHT
+        diagnostic.detected_disease = DiseaseLabelChoice.BLACK_ROT
         diagnostic.save()
         diagnostic.apply_advice()
 
@@ -80,7 +80,7 @@ class TestDiagnostic:
         assert diagnostic.status == DiagnosticStatusChoice.LOW_CONFIDENCE
 
     def test_advice_text_not_set_on_failure(self, diagnostic):
-        diagnostic.detected_disease = DiseaseLabelChoice.LATE_BLIGHT
+        diagnostic.detected_disease = DiseaseLabelChoice.BLACK_ROT
         diagnostic.save()
         diagnostic.apply_advice()
         assert diagnostic.advice_text is None
