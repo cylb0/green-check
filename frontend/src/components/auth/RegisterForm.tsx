@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/authContext'
-import { FaRegEye } from "react-icons/fa";
-import { FaEye } from "react-icons/fa6";
 import { LOGIN_CONTENT } from '../../data/auth';
 import { useTranslation } from '../../hooks/useTranslation';
+import PasswordField from '../ui/PasswordField';
 
 interface FormState {
     email: string
@@ -39,7 +38,6 @@ export default function LoginForm() {
     const [values, setValues] = useState<FormState>({ email: '', password: '', passwordConfirm: '', acceptTerms: false })
     const [errors, setErrors] = useState<FormErrors>({})
     const [isLoading, setIsLoading] = useState(false)
-    const [showPassword, setShowPassword] = useState(false)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, type, checked, value } = e.target
@@ -102,64 +100,25 @@ export default function LoginForm() {
                 )}
             </div>
 
-            <div className="mt-4 relative">
-                <label htmlFor="password" className="input-label">
-                    {password}
-                </label>
-                <div className="relative">
-                    <input
-                        id="password"
-                        name="password"
-                        type={showPassword ? "text" : "password"}
-                        autoComplete="current-password"
-                        value={values.password}
-                        onChange={handleChange}
-                        disabled={isLoading}
-                        placeholder="••••••••"
-                        className="input-field pr-10"
-                    />
-                    <button
-                        type="button"
-                        onClick={() => setShowPassword(prev => !prev)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2"
-                        tabIndex={-1}
-                        >
-                        {showPassword ? <FaEye size={16} /> : <FaRegEye size={16} />}
-                    </button>
-                </div>
-                {errors.password && (
-                    <p className="input-error">{errors.password}</p>
-                )}
-            </div>
+            <PasswordField
+                name={"password"}
+                value={values.password}
+                onChange={handleChange}
+                disabled={isLoading}
+                label={password}
+                error={errors.password}
+                className="mt-4"
+            />
 
-            <div className="mt-4 relative">
-                <label htmlFor="passwordConfirm" className="input-label">
-                    {confirmPassword}
-                </label>
-                <div className="relative">
-                    <input
-                        id="passwordConfirm"
-                        name="passwordConfirm"
-                        type={showPassword ? "text" : "password"}
-                        value={values.passwordConfirm}
-                        onChange={handleChange}
-                        disabled={isLoading}
-                        placeholder="••••••••"
-                        className="input-field pr-10"
-                    />
-                    <button
-                        type="button"
-                        onClick={() => setShowPassword(prev => !prev)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2"
-                        tabIndex={-1}
-                        >
-                        {showPassword ? <FaEye size={16} /> : <FaRegEye size={16} />}
-                    </button>
-                </div>
-                {errors.password && (
-                    <p className="input-error">{errors.passwordConfirm}</p>
-                )}
-            </div>
+            <PasswordField
+                name={"passwordConfirm"}
+                value={values.passwordConfirm}
+                onChange={handleChange}
+                disabled={isLoading}
+                label={confirmPassword}
+                error={errors.passwordConfirm}
+                className="mt-4"
+            />
 
             <div className="mt-4 flex gap-4 relative">
                 <div className="relative">
