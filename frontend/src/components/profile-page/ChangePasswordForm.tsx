@@ -4,6 +4,7 @@ import PasswordField from "../ui/PasswordField"
 import { useTranslation } from "../../hooks/useTranslation"
 import { CHANGE_PASSWORD_FORM } from "../../data/changePasswordForm"
 import { ERRORS, MESSAGES, type ErrorsTranslation } from "../../data/messages"
+import toast from 'react-hot-toast'
 
 interface FormState {
     oldPassword: string
@@ -15,7 +16,6 @@ interface FormErrors {
     oldPassword?: string
     newPassword?: string
     newPasswordConfirm?: string
-    global?: string
 }
 
 function validate(values: FormState, t: ErrorsTranslation): FormErrors {
@@ -65,9 +65,9 @@ export default function ChangePasswordForm() {
             })
 
             setValues(FORM_INIT_STATE)
-            alert(PASSWORD_CHANGED)
+            toast.success(PASSWORD_CHANGED)
         } catch (err: any) {
-            setErrors({ global: errTrad.GENERIC })
+            toast.error(errTrad.GENERIC)
         } finally {
             setIsLoading(false)
         }
@@ -77,12 +77,6 @@ export default function ChangePasswordForm() {
         <div className="flex flex-col w-full">
             <p className="text-base font-semibold">{trad.title}</p>
             <form onSubmit={handleSubmit} noValidate className="relative w-full flex flex-col gap-2">
-                {errors.global && (
-                    <div className="input-error absolute">
-                        {errors.global}
-                    </div>
-                )}
-
                 <PasswordField
                     name={"oldPassword"}
                     value={values.oldPassword}

@@ -1,23 +1,35 @@
 import type { Translations } from "../constants/languages";
 
 export interface ErrorsTranslation {
+    EMAIL_REQUIRED: string
+    INVALID_EMAIL: string
     PASSWORD_REQUIRED: string
     OLD_PASSWORD_REQUIRED: string
     PASSWORD_MISMATCH: string
+    INCORRECT_EMAIL_OR_PASSWORD: string
+    ACCEPT_TERMS: string
     GENERIC: string
 }
 
 export const ERRORS: Translations<ErrorsTranslation> = {
     fr: {
+        EMAIL_REQUIRED: "L'email est requis",
+        INVALID_EMAIL: "L'email est invalide",
         PASSWORD_REQUIRED: "Le mot de passe est requis",
         OLD_PASSWORD_REQUIRED: "L'ancien mot de passe est requis",
         PASSWORD_MISMATCH: "Les mots de passe ne correspondent pas",
+        INCORRECT_EMAIL_OR_PASSWORD: "Email ou mot de passe est incorrect",
+        ACCEPT_TERMS: "Vous devez accepter les conditions d'utilisation",
         GENERIC: "Une erreur est survenue. Veuillez réessayer plus tard."
     },
     en: {
+        EMAIL_REQUIRED: "Email required",
+        INVALID_EMAIL: "Invalid email",
         PASSWORD_REQUIRED: "Password required",
         OLD_PASSWORD_REQUIRED: "Old password required",
         PASSWORD_MISMATCH: "Passwords do not match",
+        INCORRECT_EMAIL_OR_PASSWORD: "Incorrect email or password",
+        ACCEPT_TERMS: "You must agree to the terms",
         GENERIC: 'An error occurred. Please try again later'
     }
 }

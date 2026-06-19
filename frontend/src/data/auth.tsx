@@ -11,6 +11,7 @@ interface LoginContent {
     forgotPassword: string
     accountAlready: string
     acceptTerms: ReactNode
+    loading: string
 }
 
 export const LOGIN_CONTENT = {
@@ -23,7 +24,8 @@ export const LOGIN_CONTENT = {
         signUp: "S'inscrire",
         forgotPassword: "Mot de passe oublié ?",
         accountAlready: "Vous avez déjà un compte ?",
-        acceptTerms: <>J'accepte les <a>Conditions d'Utilisation</a> et la <a>Politique de Confidentialité</a></>
+        acceptTerms: <>J'accepte les <a>Conditions d'Utilisation</a> et la <a>Politique de Confidentialité</a></>,
+        loading: "Chargement..."
     },
     en: {
         signIn: "Sign in",
@@ -34,7 +36,8 @@ export const LOGIN_CONTENT = {
         signUp: "Sign up",
         forgotPassword: "Forgot password?",
         accountAlready: "Already have an account ?",
-        acceptTerms: <>I accept the <a>Terms of Use</a> and the <a>Privacy Policy</a></>
+        acceptTerms: <>I accept the <a>Terms of Use</a> and the <a>Privacy Policy</a></>,
+        loading: "Loading..."
     }
 
 } satisfies Translations<LoginContent>

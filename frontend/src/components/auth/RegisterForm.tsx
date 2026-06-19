@@ -4,6 +4,8 @@ import { useAuth } from '../../context/authContext'
 import { LOGIN_CONTENT } from '../../data/auth';
 import { useTranslation } from '../../hooks/useTranslation';
 import PasswordField from '../ui/PasswordField';
+import { ERRORS, type ErrorsTranslation } from '../../data/messages';
+import toast from 'react-hot-toast';
 
 interface FormState {
     email: string
@@ -17,27 +19,28 @@ interface FormErrors {
     password?: string
     passwordConfirm?: string
     acceptTerms?: string
-    global?: string
 }
 
-function validate(values: FormState): FormErrors {
+function validate(values: FormState, t: ErrorsTranslation): FormErrors {
     const errors: FormErrors = {}
-    if (!values.email) errors.email = 'Email required'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) errors.email = 'Invalid mail'
-    if (!values.password) errors.password = 'Password required'
-    if (values.password !== values.passwordConfirm) errors.passwordConfirm = 'Passwords do not match'
-    if (!values.acceptTerms) errors.acceptTerms  = 'You must agree to the terms'
+    if (!values.email) errors.email = t.EMAIL_REQUIRED
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) errors.email = t.INVALID_EMAIL
+    if (!values.password) errors.password = t.PASSWORD_REQUIRED
+    if (values.password !== values.passwordConfirm) errors.passwordConfirm = t.PASSWORD_MISMATCH
+    if (!values.acceptTerms) errors.acceptTerms  = t.ACCEPT_TERMS
     return errors
 }
 
 export default function LoginForm() {
     const { register } = useAuth()
     const navigate = useNavigate()
-    const { email, password, confirmPassword, acceptTerms } = useTranslation(LOGIN_CONTENT)
 
     const [values, setValues] = useState<FormState>({ email: '', password: '', passwordConfirm: '', acceptTerms: false })
     const [errors, setErrors] = useState<FormErrors>({})
     const [isLoading, setIsLoading] = useState(false)
+
+    const { email, password, confirmPassword, acceptTerms, loading, signUp } = useTranslation(LOGIN_CONTENT)
+    const errTrad = useTranslation(ERRORS)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, type, checked, value } = e.target
@@ -53,7 +56,7 @@ export default function LoginForm() {
 
     const handleSubmit = async (e: React.SubmitEvent) => {
         e.preventDefault()
-        const validationErrors = validate(values)
+        const validationErrors = validate(values, errTrad)
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors)
             return
@@ -66,7 +69,7 @@ export default function LoginForm() {
             await register(values.email, values.password)
             navigate('/')
         } catch (err: any) {
-            setErrors({ global: 'An error occurred. Please try again later' })
+            toast.error(errTrad.GENERIC)
         } finally {
             setIsLoading(false)
         }
@@ -74,12 +77,6 @@ export default function LoginForm() {
 
     return (
         <form onSubmit={handleSubmit} noValidate className="relative w-full">
-            {errors.global && (
-                <div className="input-error absolute">
-                    {errors.global}
-                </div>
-            )}
-
             <div className="my-4 relative">
                 <label htmlFor="email" className="input-label">
                     {email}
@@ -144,7 +141,7 @@ export default function LoginForm() {
                 className="w-full bg-primary/80 text-white rounded-lg p-2 mt-6"
                 disabled={isLoading}
             >
-                {isLoading ? 'Loading...' : 'Sign up'}
+                {isLoading ? loading : signUp}
             </button>
         </form>
     )
