@@ -31,5 +31,20 @@ export const authApi = {
         }),
 
     me: () =>
-        apiFetch<User>('api/me')
+        apiFetch<User>('api/me'),
+
+    changePassword: (data: {
+        oldPassword: string,
+        newPassword: string,
+        newPasswordConfirm: string
+    }
+    ) =>
+        apiFetch('/api/change-password', {
+            method: 'POST',
+            body: JSON.stringify({
+                old_password: data.oldPassword,
+                new_password: data.newPassword,
+                new_password_confirm: data.newPasswordConfirm
+            })
+        })
 }
