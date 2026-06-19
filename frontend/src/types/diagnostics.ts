@@ -16,6 +16,10 @@ export interface Diagnostic {
 
 export type DiagnosticStatus = 'pending' | 'processing' | 'success' | 'low_confidence' | 'failed'
 
+export function isDiagnosticStatus(status: string): status is DiagnosticStatus {
+    return ['pending', 'processing', 'success', 'low_confidence', 'failed'].includes(status);
+}
+
 export type DiagnosticStatusResponse = Pick<Diagnostic, 'status'>
 
 export interface Advice {
