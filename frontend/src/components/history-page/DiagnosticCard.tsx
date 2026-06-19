@@ -7,11 +7,11 @@ export default function DiagnosticCard(props: Diagnostic) {
     return (
         <Link
             to={`/diagnostic/${props.id}/result`}
-            className="flex w-full bg-foreground/5 rounded-lg active:scale-110 active:shadow-lg hover:scale-110 hover:shadow-lg"
+            className="flex w-full border-2 border-primary/10 rounded-xl bg-primary/5 rounded-lg active:scale-110 active:shadow-lg hover:scale-110 hover:shadow-lg overflow-hidden"
         >
             <img
                 src={props.original_image_url}
-                className="w-24 h-24 rounded-lg shadow-md"
+                className="w-24 h-24 shadow-md"
                 alt={props.detected_plant || "Plant image"}
             />
             <div className="p-2">
