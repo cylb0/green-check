@@ -10,6 +10,7 @@ interface PasswordFieldProps {
     name?: string
     error?: string
     className?: string
+    variant?: "standard" | "floating"
 }
 
 export default function PasswordField({
@@ -19,16 +20,21 @@ export default function PasswordField({
     label = "Password",
     name = "password",
     error,
-    className = ""
+    className = "",
+    variant = "standard"
 }: PasswordFieldProps) {
     const [showPassword, setShowPassword] = useState(false)
+
+    const isFilled = value.length > 0
     
     return (
         <div className={`relative ${className}`}>
-            <label htmlFor="password" className="input-label">
-                {label}
-            </label>
-            <div className="relative">
+            {variant === "standard" && label && (
+                <label htmlFor="password" className="input-label">
+                    {label}
+                </label>
+            )}
+            <div className="relative group">
                 <input
                     id={name}
                     name={name}
@@ -37,9 +43,21 @@ export default function PasswordField({
                     value={value}
                     onChange={onChange}
                     disabled={disabled}
-                    placeholder="••••••••"
-                    className="input-field pr-10"
+                    placeholder={variant === "standard" ? "••••••••" : " "}
+                    className={`input-field pr-10 w-full ${variant === "floating" ? "peer pt-5 pb-2" : ""}`}
                 />
+
+                {variant === "floating" && (
+                    <label 
+                        htmlFor={name}
+                        className={`absolute left-3 transition-all duration-200 pointer-events-none
+                        ${isFilled ? "top-1 text-xs text-primary" : "top-3 text-base text-foreground/50"}
+                        peer-focus:top-1 peer-focus:text-xs peer-focus:text-primary/50`}
+                    >
+                        {label}
+                    </label>
+                )}
+
                 <button
                     type="button"
                     onClick={() => setShowPassword(prev => !prev)}
