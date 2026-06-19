@@ -13,7 +13,12 @@ export function useDiagnostics() {
         const fetchDiagnostics = async () => {
             try {
                 setIsLoading(true)
-                const result = await apiFetch<Diagnostic[]>(`/api/diagnostics`, { language: language })
+                setError(null)
+
+                const result = await apiFetch<Diagnostic[]>(
+                    `/api/diagnostics`,
+                    { language: language }
+                )
                 setData(result)
             } catch (err) {
                 setError("An error occurred while fetching the diagnostic data.")

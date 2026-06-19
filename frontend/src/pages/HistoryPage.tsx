@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import DiagnosticCard from "../components/history-page/DiagnosticCard"
 import SearchBar from "../components/ui/SearchBar"
 import { SEARCH_BAR_PLACEHOLDER } from "../data/historyPage"
@@ -8,14 +8,18 @@ export default function HistoryPage() {
     const { data, isLoading, error } =  useDiagnostics()
     const [searchTerm, setSearchTerm] = useState("")
 
+    const filteredData = useMemo(() => {
+        const term = searchTerm.toLowerCase()
+
+        return data.filter(diagnostic =>
+            diagnostic.plant_label?.toLowerCase().includes(term)
+            || diagnostic.disease_label?.toLowerCase().includes(term)
+        )
+    }, [data, searchTerm])
+
     if (isLoading) return <div>Loading ...</div>
     if (error) return <div>{error}</div>
     if (!data) return null
-
-    const filteredData = data.filter(diagnostic =>
-        diagnostic.detected_plant?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        diagnostic.detected_disease?.toLowerCase().includes(searchTerm.toLowerCase())
-    )
 
     return (
         <div className="h-screen flex flex-col">
