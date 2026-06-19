@@ -1,5 +1,5 @@
 from auth import create_access_token, create_refresh_token
-from diagnostic.api.schemas.auth import LoginSchema, RegisterSchema, UserOut
+from diagnostic.api.schemas.auth import ChangePasswordSchema, LoginSchema, RegisterSchema, UserOut
 from ninja import Router, Status
 from django.contrib.auth import authenticate, get_user_model
 from django.http import HttpResponse
@@ -39,3 +39,15 @@ def logout(request):
 @router.get('/me', response={200: UserOut})
 def me(request):
     return UserOut(id=str(request.auth.id), email=request.auth.email)
+
+@router.post('/change-password', response={204: None})
+def change_password(request, payload: ChangePasswordSchema):
+    user = request.auth
+    
+    if not user.check_password(payload.old_password):
+        raise HttpError(400, "Old password is incorrect")
+    
+    user.set_password(payload.new_password)
+    user.save()
+
+    return Status(204, None)

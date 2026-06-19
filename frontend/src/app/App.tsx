@@ -14,6 +14,7 @@ import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
 import TermsOfUsePage from '../pages/TermsOfUsePage'
 import { DiagnosticAdvicePage, DiagnosticProcessingPage, DiagnosticErrorPage, DiagnosticResultPage } from '../pages/diagnostics'
 import DiagnosticLayout from '../layouts/DiagnosticLayout'
+import { Toaster } from 'react-hot-toast'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
@@ -35,45 +36,48 @@ export default function App() {
   if (isLoading) return null
 
   return (
-    <Routes>
-      <Route path="/" element={
-        isAuthenticated ? <Navigate to={HOME_PAGE} replace /> : <AuthContainer />
-      } />
-      <Route path={TERMS_OF_USE_PAGE} element={<TermsOfUsePage />} />
-      <Route path={PRIVACY_POLICY_PAGE} element={<PrivacyPolicyPage />} />
+    <>
+      <Routes>
+        <Route path="/" element={
+          isAuthenticated ? <Navigate to={HOME_PAGE} replace /> : <AuthContainer />
+        } />
+        <Route path={TERMS_OF_USE_PAGE} element={<TermsOfUsePage />} />
+        <Route path={PRIVACY_POLICY_PAGE} element={<PrivacyPolicyPage />} />
 
-      <Route element={
-        <ProtectedRoute>
-          <MainLayout />
-        </ProtectedRoute>
-      }>
-        <Route path={HOME_PAGE} element={<HomePage />} />
-        <Route path={HISTORY_PAGE} element={<HistoryPage />} />
-        <Route path={PROFILE_PAGE} element={<ProfilePage />} />
-        <Route path={GUIDES_PAGE} element={<GuidesPage />} />
-        <Route path={ADVICE_PAGE} element={<AdvicePage />} />
-      </Route>
-      
-      <Route path={SCAN_PAGE} element={
-        <ProtectedRoute>
-          <AnalyzePage />
-        </ProtectedRoute>
-      } />
-
-      <Route
-        element={
+        <Route element={
           <ProtectedRoute>
-            <DiagnosticLayout />
+            <MainLayout />
           </ProtectedRoute>
-        }
-      >
-        <Route path={DIAGNOSTIC_PROCESSING_PAGE} element={<DiagnosticProcessingPage />} />
-        <Route path={DIAGNOSTIC_RESULT_PAGE} element={<DiagnosticResultPage />} />
-        <Route path={DIAGNOSTIC_ERROR_PAGE} element={<DiagnosticErrorPage />} />
-        <Route path={DIAGNOSTIC_ADVICE_PAGE} element={<DiagnosticAdvicePage />} />
-      </Route>
+        }>
+          <Route path={HOME_PAGE} element={<HomePage />} />
+          <Route path={HISTORY_PAGE} element={<HistoryPage />} />
+          <Route path={PROFILE_PAGE} element={<ProfilePage />} />
+          <Route path={GUIDES_PAGE} element={<GuidesPage />} />
+          <Route path={ADVICE_PAGE} element={<AdvicePage />} />
+        </Route>
+        
+        <Route path={SCAN_PAGE} element={
+          <ProtectedRoute>
+            <AnalyzePage />
+          </ProtectedRoute>
+        } />
 
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        <Route
+          element={
+            <ProtectedRoute>
+              <DiagnosticLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path={DIAGNOSTIC_PROCESSING_PAGE} element={<DiagnosticProcessingPage />} />
+          <Route path={DIAGNOSTIC_RESULT_PAGE} element={<DiagnosticResultPage />} />
+          <Route path={DIAGNOSTIC_ERROR_PAGE} element={<DiagnosticErrorPage />} />
+          <Route path={DIAGNOSTIC_ADVICE_PAGE} element={<DiagnosticAdvicePage />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+      <Toaster position="bottom-center" reverseOrder={false} />
+    </>
   )
 }

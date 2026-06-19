@@ -6,8 +6,8 @@ import { IoGlobeOutline } from "react-icons/io5";
 import { GoInfo } from "react-icons/go";
 import { PiSignOutBold } from "react-icons/pi";
 import { TERMS_OF_USE_PAGE } from "../constants/pages";
-import ChangePasswordForm from "../components/profile-page/ChangePasswordForm";
 import type { Translations } from "../constants/languages";
+import ChangePasswordForm from "../components/profile-page/ChangePasswordForm";
 
 export const PROFILE_PAGE_TITLE: Translations<string> = {
     fr: "Profil",
@@ -27,7 +27,7 @@ export const PROFILE_PAGE_LABELS: Translations<Record<ProfileLabelKey, string>> 
         settings: "Paramètres",
         language: "Langue",
         about: "À propos",
-        logout: "Deconnection"
+        logout: "Déconnexion"
     },
     en: {
         personalInformation: "Personal Information",

@@ -1,13 +1,12 @@
+from diagnostic.api.schemas.auth import ChangePasswordSchema
 import pytest
 from django.contrib.auth import get_user_model
 from ninja.testing import TestClient
-# from diagnostic.api.endpoints.auth import router
 from api import api
 from auth import create_access_token
 
 User = get_user_model()
 client = TestClient(api)
-# client = TestClient(router)
 
 @pytest.fixture
 def clientdjango():
@@ -73,3 +72,49 @@ class TestMe:
     def test_me_unauthenticated(self, clientdjango):
         response = clientdjango.get('/api/me')
         assert response.status_code == 401
+
+@pytest.mark.django_db
+class TestChangePassword:
+    def test_change_password_success(self, clientdjango, user):
+        token = create_access_token(user)
+        clientdjango.cookies['access_token'] = token
+
+        payload: ChangePasswordSchema = {
+            'old_password': 'password',
+            'new_password': 'newpassword',
+            'new_password_confirm': 'newpassword'
+        }
+
+        response = clientdjango.post('/api/change-password', data=payload, content_type='application/json')
+        
+        assert response.status_code == 204
+        user.refresh_from_db()
+        assert user.check_password('newpassword')
+
+    def test_change_password_wrong_old(self, clientdjango, user):
+        token = create_access_token(user)
+        clientdjango.cookies['access_token'] = token
+
+        payload: ChangePasswordSchema = {
+            'old_password': 'wrongpassword',
+            'new_password': 'newpassword',
+            'new_password_confirm': 'newpassword'
+        }
+
+        response = clientdjango.post('/api/change-password', data=payload, content_type='application/json')
+        
+        assert response.status_code == 400
+
+    def test_change_password_mismatch(self, clientdjango, user):
+        token = create_access_token(user)
+        clientdjango.cookies['access_token'] = token
+
+        payload: ChangePasswordSchema = {
+            'old_password': 'password',
+            'new_password': 'newpassword',
+            'new_password_confirm': 'nomatchpassword'
+        }
+
+        response = clientdjango.post('/api/change-password', data=payload, content_type='application/json')
+        
+        assert response.status_code == 422

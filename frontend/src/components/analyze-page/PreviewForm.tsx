@@ -4,6 +4,8 @@ import { useMetadata } from "../../context/MetaDataContext";
 import type { SubmissionPayload } from "../../types/plant_submissions";
 import { useTranslation } from "../../hooks/useTranslation";
 import { PREVIEW_CONTENT } from "../../data/scanPage";
+import { ERRORS } from "../../data/messages";
+import toast from "react-hot-toast";
 
 interface PreviewFormProps {
     blob: Blob
@@ -15,6 +17,7 @@ export default function PreviewForm({ blob }: PreviewFormProps) {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string>("")
     const { plantLabel, soilLabel, exposureLabel } = useTranslation(PREVIEW_CONTENT)
+    const { GENERIC } = useTranslation(ERRORS)
 
     const metadata = useMetadata()
 
@@ -47,7 +50,7 @@ export default function PreviewForm({ blob }: PreviewFormProps) {
             await submit(blob, cleanedPayload)
         } catch (error) {
             console.error(error)
-            setError("An error occured, please try again.")
+            toast.error(GENERIC)
         } finally {
             setIsLoading(false)
         }

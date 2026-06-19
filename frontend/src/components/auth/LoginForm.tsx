@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/authContext'
-import { FaRegEye } from "react-icons/fa";
-import { FaEye } from "react-icons/fa6";
 import { LOGIN_CONTENT } from '../../data/auth';
 import { useTranslation } from '../../hooks/useTranslation';
+import PasswordField from '../ui/PasswordField';
+import toast from 'react-hot-toast';
+import { ERRORS, type ErrorsTranslation } from '../../data/messages';
 
 interface FormState {
     email: string
@@ -14,26 +15,24 @@ interface FormState {
 interface FormErrors {
     email?: string
     password?: string
-    global?: string
 }
 
-function validate(values: FormState): FormErrors {
+function validate(values: FormState, t: ErrorsTranslation): FormErrors {
     const errors: FormErrors = {}
-    if (!values.email) errors.email = 'Email required'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) errors.email = 'Invalid mail'
-    if (!values.password) errors.password = 'Password required'
+    if (!values.email) errors.email = t.EMAIL_REQUIRED
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) errors.email = t.INVALID_EMAIL
+    if (!values.password) errors.password = t.PASSWORD_REQUIRED
     return errors
 }
 
 export default function LoginForm() {
     const { login } = useAuth()
     const navigate = useNavigate()
-    const { email, password, forgotPassword } = useTranslation(LOGIN_CONTENT)
-
+    const { email, password, forgotPassword, signIn, loading } = useTranslation(LOGIN_CONTENT)
+    const errTrad = useTranslation(ERRORS)
     const [values, setValues] = useState<FormState>({ email: '', password: '' })
     const [errors, setErrors] = useState<FormErrors>({})
     const [isLoading, setIsLoading] = useState(false)
-    const [showPassword, setShowPassword] = useState(false)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -45,7 +44,7 @@ export default function LoginForm() {
 
     const handleSubmit = async (e: React.SubmitEvent) => {
         e.preventDefault()
-        const validationErrors = validate(values)
+        const validationErrors = validate(values, errTrad)
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors)
             return
@@ -59,9 +58,9 @@ export default function LoginForm() {
             navigate('/')
         } catch (err: any) {
             if (err.status === 401) {
-                setErrors({ global: 'Incorrect email or password' })
+                toast.error(errTrad.INCORRECT_EMAIL_OR_PASSWORD)
             } else {
-                setErrors({ global: 'An error occurred. Please try again later' })
+                toast.error(errTrad.GENERIC)
             }
         } finally {
             setIsLoading(false)
@@ -70,12 +69,6 @@ export default function LoginForm() {
 
     return (
         <form onSubmit={handleSubmit} noValidate className="relative w-full">
-            {errors.global && (
-                <div className="input-error absolute">
-                    {errors.global}
-                </div>
-            )}
-
             <div className="my-4 relative">
                 <label htmlFor="email" className="input-label">
                     {email}
@@ -96,36 +89,15 @@ export default function LoginForm() {
                 )}
             </div>
 
-            <div className="mt-4 relative">
-                <label htmlFor="password" className="input-label">
-                    {password}
-                </label>
-                <div className="relative">
-                    <input
-                        id="password"
-                        name="password"
-                        type={showPassword ? "text" : "password"}
-                        autoComplete="current-password"
-                        value={values.password}
-                        onChange={handleChange}
-                        disabled={isLoading}
-                        placeholder="••••••••"
-                        className="input-field pr-10"
-                    />
-                    <button
-                        type="button"
-                        onClick={() => setShowPassword(prev => !prev)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2"
-                        tabIndex={-1}
-                        >
-                        {showPassword ? <FaEye size={16} /> : <FaRegEye size={16} />}
-                    </button>
-                </div>
-                {errors.password && (
-                    <p className="input-error">{errors.password}</p>
-                )}
-            </div>
-
+            <PasswordField
+                name={"password"}
+                value={values.password}
+                onChange={handleChange}
+                disabled={isLoading}
+                label={password}
+                error={errors.password}
+                className="mt-4"
+            />
 
             <div className="text-right mt-4">
                 <a href="/forgot-password" className="text-sm font-bold text-foreground/50 underline">
@@ -138,7 +110,7 @@ export default function LoginForm() {
                 className="w-full bg-primary/80 text-white rounded-lg p-2 mt-4"
                 disabled={isLoading}
             >
-                {isLoading ? 'Loading...' : 'Sign in'}
+                {isLoading ? loading : signIn}
             </button>
         </form>
     )
