@@ -1,6 +1,9 @@
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, useContext, useEffect, type ReactNode } from "react";
 import { authApi, type User } from "../api/auth";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { QUERY_CONFIG } from "../constants/query";
+import { useNavigate } from "react-router-dom";
+import { LOGIN_PAGE } from "../constants/pages";
 
 interface AuthContextType {
     user: User | null | undefined
@@ -15,11 +18,23 @@ const AuthContext = createContext<AuthContextType | null>(null)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const queryClient = useQueryClient()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const handler = () => {
+            queryClient.setQueryData(["me"], null)
+            navigate(LOGIN_PAGE)
+        }
+
+        window.addEventListener("auth:expired", handler)
+        return () => window.removeEventListener("auth:expired", handler)
+    }, [queryClient, navigate])
 
     const { data: user, isLoading } = useQuery({
         queryKey: ["me"],
         queryFn: authApi.me,
-        retry: false
+        retry: false,
+        staleTime: QUERY_CONFIG.AUTH_STALE_TIME
     })
 
     const login = async (email: string, password: string) => {
