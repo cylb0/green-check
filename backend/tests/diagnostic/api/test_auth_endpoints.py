@@ -1,9 +1,10 @@
+from tests.diagnostic.api.test_auth import make_expired_token
 from diagnostic.api.schemas.auth import ChangePasswordSchema
 import pytest
 from django.contrib.auth import get_user_model
 from ninja.testing import TestClient
 from api import api
-from auth import create_access_token
+from auth import create_access_token, create_refresh_token
 
 User = get_user_model()
 client = TestClient(api)
@@ -118,3 +119,47 @@ class TestChangePassword:
         response = clientdjango.post('/api/change-password', data=payload, content_type='application/json')
         
         assert response.status_code == 422
+
+@pytest.mark.django_db
+class TestRefresh:
+    def test_missing_refresh_token_returns_401(self, clientdjango):
+        response = clientdjango.post('/api/refresh')
+        assert response.status_code == 401
+
+    def test_valid_refresh_token_returns_204(self, clientdjango, user):
+        token = create_refresh_token(user)
+        clientdjango.cookies['refresh_token'] = token
+        response = clientdjango.post('/api/refresh')
+        assert response.status_code == 204
+        assert 'access_token' in response.cookies
+
+    def test_expired_refresh_token_returns_401(self, clientdjango, user):
+        token = make_expired_token(user, 'refresh')
+        clientdjango.cookies['refresh_token'] = token
+        response = clientdjango.post('/api/refresh')
+        assert response.status_code == 401
+
+    def test_invalid_refresh_token_returns_401(self, clientdjango):
+        clientdjango.cookies['refresh_token'] = 'invalid_token'
+        response = clientdjango.post('/api/refresh')
+        assert response.status_code == 401
+
+    def test_wrong_token_type_returns_401(self, clientdjango, user):
+        token = create_access_token(user)
+        clientdjango.cookies['refresh_token'] = token
+        response = clientdjango.post('/api/refresh')
+        assert response.status_code == 401
+
+    def test_wrong_version_returns_401(self, clientdjango, user):
+        token = create_refresh_token(user)
+        user.token_version += 1
+        user.save()
+        clientdjango.cookies['refresh_token'] = token
+        response = clientdjango.post('/api/refresh')
+        assert response.status_code == 401
+
+    def test_new_access_token_is_httponly(self, clientdjango, user):
+        token = create_refresh_token(user)
+        clientdjango.cookies['refresh_token'] = token
+        response = clientdjango.post('/api/refresh')
+        assert response.cookies['access_token']['httponly']

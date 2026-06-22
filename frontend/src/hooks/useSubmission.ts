@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import type { SubmissionPayload, SubmissionResponse } from "../types/plant_submissions"
 import apiFetch from "../api/client"
 import { useMutation } from "@tanstack/react-query"
+import { API_SUBMISSIONS } from "../constants/api"
 
 export function useSubmission() {
     const navigate = useNavigate()
@@ -12,7 +13,7 @@ export function useSubmission() {
             formData.append("image", blob, "capture.jpg")
             formData.append("payload", JSON.stringify(payload))
 
-            return await apiFetch<SubmissionResponse>('/api/submissions', {
+            return await apiFetch<SubmissionResponse>(API_SUBMISSIONS, {
                 method: "POST",
                 body: formData
             })

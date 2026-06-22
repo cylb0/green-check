@@ -1,3 +1,4 @@
+import { API_CHANGE_PASSWORD, API_LOGIN, API_LOGOUT, API_ME, API_REGISTER } from "../constants/api"
 import apiFetch from "./client"
 
 export interface User {
@@ -14,24 +15,26 @@ export function getCsrfToken(): string {
 
 export const authApi = {
     login: (email: string, password: string) =>
-        apiFetch<User>('/api/login', {
+        apiFetch<User>(API_LOGIN, {
+            skipRefresh: true,
             method: 'POST',
             body: JSON.stringify({ email, password })
         }),
     
     register: (email: string, password: string) =>
-        apiFetch<User>('/api/register', {
+        apiFetch<User>(API_REGISTER, {
+            skipRefresh: true,
             method: 'POST',
             body: JSON.stringify({ email, password })
         }),
     
     logout: () =>
-        apiFetch<User>('/api/logout', {
+        apiFetch<User>(API_LOGOUT, {
             method: 'POST',
         }),
 
     me: () =>
-        apiFetch<User>('api/me'),
+        apiFetch<User>(API_ME),
 
     changePassword: (data: {
         oldPassword: string,
@@ -39,7 +42,7 @@ export const authApi = {
         newPasswordConfirm: string
     }
     ) =>
-        apiFetch('/api/change-password', {
+        apiFetch(API_CHANGE_PASSWORD, {
             method: 'POST',
             body: JSON.stringify({
                 old_password: data.oldPassword,

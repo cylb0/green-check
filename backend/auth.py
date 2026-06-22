@@ -10,7 +10,7 @@ def create_access_token(user) -> str:
     payload = {
         'user_id': str(user.id),
         'version': user.token_version,
-        'exp': datetime.now(timezone.utc) + timedelta(hours=24),
+        'exp': datetime.now(timezone.utc) + timedelta(minutes=15),
         'type': 'access'
     }
     return jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
@@ -23,6 +23,30 @@ def create_refresh_token(user) -> str:
         'type': 'refresh'
     }
     return jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
+
+def decode_token(token: str, expected_type: str):
+    payload = jwt.decode(
+        token,
+        settings.SECRET_KEY,
+        algorithms=["HS256"]
+    )
+
+    if payload.get("type") != expected_type:
+        raise jwt.InvalidTokenError()
+    
+    return payload
+
+def get_user_from_payload(payload):
+    user = User.objects.get(id=payload["user_id"])
+
+    if user.token_version != payload.get("version"):
+        raise jwt.InvalidTokenError()
+    
+    return user
+
+def get_user_from_token(token: str, expected_type: str):
+    payload = decode_token(token, expected_type)
+    return get_user_from_payload(payload)
 
 class CookieJWTAuth(APIKeyCookie):
     param_name = 'access_token'
@@ -42,12 +66,6 @@ class CookieJWTAuth(APIKeyCookie):
         if not key:
             return None
         try:
-            payload = jwt.decode(key, settings.SECRET_KEY, algorithms=['HS256'])
-            if payload.get('type') != 'access':
-                return None
-            user = User.objects.get(id=payload['user_id'])
-            if user.token_version != payload.get('version'):
-                return None
-            return user
+            return get_user_from_token(key, "access")
         except (jwt.ExpiredSignatureError, jwt.InvalidTokenError, User.DoesNotExist):
             return None
