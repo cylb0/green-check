@@ -1,4 +1,6 @@
-from auth import create_access_token, create_refresh_token
+import jwt
+
+from auth import create_access_token, create_refresh_token, get_user_from_token
 from diagnostic.api.schemas.auth import ChangePasswordSchema, LoginSchema, RegisterSchema, UserOut
 from ninja import Router, Status
 from django.contrib.auth import authenticate, get_user_model
@@ -6,6 +8,7 @@ from django.http import HttpResponse
 from ninja.errors import HttpError
 from django.db.models import F
 from django.middleware.csrf import get_token
+from django.conf import settings
 
 router = Router()
 User = get_user_model()
@@ -51,3 +54,23 @@ def change_password(request, payload: ChangePasswordSchema):
     user.save()
 
     return Status(204, None)
+
+@router.post('/refresh', response={204: None}, auth=None)
+def refresh(request, response: HttpResponse):
+    token = request.COOKIES.get("refresh_token")
+
+    if not token:
+        raise HttpError(401, "Missing refresh token")
+
+    try:
+        user = get_user_from_token(token, "refresh")
+        
+    except jwt.ExpiredSignatureError:
+        raise HttpError(401, "Refresh token has expired")
+    
+    except (jwt.InvalidTokenError, User.DoesNotExist):
+        raise HttpError(401, "Invalid refresh token")
+    
+    response.set_cookie('access_token', create_access_token(user), httponly=True, samesite='Lax', secure=False)
+
+    return None
