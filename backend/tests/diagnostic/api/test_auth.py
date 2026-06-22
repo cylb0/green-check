@@ -3,8 +3,8 @@ import jwt
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from unittest.mock import MagicMock
-from auth import CookieJWTAuth, create_access_token, create_refresh_token
-from datetime import datetime, timezone
+from auth import CookieJWTAuth, create_access_token, create_refresh_token, decode_token, get_user_from_payload, get_user_from_token
+from datetime import datetime, timedelta, timezone
 
 User = get_user_model()
 
@@ -20,6 +20,15 @@ def make_request(cookie_value: str | None) -> MagicMock:
     request = MagicMock()
     request.COOKIES = {'access_token': cookie_value} if cookie_value else {}
     return request
+
+def make_expired_token(user, token_type='access') -> str:
+    payload = {
+        'user_id': str(user.id),
+        'version': user.token_version,
+        'exp': datetime.now(timezone.utc) - timedelta(seconds=1),
+        'type': token_type
+    }
+    return jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
 
 @pytest.mark.django_db
 class TestCreateAccessToken:
@@ -42,13 +51,13 @@ class TestCreateAccessToken:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms='HS256')
         assert payload['type'] == 'access'
 
-    def test_token_expires_in_24_hours(self, user):
+    def test_token_expires_in_15_minutes(self, user):
         token = create_access_token(user)
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms='HS256')
         exp = datetime.fromtimestamp(payload['exp'], tz=timezone.utc)
         now = datetime.now(timezone.utc)
         delta = exp - now
-        assert delta.total_seconds() == pytest.approx(24 * 3600, abs=10)
+        assert delta.total_seconds() == pytest.approx(15 * 60, abs=10)
 
 @pytest.mark.django_db
 class TestCreateRefreshToken:
@@ -64,7 +73,83 @@ class TestCreateRefreshToken:
         now = datetime.now(timezone.utc)
         delta = exp - now
         assert delta.total_seconds() == pytest.approx(7 * 24 * 3600, abs=10)
+
+@pytest.mark.django_db
+class TestDecodeToken:
+    def test_valid_token(self, user):
+        token = create_access_token(user)
+        payload = decode_token(token, 'access')
+        assert payload['user_id'] == str(user.id)
+        assert payload['type'] == 'access'
+
+    def test_wrong_type_raises(self, user):
+        token = create_access_token(user)
+        with pytest.raises(jwt.InvalidTokenError):
+            decode_token(token, 'refresh')
     
+    def test_expired_token_raises(self, user):
+        token = make_expired_token(user, 'access')
+        with pytest.raises(jwt.ExpiredSignatureError):
+            decode_token(token, 'access')
+
+    def test_invalid_token_raises(self, user):
+        with pytest.raises(jwt.InvalidTokenError):
+            decode_token("no_token", "access")
+
+@pytest.mark.django_db
+class TestGetUserFromPayload:
+    def test_valid_payload_returns_user(self, user):
+        payload = {
+            'user_id': str(user.id),
+            'version': user.token_version,
+        }
+        result = get_user_from_payload(payload)
+        assert result == user
+
+    def test_wrong_version_raises(self, user):
+        payload = {
+            'user_id': str(user.id),
+            'version': user.token_version + 1,
+        }
+        with pytest.raises(jwt.InvalidTokenError):
+            get_user_from_payload(payload)
+
+    def test_unknown_user_raises(self, user):
+        payload = {
+            'user_id': 9999,
+            'version': 1
+        }
+        with pytest.raises(User.DoesNotExist):
+            get_user_from_payload(payload)
+
+@pytest.mark.django_db
+class TestGetUserFromToken:
+    def test_valid_token_returns_user(self, user):
+        token = create_access_token(user)
+        result = get_user_from_token(token, 'access')
+        assert result == user
+
+    def test_expired_token_raises(self, user):
+        token = make_expired_token(user, 'access')
+        with pytest.raises(jwt.ExpiredSignatureError):
+            get_user_from_token(token, 'access')
+
+    def test_invalid_token_raises(self):
+        with pytest.raises(jwt.InvalidTokenError):
+            get_user_from_token('invalid token', 'access')
+
+    def test_wrong_type_raises(self, user):
+        token = create_refresh_token(user)
+        with pytest.raises(jwt.InvalidTokenError):
+            get_user_from_token(token, 'access')
+
+    def test_wrong_versio_raises(self, user):
+        token = create_access_token(user)
+        user.token_version += 1
+        user.save()
+        with pytest.raises(jwt.InvalidTokenError):
+            get_user_from_token(token, 'access')
+
 @pytest.mark.django_db
 class TestCookieJWTAuth:
     def test_returns_user_with_valid_token(self, user, auth):
