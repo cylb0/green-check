@@ -4,13 +4,14 @@ import apiFetch from "../api/client"
 import { isDiagnosticStatus, type DiagnosticStatus, type DiagnosticStatusResponse } from "../types/diagnostics"
 import { DIAGNOSTIC_STATUS_SUCCESS, DIAGNOSTIC_STATUS_ERROR } from "../constants/diagnostics"
 import { useQuery } from "@tanstack/react-query"
+import { API_DIAGNOSTICS } from "../constants/api"
 
 export function useDiagnosticPolling(diagnosticId: string | undefined) {
     const navigate = useNavigate()
 
     const { data } = useQuery({
         queryKey: ["diagnostic-status", diagnosticId],
-        queryFn: () => apiFetch<DiagnosticStatusResponse>(`/api/diagnostics/${diagnosticId}`),
+        queryFn: () => apiFetch<DiagnosticStatusResponse>(`${API_DIAGNOSTICS}/${diagnosticId}`),
         enabled: !!diagnosticId,
         refetchInterval: 2000,
         refetchIntervalInBackground: true

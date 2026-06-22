@@ -1,0 +1,7 @@
+export const API_CHANGE_PASSWORD = "/api/change-password"
+export const API_DIAGNOSTICS = "/api/diagnostics"
+export const API_LOGIN = "/api/login"
+export const API_LOGOUT = "/api/logout"
+export const API_ME = "/api/me"
+export const API_REGISTER = "/api/register"
+export const API_SUBMISSIONS = "/api/submissions"
