@@ -3,6 +3,8 @@ import { FaArrowsRotate } from "react-icons/fa6";
 import PreviewForm from "./PreviewForm";
 import { PREVIEW_CONTENT } from "../../data/scanPage";
 import { useTranslation } from "../../hooks/useTranslation";
+import { HOME_PAGE } from "../../constants/pages";
+import PageHeader from "../ui/PageHeader";
 
 interface PreviewProps {
     blob: Blob
@@ -21,8 +23,7 @@ export default function Preview({ blob, onRetry }: PreviewProps) {
 
     return (
         <div className="flex flex-col h-full p-4">
-            <h1 className="text-heading">{title}</h1>
-
+            <PageHeader title={title} to={HOME_PAGE} />
             <div className="relative self-center mt-6">
                 <img className="rounded-lg" src={imagePreview} />
                 <button className="absolute right-2 bottom-2 active:scale-110 hover:scale-110" onClick={onRetry}>

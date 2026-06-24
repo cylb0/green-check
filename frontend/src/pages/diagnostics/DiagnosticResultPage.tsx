@@ -10,17 +10,22 @@ import { DIAGNOSTIC_RESULT_PAGE_CONTENT } from "../../data/diagnosticPage"
 import { useTranslation } from "../../hooks/useTranslation"
 import { ERRORS } from "../../data/messages"
 import toast from "react-hot-toast"
+import { HOME_PAGE } from "../../constants/pages"
 
 export default function DiagnosticResultPage() {
     const { diagnosticId } = useParams()
     const { data, isLoading, error } = useDiagnostic(diagnosticId)
     const navigate = useNavigate()
-    const { setTitle } = useOutletContext<{ setTitle: (t: string) => void }>()
+    const { setTitle, setTo } = useOutletContext<{
+        setTitle: (t: string) => void,
+        setTo: (t: string | undefined) => void
+    }>()
     const trad = useTranslation(DIAGNOSTIC_RESULT_PAGE_CONTENT)
     const { DIAGNOSTIC_FETCH_FAIL } = useTranslation(ERRORS)
 
     useEffect(() => {
         setTitle(trad.title)
+        setTo(HOME_PAGE)
     }, [setTitle])
 
     useEffect(() => {
