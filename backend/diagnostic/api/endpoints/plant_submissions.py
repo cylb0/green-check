@@ -1,3 +1,4 @@
+from config.tasks import run_ai_prediction
 from ninja import Router, File, Status
 from ninja.errors import HttpError
 from diagnostic.api.schemas.plant_submissions import PlantSubmissionCreatedOut, PlantSubmissionIn, PlantSubmissionOut
@@ -5,6 +6,7 @@ from diagnostic.models import Diagnostic, PlantSubmission
 from django.shortcuts import get_object_or_404
 import uuid
 from ninja.files import UploadedFile
+from django.db import transaction
 
 router = Router()
 
@@ -27,11 +29,14 @@ def create_submission(request, payload: PlantSubmissionIn, image: UploadedFile=F
     )
 
     diagnostic = Diagnostic.objects.create(submission=sub)
-    # TODO: launch celery task
+
+    transaction.on_commit(lambda: run_ai_prediction.delay(
+        str(diagnostic.id), sub.image.name
+    ))
 
     return Status(201, {
         "submission": sub,
-        "diagnostic_id": str(diagnostic.id),
+        "diagnostic_id": str(diagnostic.id)
     })
 
 @router.delete('/{submission_id}', response={204: None})

@@ -20,6 +20,21 @@ services:
     depends_on:
       db:
         condition: service_healthy
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+
+  worker:
+    build: ./backend
+    command: celery -A config worker --loglevel=info
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - redis
+      - ai-service
   
   db:
     image: postgres:16-alpine
