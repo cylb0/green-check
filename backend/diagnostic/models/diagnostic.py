@@ -54,6 +54,11 @@ class Diagnostic(models.Model):
             self.status = DiagnosticStatusChoice.LOW_CONFIDENCE
             self.save(update_fields=['status'])
             return
+        
+        if self.detected_disease == DiseaseLabelChoice.HEALTHY:
+            self.status = DiagnosticStatusChoice.SUCCESS
+            self.save(update_fields=['status'])
+            return
 
         soil = self.submission.soil_type
         exposure = self.submission.exposure
