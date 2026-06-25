@@ -2,7 +2,6 @@ import { useRef, useState } from "react"
 import { IoImagesOutline, IoRefreshOutline } from "react-icons/io5"
 import Webcam from "react-webcam"
 import { CAMERA_TOOLTIP } from "../data/scanPage"
-import { CAMERA_LAYOUT_CONFIG } from "../constants/camera"
 import { useCameraCapture } from "../hooks/useCameraCapture"
 import Preview from "../components/scan-page/Preview"
 import { SubmissionProvider } from "../context/SubmissionContext"
@@ -57,7 +56,7 @@ export default function ScanPage() {
             />
 
             <div className="absolute inset-0 flex items-center justify-center">
-                <div ref={frameRef} className={`relative ${CAMERA_LAYOUT_CONFIG.FRAME_SIZE_TW}`}>
+                <div ref={frameRef} className={`relative w-4/5 aspect-square`}>
                     <span className={`${cornerStyle} top-0 left-0 border-t-2 border-l-2 rounded-tl-xl`} />
                     <span className={`${cornerStyle} top-0 right-0 border-t-2 border-r-2 rounded-tr-xl`} />
                     <span className={`${cornerStyle} bottom-0 left-0 border-b-2 border-l-2 rounded-bl-xl`} />

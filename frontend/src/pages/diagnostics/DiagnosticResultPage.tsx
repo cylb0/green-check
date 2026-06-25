@@ -4,7 +4,6 @@ import Pill from "../../components/ui/Pill"
 import SeverityBar from "../../components/diagnostic-page/SeverityBar"
 import { capitalize } from "../../services/textUtils"
 import { getConfidenceColor, getSeverityColor } from "../../services/colorUtils"
-import { CAMERA_LAYOUT_CONFIG } from "../../constants/camera"
 import { useEffect } from "react"
 import { DIAGNOSTIC_RESULT_PAGE_CONTENT } from "../../data/diagnosticPage"
 import { useTranslation } from "../../hooks/useTranslation"
@@ -43,12 +42,13 @@ export default function DiagnosticResultPage() {
     const buttonText = isHealthy ? trad.newDiagnostic : trad.seeRecommendations
 
     return (
-        <div className="min-h-screen flex flex-col items-start justify-center px-6">
+        <div className="min-h-screen flex flex-col items-start justify-between px-6">
             <img
                 src={data.original_image_url}
                 alt="Plant"
-                className="w-full self-center h-auto mb-4"
-                style={{ width: `${CAMERA_LAYOUT_CONFIG.FRAME_SIZE_PX}px` }} />
+                className="w-screen max-w-none h-auto mb-4 relative left-1/2 -translate-x-1/2"
+            />
+            
             {!isHealthy && <h1 className="text-heading mb-4">{capitalize(data.disease_label)}</h1>}
 
             <Pill
