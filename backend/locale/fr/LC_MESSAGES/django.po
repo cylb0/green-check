@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 10:06+0000\n"
+"POT-Creation-Date: 2026-06-25 13:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: diagnostic/models/advice_rule.py:7
+#: diagnostic/models/advice_rule.py:31
 msgid "Low"
 msgstr "Faible"
 
-#: diagnostic/models/advice_rule.py:8
+#: diagnostic/models/advice_rule.py:32
 msgid "Medium"
 msgstr "Moyenne"
 
-#: diagnostic/models/advice_rule.py:9
+#: diagnostic/models/advice_rule.py:33
 msgid "High"
 msgstr "Élevée"
 
@@ -143,29 +143,103 @@ msgid "Healthy"
 msgstr "Sain"
 
 #: diagnostic/models/choices.py:33
-msgid "Bacterial spot"
-msgstr "Tache bactérienne"
+#, fuzzy
+#| msgid "Apple"
+msgid "Apple scab"
+msgstr "Pommier"
 
 #: diagnostic/models/choices.py:34
 msgid "Black rot"
 msgstr "Pourriture noire"
 
+#: diagnostic/models/choices.py:35
+msgid "Cedar apple rust"
+msgstr "Rouille du cèdre-pomme"
+
+#: diagnostic/models/choices.py:36
+msgid "Powdery mildew"
+msgstr "Oïdium"
+
+#: diagnostic/models/choices.py:37
+msgid "Cercospora leaf spot / Gray leaf spot"
+msgstr "Cercosporiose / Tache grise"
+
+#: diagnostic/models/choices.py:38
+msgid "Common rust"
+msgstr "Rouille commune"
+
 #: diagnostic/models/choices.py:39
+msgid "Northern leaf blight"
+msgstr "Helminthosporiose du maïs"
+
+#: diagnostic/models/choices.py:40
+msgid "Esca (Black Measles)"
+msgstr "Esca (Folletage)"
+
+#: diagnostic/models/choices.py:41
+msgid "Leaf blight (Isariopsis)"
+msgstr "Brûlure des feuilles (Isariopsis)"
+
+#: diagnostic/models/choices.py:42
+msgid "Haunglongbing (Citrus greening)"
+msgstr "Huanglongbing (Maladie du dragon jaune)"
+
+#: diagnostic/models/choices.py:43
+msgid "Bacterial spot"
+msgstr "Tache bactérienne"
+
+#: diagnostic/models/choices.py:44
+msgid "Early blight"
+msgstr "Alternariose"
+
+#: diagnostic/models/choices.py:45
+msgid "Late blight"
+msgstr "Mildiou"
+
+#: diagnostic/models/choices.py:46
+msgid "Leaf mold"
+msgstr "Cladosporiose"
+
+#: diagnostic/models/choices.py:47
+msgid "Septoria leaf spot"
+msgstr "Septoriose"
+
+#: diagnostic/models/choices.py:48
+msgid "Spider mites"
+msgstr "Tétranyques (araignées rouges)"
+
+#: diagnostic/models/choices.py:49
+msgid "Target spot"
+msgstr "Corynesporiose (taches en cible)"
+
+#: diagnostic/models/choices.py:50
+msgid "Mosaic virus"
+msgstr "Virus de la mosaïque"
+
+#: diagnostic/models/choices.py:51
+msgid "Yellow leaf curl virus"
+msgstr "Virus de l'enroulement apical jaune"
+
+#: diagnostic/models/choices.py:52
+msgid "Leaf scorch"
+msgstr "Brûlure foliaire"
+
+#: diagnostic/models/choices.py:55
 msgid "Pending"
 msgstr "En attente"
 
-#: diagnostic/models/choices.py:40
+#: diagnostic/models/choices.py:56
 msgid "Processing"
 msgstr "Analyse"
 
-#: diagnostic/models/choices.py:41
+#: diagnostic/models/choices.py:57
 msgid "Success"
 msgstr "Réussi"
 
-#: diagnostic/models/choices.py:42
+#: diagnostic/models/choices.py:58
 msgid "Low confidence"
 msgstr "Confiance faible"
 
-#: diagnostic/models/choices.py:43
+#: diagnostic/models/choices.py:59
 msgid "Failed"
 msgstr "Échec"

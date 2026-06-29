@@ -1,5 +1,5 @@
-import { getCsrfToken } from "./auth"
-import { API_LOGIN, API_ME, API_REFRESH } from "../constants/api"
+import { getCsrfToken } from "@/api"
+import { API_LOGIN, API_ME, API_REFRESH } from "@/constants"
 
 type FetchOptions = RequestInit & {
     params?: Record<string, string>
@@ -214,7 +214,7 @@ async function ensureAuthenticated() {
  * })
  */
 async function apiFetch<T>(endpoint: string, options: FetchOptions = {}): Promise<T> {
-    const { params, language, skipRefresh = false, ...fetchOptions } = options
+    const { params, skipRefresh = false, ...fetchOptions } = options
 
     const url = buildUrl(endpoint, params)
     const headers = buildHeaders(fetchOptions)

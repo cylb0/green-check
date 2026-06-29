@@ -15,7 +15,7 @@ export default function SearchBar({ value, placeholder, onSearch }: SearchBarPro
                 placeholder={placeholder}
                 value={value}
                 onChange={(e) => onSearch(e.target.value)}
-                className="w-full pl-10 input-field rounded-xl"
+                className="w-full pl-10 input-field rounded-xl border-card"
             />
         </div>
     )

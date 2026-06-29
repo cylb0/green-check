@@ -1,5 +1,5 @@
 import { createContext, useContext, type ReactNode } from "react";
-import { useSubmission } from "../hooks/useSubmission";
+import { useSubmission } from "@/hooks";
 
 type SubmissionContextType = ReturnType<typeof useSubmission>
 

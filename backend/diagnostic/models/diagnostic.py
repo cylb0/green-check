@@ -45,39 +45,23 @@ class Diagnostic(models.Model):
 
     def apply_advice(self):
         from diagnostic.models.advice_rule import AdviceRule
-        from django.db.models import Case, When, IntegerField, Value
         from diagnostic import config
 
-        ok = (self.confidence or 0) >= config.CONFIDENCE_TRESHOLD
-
-        if not ok:
+        if (self.confidence or 0) < config.CONFIDENCE_THRESHOLD:
             self.status = DiagnosticStatusChoice.LOW_CONFIDENCE
             self.save(update_fields=['status'])
             return
 
-        soil = self.submission.soil_type
-        exposure = self.submission.exposure
-        plant = self.detected_plant
-
-        rule = (
-            AdviceRule.objects.filter(disease_label=self.detected_disease)
-            .filter(
-                models.Q(plant_type=plant) | models.Q(plant_type=None),
-                models.Q(soil_type=soil) | models.Q(soil_type=None),
-                models.Q(exposure=exposure) | models.Q(exposure=None),
-            )
-            .annotate(
-                specificity=Case(
-                    When(plant_type=plant, soil_type=soil, exposure=exposure, then=Value(4)),
-                    When(plant_type=plant, soil_type=soil, exposure=None, then=Value(3)),
-                    When(plant_type=plant, soil_type=None, exposure=None, then=Value(2)),
-                    When(plant_type=None, soil_type=None, exposure=None, then=Value(1)),
-                    default=Value(0),
-                    output_field=IntegerField()
-                )
-            )
-            .order_by('-specificity')
-            .first()
+        if self.detected_disease == DiseaseLabelChoice.HEALTHY:
+            self.status = DiagnosticStatusChoice.SUCCESS
+            self.save(update_fields=['status'])
+            return
+        
+        rule = AdviceRule.objects.best_match(
+            disease_label=self.detected_disease,
+            plant_type=self.detected_plant,
+            soil_type=self.submission.soil_type,
+            exposure=self.submission.exposure,
         )
 
         if not rule:

@@ -1,12 +1,10 @@
 import { Navigate } from 'react-router-dom'
-import LoginForm from '../../components/auth/LoginForm'
-import { useAuth } from '../../context/authContext'
+import { DotAuthNav, LoginForm } from '@/components'
+import { useAuth, useAuthNav } from '@/context'
+import { useTranslation } from '@/hooks'
+import { LOGIN_CONTENT } from '@/data'
 import { CgProfile } from "react-icons/cg"
-import { useAuthNav } from '../../context/authNavContext'
 import { FaArrowLeft } from 'react-icons/fa'
-import DotAuthNav from '../../components/auth/DotAuthNav'
-import { LOGIN_CONTENT } from '../../data/auth'
-import { useTranslation } from '../../hooks/useTranslation'
 
 export default function LoginPage() {
     const { isAuthenticated, isLoading } = useAuth()

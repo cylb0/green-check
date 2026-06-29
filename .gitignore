@@ -27,6 +27,7 @@ backend/db.sqlite3
 backend/media/
 
 # --- IA Service (FastAPI) ---
+/ai-service/models/
 
 # --- Docker & Logs ---
 *.log

@@ -1,6 +1,6 @@
 from .advice_rule import AdviceRule
 from .audit_log import AuditLog
-from .choices import ExposureChoice, SoilTypeChoice, PlantTypeChoice, DiseaseLabelChoice
+from .choices import ExposureChoice, SoilTypeChoice, PlantTypeChoice, DiseaseLabelChoice, DiagnosticStatusChoice
 from .diagnostic import Diagnostic
 from .plan import Plan
 from .plant_submission import PlantSubmission
