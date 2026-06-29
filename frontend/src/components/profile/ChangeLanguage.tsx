@@ -1,8 +1,8 @@
 import * as Popover from "@radix-ui/react-popover"
-import { useLanguage } from "../../context";
-import { LANGUAGE_LABELS, SUPPORTED_LANGUAGES } from "../../constants";
-import type { ProfilePageMenu } from "../../data";
-import { MenuIcon } from "..";
+import { MenuIcon } from "@/components";
+import { useLanguage } from "@/context";
+import { LANGUAGE_LABELS, SUPPORTED_LANGUAGES } from "@/constants";
+import type { ProfilePageMenu } from "@/data";
 
 interface ChangeLanguageProps {
     item: ProfilePageMenu

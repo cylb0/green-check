@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { QUICK_ACCESS_CONFIG, QUICK_ACCESS_TRANSLATIONS } from "../../data";
-import { useTranslation } from "../../hooks";
-import { Card } from "..";
+import { Card } from "@/components";
+import { useTranslation } from "@/hooks";
+import { QUICK_ACCESS_CONFIG, QUICK_ACCESS_TRANSLATIONS } from "@/data";
 
 interface QuickAccessSectionProps {
     className?: string

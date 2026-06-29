@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import PageHeader from "../components/ui/PageHeader";
+import { PageHeader } from "@/components";
 import { useState } from "react";
 
 export default function DiagnosticLayout() {

@@ -1,5 +1,5 @@
-import { DIAGNOSTIC_ADVICE_PAGE_CONTENT } from "../../data"
-import { useTranslation } from "../../hooks"
+import { DIAGNOSTIC_ADVICE_PAGE_CONTENT } from "@/data"
+import { useTranslation } from "@/hooks"
 
 export default function Treatments() {
     const { treatments } = useTranslation(DIAGNOSTIC_ADVICE_PAGE_CONTENT)

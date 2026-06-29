@@ -1,7 +1,7 @@
-import { useAuthNav } from "../../context";
-import { LANDING_PAGE_CONTENT } from "../../data";
-import { useTranslation } from "../../hooks";
-import { ActionButton, DotAuthNav, PlantScannerIcon } from "../../components";
+import { useAuthNav } from "@/context";
+import { LANDING_PAGE_CONTENT } from "@/data";
+import { useTranslation } from "@/hooks";
+import { ActionButton, DotAuthNav, PlantScannerIcon } from "@/components";
 
 export default function LandingPage() {
     const { goTo } = useAuthNav()

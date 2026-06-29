@@ -1,9 +1,8 @@
-import * as Collapsible from "@radix-ui/react-collapsible"
-import type { ProfilePageMenu } from "../../data"
 import type { ReactNode } from "react"
+import * as Collapsible from "@radix-ui/react-collapsible"
+import { CHEVRON_CLASSES, MenuIcon } from "@/components";
+import type { ProfilePageMenu } from "@/data"
 import { FaChevronRight } from "react-icons/fa6";
-import { CHEVRON_CLASSES } from "./ProfileMenu";
-import { MenuIcon } from "..";
 
 interface CollapsibleMenuItemProps {
     item: ProfilePageMenu

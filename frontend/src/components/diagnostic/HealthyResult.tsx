@@ -1,14 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "../../hooks"
+import { ActionButton, ConfidenceBar, MessageCard } from "@/components";
+import { useTranslation } from "@/hooks"
+import { CONFIDENCE, RESULT_BUTTONS, RESULT_HEALTHY } from "@/data"
 import { FaCheck } from "react-icons/fa"
-import { CONFIDENCE, RESULT_BUTTONS, RESULT_HEALTHY } from "../../data"
 import { IoLeafOutline } from "react-icons/io5";
-import { ActionButton, ConfidenceBar, MessageCard } from "..";
 
 export interface BaseResultProps {
     plant: string
     confidence: number
 }
+
 interface HealthyResultProps extends BaseResultProps {}
 
 export default function HealthyResult({ plant, confidence }: HealthyResultProps) {

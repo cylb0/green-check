@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom"
-import type { SubmissionPayload, SubmissionResponse } from "../types"
+import type { SubmissionPayload, SubmissionResponse } from "@/types"
 import { useMutation } from "@tanstack/react-query"
-import { API_SUBMISSIONS } from "../constants"
-import apiFetch from "../api/client"
+import { API_SUBMISSIONS } from "@/constants"
+import { apiFetch } from "@/api"
 
 export function useSubmission() {
     const navigate = useNavigate()

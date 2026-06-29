@@ -1,7 +1,7 @@
-import { SeverityBadge } from ".."
-import { SEVERITY } from "../../data"
-import { useTranslation } from "../../hooks"
-import type { Severity } from "../../types"
+import { SeverityBadge } from "@/components"
+import { SEVERITY } from "@/data"
+import { useTranslation } from "@/hooks"
+import type { Severity } from "@/types"
 
 interface SeverityLabelProps {
     severity: NonNullable<Severity>

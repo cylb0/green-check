@@ -1,6 +1,6 @@
-import { Card } from "..";
-import { DIAGNOSTIC_ADVICE_PAGE_CONTENT } from "../../data";
-import { useTranslation } from "../../hooks";
+import { Card } from "@/components"
+import { DIAGNOSTIC_ADVICE_PAGE_CONTENT } from "@/data"
+import { useTranslation } from "@/hooks"
 
 interface AdviceProps {
     text: string

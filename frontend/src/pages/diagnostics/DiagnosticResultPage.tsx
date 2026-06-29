@@ -1,12 +1,10 @@
 import toast from "react-hot-toast"
 import { useEffect } from "react"
 import { useOutletContext, useParams } from "react-router-dom"
-import { useTranslation } from "../../hooks"
-import { ERRORS } from "../../data"
-import { HOME_PAGE } from "../../constants"
-import { RESULTS_PAGE_NAME } from "../../data"
-import { useDiagnostic } from "../../hooks"
-import { DiseaseResult, HealthyResult } from "../../components"
+import { DiseaseResult, HealthyResult } from "@/components"
+import { useDiagnostic, useTranslation } from "@/hooks"
+import { HOME_PAGE } from "@/constants"
+import { ERRORS, RESULTS_PAGE_NAME } from "@/data"
 
 export default function DiagnosticResultPage() {
     const { diagnosticId } = useParams()

@@ -1,12 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { CONFIDENCE, RESULT_BUTTONS, RESULT_DISEASE_CARD } from "../../data";
-import { ActionButton, ConfidenceBar, MessageCard, SeverityLabel } from "..";
-import { useTranslation } from "../../hooks";
-import type { Severity } from "../../types";
-import { capitalize } from "../../services";
+import { CONFIDENCE, RESULT_BUTTONS, RESULT_DISEASE_CARD } from "@/data";
+import { ActionButton, type BaseResultProps, ConfidenceBar, MessageCard, SeverityLabel } from "@/components";
+import { useTranslation } from "@/hooks";
+import type { Severity } from "@/types";
+import { capitalize } from "@/services";
 import { PiPottedPlant } from "react-icons/pi";
 import { CiWarning } from "react-icons/ci";
-import type { BaseResultProps } from "./HealthyResult";
 
 interface DiseaseResultProps extends BaseResultProps {
     disease: string

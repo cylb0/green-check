@@ -1,6 +1,6 @@
 import type { RefObject } from "react";
 import type Webcam from "react-webcam";
-import { CAMERA_CAPTURE_TARGET_SIZE } from "../../constants";
+import { CAMERA_CAPTURE_TARGET_SIZE } from "@/constants";
 
 export function useCameraCapture(
     webcamRef: RefObject<Webcam>,

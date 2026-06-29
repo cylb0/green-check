@@ -1,12 +1,10 @@
-import { useEffect, useState, type SyntheticEvent } from "react";
-import { useSubmissionContext } from "../../context";
-import { useMetadata } from "../../context";
-import type { SubmissionPayload } from "../../types";
-import { useTranslation } from "../../hooks";
-import { PREVIEW_CONTENT } from "../../data";
-import { ERRORS } from "../../data";
-import toast from "react-hot-toast";
-import { ActionButton } from "../ui";
+import toast from "react-hot-toast"
+import { useEffect, useState, type SyntheticEvent } from "react"
+import { useMetadata, useSubmissionContext } from "@/context"
+import type { SubmissionPayload } from "@/types"
+import { useTranslation } from "@/hooks"
+import { ERRORS, PREVIEW_CONTENT } from "@/data"
+import { ActionButton } from "@/components"
 
 interface PreviewFormProps {
     blob: Blob

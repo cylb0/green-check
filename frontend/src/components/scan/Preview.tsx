@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { FaArrowsRotate } from "react-icons/fa6";
-import { PREVIEW_CONTENT } from "../../data";
-import { useTranslation } from "../../hooks";
-import { HOME_PAGE } from "../../constants";
-import { PageHeader, PreviewForm } from "..";
+import { PageHeader, PreviewForm } from "@/components";
+import { useTranslation } from "@/hooks";
+import { HOME_PAGE } from "@/constants";
+import { PREVIEW_CONTENT } from "@/data";
 
 interface PreviewProps {
     blob: Blob

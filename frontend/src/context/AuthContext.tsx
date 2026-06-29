@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { authApi, type User } from "../api/auth";
-import { LOGIN_PAGE, QUERY_CONFIG } from "../constants";
+import { authApi, type User } from "@/api";
+import { LOGIN_PAGE, QUERY_CONFIG } from "@/constants";
 
 interface AuthContextType {
     user: User | null | undefined

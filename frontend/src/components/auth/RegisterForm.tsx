@@ -1,16 +1,15 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context'
-import { LOGIN_CONTENT } from '../../data';
-import { useTranslation } from '../../hooks';
-import { ERRORS, type ErrorsTranslation } from '../../data';
+import { useAuth } from '@/context'
+import { useTranslation } from '@/hooks';
+import { ERRORS, LOGIN_CONTENT, type ErrorsTranslation } from '@/data';
 import toast from 'react-hot-toast';
-import { PasswordField } from '..';
+import { PasswordField } from '@/components';
 
 interface FormState {
     email: string
     password: string
-    passwordConfirm: string
+    passwordConfirm: strings
     acceptTerms: boolean
 }
 

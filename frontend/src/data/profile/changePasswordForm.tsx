@@ -1,4 +1,4 @@
-import type { Translations } from "../../constants/languages"
+import type { Translations } from "@/constants"
 
 interface ChangePasswordFormTranslation {
     title: string

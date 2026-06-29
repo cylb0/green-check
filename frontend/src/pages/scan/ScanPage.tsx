@@ -1,10 +1,10 @@
 import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Webcam from "react-webcam"
-import { SubmissionProvider } from "../../context"
-import { CameraFrame, CaptureControls, CaptureLabel, Preview } from "../../components"
-import { useCameraCapture, useTranslation } from "../../hooks"
-import { CAMERA_TOOLTIP } from "../../data"
+import { CameraFrame, CaptureControls, CaptureLabel, Preview } from "@/components"
+import { SubmissionProvider } from "@/context"
+import { useCameraCapture, useTranslation } from "@/hooks"
+import { CAMERA_TOOLTIP } from "@/data"
 import { FaArrowLeft } from "react-icons/fa"
 
 export default function ScanPage() {

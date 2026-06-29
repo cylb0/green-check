@@ -1,9 +1,9 @@
-import { useState } from "react"
-import { authApi } from "../../api/auth"
-import { useTranslation } from "../../hooks"
-import { CHANGE_PASSWORD_FORM, ERRORS, MESSAGES, type ErrorsTranslation } from "../../data"
 import toast from 'react-hot-toast'
-import { PasswordField } from ".."
+import { useState } from "react"
+import { PasswordField } from "@/components"
+import { useTranslation } from "@/hooks"
+import { authApi } from "@/api"
+import { CHANGE_PASSWORD_FORM, ERRORS, MESSAGES, type ErrorsTranslation } from "@/data"
 
 interface FormState {
     oldPassword: string

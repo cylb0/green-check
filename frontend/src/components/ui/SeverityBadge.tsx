@@ -1,5 +1,5 @@
-import { capitalize } from "../../services";
-import type { Severity } from "../../types";
+import { capitalize } from "@/services";
+import type { Severity } from "@/types";
 
 interface SeverityBadgeProps {
     severity: Severity

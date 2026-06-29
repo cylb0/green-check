@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import type { Translations } from "../../constants"
+import type { Translations } from "@/constants"
 
 export const CAMERA_TOOLTIP: Translations<ReactNode> = {
     fr: <>Veuillez cadrer <br/>la feuille</>,

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
-import { SUPPORTED_LANGUAGES, type SupportedLanguage } from "../constants/languages"
+import { SUPPORTED_LANGUAGES, type SupportedLanguage } from "@/constants"
 
 const STORAGE_KEY = 'app_language'
 

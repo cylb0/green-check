@@ -1,4 +1,4 @@
-import type { Translations } from "../../constants"
+import type { Translations } from "@/constants"
 
 export interface ErrorsTranslation {
     EMAIL_REQUIRED: string

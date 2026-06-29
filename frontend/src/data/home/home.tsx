@@ -1,7 +1,7 @@
 import type { ReactNode } from "react"
 import type { IconType } from "react-icons"
 import { FaBookMedical, FaRegClock, FaRegHeart } from "react-icons/fa";
-import { ADVICE_PAGE, GUIDES_PAGE, HISTORY_PAGE, SCAN_PAGE, type Translations } from "../../constants";
+import { ADVICE_PAGE, GUIDES_PAGE, HISTORY_PAGE, SCAN_PAGE, type Translations } from "@/constants";
 
 interface HeaderTranslation {
     readonly title: string

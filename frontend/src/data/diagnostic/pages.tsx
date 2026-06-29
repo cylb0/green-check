@@ -1,4 +1,4 @@
-import type { Translations } from "../../constants"
+import type { Translations } from "@/constants"
 
 interface DiagnosticProcessingTranslation{
     title: string

@@ -1,5 +1,5 @@
-import { API_CHANGE_PASSWORD, API_LOGIN, API_LOGOUT, API_ME, API_REGISTER } from "../constants/api"
-import apiFetch from "./client"
+import { API_CHANGE_PASSWORD, API_LOGIN, API_LOGOUT, API_ME, API_REGISTER } from "@/constants"
+import { apiFetch } from "@/api"
 
 export interface User {
     id: string

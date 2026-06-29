@@ -1,5 +1,5 @@
 import { format, isToday, isYesterday, parseISO } from "date-fns"
-import { type SupportedLanguage, DATE_FNS_LOCALES } from "../constants/languages"
+import { type SupportedLanguage, DATE_FNS_LOCALES } from "@/constants"
 
 const TERMS: Record<SupportedLanguage, { today: string, yesterday: string }> = {
     fr: { today: "Aujourd'hui", yesterday: "Hier" },

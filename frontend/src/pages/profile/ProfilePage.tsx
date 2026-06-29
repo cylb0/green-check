@@ -1,6 +1,6 @@
-import { Identity, ProfileMenu } from "../../components";
-import { PROFILE_PAGE_TITLE } from "../../data";
-import { useTranslation } from "../../hooks";
+import { Identity, ProfileMenu } from "@/components";
+import { useTranslation } from "@/hooks";
+import { PROFILE_PAGE_TITLE } from "@/data";
 
 export default function ProfilePage() {
     const title = useTranslation(PROFILE_PAGE_TITLE)

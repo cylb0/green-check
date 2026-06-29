@@ -1,6 +1,6 @@
-import { Alerts, FeatureCard, Header, QuickAccessSection, StatsSection } from "../../components";
-import { FEATURE_CARD_LINK, FEATURE_CARD_TRANSLATIONS } from "../../data";
-import { useTranslation } from "../../hooks";
+import { Alerts, FeatureCard, Header, QuickAccessSection, StatsSection } from "@/components";
+import { useTranslation } from "@/hooks";
+import { FEATURE_CARD_LINK, FEATURE_CARD_TRANSLATIONS } from "@/data";
 
 export default function HomePage() {
     const { title, subtext } = useTranslation(FEATURE_CARD_TRANSLATIONS)

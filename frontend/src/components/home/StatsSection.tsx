@@ -1,6 +1,6 @@
-import { Card } from ".."
-import { STATS_CONFIG, STATS_TRANSLATIONS, type StatsKey } from "../../data"
-import { useTranslation } from "../../hooks"
+import { Card } from "@/components"
+import { useTranslation } from "@/hooks"
+import { STATS_CONFIG, STATS_TRANSLATIONS, type StatsKey } from "@/data"
 
 interface StatsSectionProps {
     values: readonly string[]

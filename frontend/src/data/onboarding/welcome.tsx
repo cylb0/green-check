@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { Translations } from "../../constants/languages";
+import type { Translations } from "@/constants";
 
 interface LandingPageTranslation {
     title: ReactNode

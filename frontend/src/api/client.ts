@@ -1,5 +1,5 @@
-import { getCsrfToken } from "./auth"
-import { API_LOGIN, API_ME, API_REFRESH } from "../constants/api"
+import { getCsrfToken } from "@/api"
+import { API_LOGIN, API_ME, API_REFRESH } from "@/constants"
 
 type FetchOptions = RequestInit & {
     params?: Record<string, string>

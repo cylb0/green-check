@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useStepMessage } from "../../hooks";
+import { useStepMessage } from "@/hooks";
 
 interface StatusTickerProps {
     messages: string[]

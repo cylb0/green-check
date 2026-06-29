@@ -1,5 +1,7 @@
+export * from "./advice"
 export * from "./auth"
 export * from "./diagnostics"
+export * from "./guides"
 export * from "./history"
 export * from "./home"
 export * from "./legal"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuthNav } from "../../context";
+import { useAuthNav } from "@/context";
 
 export default function DotAuthNav() {
     const { goTo, step } = useAuthNav()

@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState } from "react"
-import { useDiagnostics } from "../../hooks"
-import { useTranslation } from "../../hooks"
-import { ERRORS, SEARCH_BAR_PLACEHOLDER } from "../../data"
 import toast from "react-hot-toast"
-import { DiagnosticCard, SearchBar } from "../../components"
+import { useEffect, useMemo, useState } from "react"
+import { useDiagnostics, useTranslation } from "@/hooks"
+import { ERRORS, SEARCH_BAR_PLACEHOLDER } from "@/data"
+import { DiagnosticCard, SearchBar } from "@/components"
 
 export default function HistoryPage() {
     const { data, isLoading, error } =  useDiagnostics()

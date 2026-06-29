@@ -1,10 +1,10 @@
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
-import { Advice, Treatments } from "../../components";
-import { useDiagnosticAdvice, useTranslation } from "../../hooks";
-import { DIAGNOSTIC_ADVICE_PAGE_CONTENT, ERRORS } from "../../data";
-import { capitalize } from "../../services";
+import { Advice, Treatments } from "@/components";
+import { useDiagnosticAdvice, useTranslation } from "@/hooks";
+import { DIAGNOSTIC_ADVICE_PAGE_CONTENT, ERRORS } from "@/data";
+import { capitalize } from "@/services";
 
 export default function DiagnosticAdvicePage() {
     const { diagnosticId } = useParams()

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { capitalize, formatDiagnosticDate } from "../../services";
-import type { Diagnostic } from "../../types";
-import { SeverityBadge } from "..";
+import { capitalize, formatDiagnosticDate } from "@/services";
+import type { Diagnostic } from "@/types";
+import { SeverityBadge } from "@/components";
 
 interface DiagnosticCardProps extends Diagnostic {
     showSeparator: boolean

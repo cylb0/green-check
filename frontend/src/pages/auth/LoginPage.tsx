@@ -1,9 +1,8 @@
 import { Navigate } from 'react-router-dom'
-import { useAuth } from '../../context'
-import { useAuthNav } from '../../context'
-import { useTranslation } from '../../hooks'
-import { DotAuthNav, LoginForm } from '../../components'
-import { LOGIN_CONTENT } from '../../data'
+import { DotAuthNav, LoginForm } from '@/components'
+import { useAuth, useAuthNav } from '@/context'
+import { useTranslation } from '@/hooks'
+import { LOGIN_CONTENT } from '@/data'
 import { CgProfile } from "react-icons/cg"
 import { FaArrowLeft } from 'react-icons/fa'
 

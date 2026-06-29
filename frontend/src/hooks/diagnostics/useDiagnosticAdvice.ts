@@ -1,8 +1,8 @@
-import apiFetch from "../../api/client"
+import { apiFetch } from "@/api"
 import { useQuery } from "@tanstack/react-query"
-import { API_DIAGNOSTICS } from "../../constants"
-import type { Advice } from "../../types"
-import { useLanguage } from "../../context"
+import { useLanguage } from "@/context"
+import type { Advice } from "@/types"
+import { API_DIAGNOSTICS } from "@/constants"
 
 export function useDiagnosticAdvice(diagnosticId: string | undefined) {
     const { language } = useLanguage()

@@ -1,10 +1,9 @@
-import { FaChevronRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { useTranslation } from "../../hooks";
-import { PROFILE_PAGE_LABELS, PROFILE_PAGE_MENU, type ProfilePageMenu } from "../../data";
-import { useAuth } from "../../context";
-import { ChangeLanguage, CollapsibleMenuItem } from ".";
-import { MenuIcon } from "..";
+import { FaChevronRight } from "react-icons/fa6";
+import { ChangeLanguage, CollapsibleMenuItem, MenuIcon } from "@/components";
+import { useAuth } from "@/context";
+import { useTranslation } from "@/hooks";
+import { PROFILE_PAGE_LABELS, PROFILE_PAGE_MENU, type ProfilePageMenu } from "@/data";
 
 const getMenuItemClasses = (index: number, total: number) => {
     const isFirst = index === 0

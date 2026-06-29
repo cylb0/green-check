@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { useQuery } from "@tanstack/react-query"
-import { API_DIAGNOSTICS, DIAGNOSTIC_STATUS_ERROR, DIAGNOSTIC_STATUS_SUCCESS } from "../../constants"
-import apiFetch from "../../api/client"
-import { isDiagnosticStatus, type DiagnosticStatus, type DiagnosticStatusResponse } from "../../types"
+import { API_DIAGNOSTICS, DIAGNOSTIC_STATUS_ERROR, DIAGNOSTIC_STATUS_SUCCESS } from "@/constants"
+import { apiFetch } from "@/api"
+import { isDiagnosticStatus, type DiagnosticStatus, type DiagnosticStatusResponse } from "@/types"
 
 export function useDiagnosticPolling(diagnosticId: string | undefined) {
     const navigate = useNavigate()

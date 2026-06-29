@@ -1,12 +1,12 @@
 import type { ReactNode } from "react"
+import { ChangePasswordForm } from "@/components";
+import { TERMS_OF_USE_PAGE, type Translations } from "@/constants";
 import type { IconType } from "react-icons"
 import { FaRegUser } from "react-icons/fa";
 import { TiCogOutline } from "react-icons/ti";
 import { IoGlobeOutline } from "react-icons/io5";
 import { GoInfo } from "react-icons/go";
 import { PiSignOutBold } from "react-icons/pi";
-import { TERMS_OF_USE_PAGE, type Translations } from "../../constants";
-import { ChangePasswordForm } from "../../components";
 
 export const PROFILE_PAGE_TITLE: Translations<string> = {
     fr: "Profil",

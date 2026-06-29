@@ -1,7 +1,7 @@
-import { NAV_ITEMS, type NavItem } from "../../data/navbar/bottomNavbar"
-import { IoCameraOutline } from "react-icons/io5"
 import { useLocation, useNavigate } from "react-router-dom"
-import { SCAN_PAGE } from "../../constants/pages"
+import { SCAN_PAGE } from "@/constants"
+import { NAV_ITEMS, type NavItem } from "@/data"
+import { IoCameraOutline } from "react-icons/io5"
 
 function NavItem({ id, label, icon: Icon, activeIcon: ActiveIcon }: NavItem) {
     const navigate = useNavigate()

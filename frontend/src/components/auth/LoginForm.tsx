@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context'
-import { LOGIN_CONTENT } from '../../data';
-import { useTranslation } from '../../hooks';
+import { useAuth } from '@/context'
+import { ERRORS, LOGIN_CONTENT, type ErrorsTranslation } from '@/data';
+import { useTranslation } from '@/hooks';
 import toast from 'react-hot-toast';
-import { ERRORS, type ErrorsTranslation } from '../../data';
-import { PasswordField } from '..';
+import { PasswordField } from '@/components';
 
 interface FormState {
     email: string

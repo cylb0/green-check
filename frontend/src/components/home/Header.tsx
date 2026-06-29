@@ -1,5 +1,5 @@
-import { HEADER_TRANSLATIONS } from "../../data";
-import { useTranslation } from "../../hooks";
+import { HEADER_TRANSLATIONS } from "@/data";
+import { useTranslation } from "@/hooks";
 
 export default function Welcome({ className }: { className?: string }) {
     const { title, subtext } = useTranslation(HEADER_TRANSLATIONS)

@@ -1,9 +1,8 @@
 import { Navigate } from 'react-router-dom'
-import { useAuth } from '../../context'
-import { useAuthNav } from '../../context';
-import { DotAuthNav, RegisterForm } from '../../components';
-import { useTranslation } from '../../hooks';
-import { LOGIN_CONTENT } from '../../data';
+import { DotAuthNav, RegisterForm } from '@/components';
+import { useAuth, useAuthNav } from '@/context'
+import { useTranslation } from '@/hooks';
+import { LOGIN_CONTENT } from '@/data';
 import { FaArrowLeft } from 'react-icons/fa';
 
 export default function RegisterPage() {

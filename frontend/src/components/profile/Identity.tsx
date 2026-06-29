@@ -1,4 +1,4 @@
-import { useAuth } from "../../context";
+import { useAuth } from "@/context";
 import { FaRegUser } from "react-icons/fa";
 
 export default function Identity() {

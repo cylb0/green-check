@@ -1,7 +1,6 @@
-import { StatusTicker } from "../../components";
-import { useDiagnosticPolling } from "../../hooks";
-import { useTranslation } from "../../hooks";
-import { DIAGNOSTIC_PAGE_CONTENT } from "../../data";
+import { StatusTicker } from "@/components";
+import { useDiagnosticPolling, useTranslation } from "@/hooks";
+import { DIAGNOSTIC_PAGE_CONTENT } from "@/data";
 import { useParams } from "react-router-dom"
 import { LuBrain } from "react-icons/lu";
 
