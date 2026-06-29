@@ -1,20 +1,17 @@
 import type { ReactNode } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { useAuth } from '../context/authContext'
-import HomePage from '../pages/HomePage'
-import AuthContainer from '../layouts/AuthLayout'
+import { useAuth } from '../context/AuthContext'
+import { AuthLayout } from '../layouts'
 import MainLayout from '../layouts/MainLayout'
-import HistoryPage from '../pages/HistoryPage'
-import ProfilePage from '../pages/ProfilePage'
-import AnalyzePage from '../pages/ScanPage'
+import HistoryPage from '../pages/history/HistoryPage'
 import GuidesPage from '../pages/GuidesPage'
 import AdvicePage from '../pages/AdvicePage'
 import { ADVICE_PAGE, DIAGNOSTIC_ADVICE_PAGE, DIAGNOSTIC_ERROR_PAGE, DIAGNOSTIC_PROCESSING_PAGE, DIAGNOSTIC_RESULT_PAGE, GUIDES_PAGE, HISTORY_PAGE, HOME_PAGE, LOGIN_PAGE, PRIVACY_POLICY_PAGE, PROFILE_PAGE, SCAN_PAGE, TERMS_OF_USE_PAGE } from '../constants/pages'
-import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
-import TermsOfUsePage from '../pages/TermsOfUsePage'
-import { DiagnosticAdvicePage, DiagnosticProcessingPage, DiagnosticErrorPage, DiagnosticResultPage } from '../pages/diagnostics'
+import PrivacyPolicyPage from '../pages/legal/PrivacyPolicyPage'
+import TermsOfUsePage from '../pages/legal/TermsOfUsePage'
 import DiagnosticLayout from '../layouts/DiagnosticLayout'
 import { Toaster } from 'react-hot-toast'
+import { DiagnosticAdvicePage, DiagnosticProcessingPage, DiagnosticErrorPage, DiagnosticResultPage, HomePage, ProfilePage, ScanPage } from '../pages'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
@@ -39,7 +36,7 @@ export default function App() {
     <>
       <Routes>
         <Route path="/" element={
-          isAuthenticated ? <Navigate to={HOME_PAGE} replace /> : <AuthContainer />
+          isAuthenticated ? <Navigate to={HOME_PAGE} replace /> : <AuthLayout />
         } />
         <Route path={TERMS_OF_USE_PAGE} element={<TermsOfUsePage />} />
         <Route path={PRIVACY_POLICY_PAGE} element={<PrivacyPolicyPage />} />
@@ -58,7 +55,7 @@ export default function App() {
         
         <Route path={SCAN_PAGE} element={
           <ProtectedRoute>
-            <AnalyzePage />
+            <ScanPage />
           </ProtectedRoute>
         } />
 

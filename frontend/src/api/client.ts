@@ -214,7 +214,7 @@ async function ensureAuthenticated() {
  * })
  */
 async function apiFetch<T>(endpoint: string, options: FetchOptions = {}): Promise<T> {
-    const { params, language, skipRefresh = false, ...fetchOptions } = options
+    const { params, skipRefresh = false, ...fetchOptions } = options
 
     const url = buildUrl(endpoint, params)
     const headers = buildHeaders(fetchOptions)

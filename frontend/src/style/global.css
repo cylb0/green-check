@@ -9,6 +9,10 @@
 }
 
 @layer components {
+    .border-card {
+        @apply border-2 border-foreground/20 rounded-lg
+    }
+
     .input-field {
         @apply w-full border-2 rounded-lg border-primary/30 p-2 mt-1;
     }

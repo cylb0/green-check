@@ -1,0 +1,5 @@
+export { default as ChangeLanguage } from "./ChangeLanguage"
+export { default as ChangePasswordForm } from "./ChangePasswordForm"
+export { default as CollapsibleMenuItem } from "./CollapsibleMenuItem"
+export { default as Identity } from "./Identity"
+export { default as ProfileMenu } from "./ProfileMenu"

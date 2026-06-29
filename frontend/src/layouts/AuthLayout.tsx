@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom"
-import { useAuth } from "../context/authContext"
+import { useAuth } from "../context/AuthContext"
 import { motion, AnimatePresence, type Transition } from "framer-motion"
-import { AuthNavProvider, useAuthNav } from "../context/authNavContext"
-import { LandingPage, LoginPage, RegisterPage } from "../pages/auth"
+import { AuthNavProvider, useAuthNav } from "../context/AuthNavContext"
+import { LandingPage, LoginPage, RegisterPage } from "../pages"
 
 const variants = {
     enter: (direction: number) => ({ x: direction > 0 ? "100%" : "-100%" }),

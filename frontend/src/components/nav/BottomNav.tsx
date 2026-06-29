@@ -1,4 +1,4 @@
-import { NAV_ITEMS, type NavItem } from "../../data/bottomNavbar"
+import { NAV_ITEMS, type NavItem } from "../../data/navbar/bottomNavbar"
 import { IoCameraOutline } from "react-icons/io5"
 import { useLocation, useNavigate } from "react-router-dom"
 import { SCAN_PAGE } from "../../constants/pages"
