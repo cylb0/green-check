@@ -2,10 +2,14 @@ services:
   frontend:
     image: node:20-alpine
     working_dir: /app
+    user: "1000:1000"
     volumes:
       - ./frontend:/app
       - /app/node_modules
     command: sh -c "npm install && npm run dev -- --host"
+    networks:
+      - greencheck-frontend-nw
+    restart: unless-stopped
 
   backend:
     build: ./backend
@@ -16,14 +20,21 @@ services:
       - DEBUG=True
       - DATABASE_URL=${DATABASE_URL}
     volumes:
-      - ./backend:/app
+      - ./backend:/app:ro
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - greencheck-frontend-nw
+      - greencheck-backend-nw
+    restart: unless-stopped
 
   redis:
     image: redis:7-alpine
+    networks:
+      - greencheck-backend-nw
     restart: always
+    
 
   worker:
     build: ./backend
@@ -31,11 +42,14 @@ services:
     env_file:
       - .env
     volumes:
-      - ./backend:/app
+      - ./backend:/app:ro
     depends_on:
       - redis
       - ai-service
-  
+    networks:
+      - greencheck-backend-nw
+    restart: unless-stopped
+
   db:
     image: postgres:16-alpine
     env_file:
@@ -47,18 +61,24 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - greencheck-backend-nw
+    restart: unless-stopped
 
   ai-service:
     build: ./ai-service
     command: uvicorn main:app --host 0.0.0.0 --port 8001 --reload
     volumes:
-      - ./ai-service:/app
+      - ./ai-service:/app:ro
     depends_on:
       - backend
+    networks:
+      - greencheck-backend-nw
+    restart: unless-stopped
 
   nginx:
     image: nginx:alpine
@@ -66,16 +86,24 @@ services:
     restart: unless-stopped
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
     depends_on:
       - frontend
       - backend
     networks:
-      - default
-      - web
+      - reverse-proxy-nw
+      - greencheck-frontend-nw
 
 volumes:
   db_data:
 
 networks:
-  web:
+  reverse-proxy-nw:
     external: true
+  greencheck-backend-nw:
+    internal: true
+  greencheck-frontend-nw:
+    internal: true
