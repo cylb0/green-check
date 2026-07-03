@@ -25,7 +25,7 @@ export default function Preview({ blob, onRetry }: PreviewProps) {
             <PageHeader title={title} to={HOME_PAGE} />
             <div className="relative self-center mt-6">
                 <img
-                    src={imagePreview}
+                    src={imagePreview || undefined}
                     alt="Plant"
                     className="w-screen max-w-none h-1/3 relative left-1/2 -translate-x-1/2 max-h-[33vh] h-full object-cover"
                 />

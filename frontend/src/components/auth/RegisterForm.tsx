@@ -9,7 +9,7 @@ import { PasswordField } from '@/components';
 interface FormState {
     email: string
     password: string
-    passwordConfirm: strings
+    passwordConfirm: string
     acceptTerms: boolean
 }
 
