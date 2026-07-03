@@ -15,6 +15,7 @@ services:
       - DATABASE_URL=${DATABASE_URL}
     volumes:
       - ./backend:/app:ro
+      - media_data:/app/media
     depends_on:
       db:
         condition: service_healthy
@@ -37,6 +38,7 @@ services:
       - .env
     volumes:
       - ./backend:/app:ro
+      - media_data:/app/media
     depends_on:
       - redis
       - ai-service
@@ -93,6 +95,7 @@ services:
 
 volumes:
   db_data:
+  media_data:
 
 networks:
   reverse-proxy-nw:
