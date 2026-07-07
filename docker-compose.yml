@@ -29,7 +29,6 @@ services:
     networks:
       - greencheck-backend-nw
     restart: always
-    
 
   worker:
     build: ./backend
@@ -75,6 +74,14 @@ services:
     networks:
       - greencheck-backend-nw
     restart: unless-stopped
+
+  training:
+    build: ./training
+    shm_size: "2gb"
+    volumes:
+      - ./training:/app
+    profiles: ["training"]
+    restart: "no"
 
   nginx:
     image: nginx:alpine

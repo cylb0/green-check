@@ -29,6 +29,10 @@ backend/media/
 # --- IA Service (FastAPI) ---
 /ai-service/models/
 
+# --- Training ---
+training/dataset
+training/runs
+
 # --- Docker & Logs ---
 *.log
 docker-compose.override.yml
