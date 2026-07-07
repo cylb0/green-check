@@ -4,10 +4,9 @@ def main():
     model = YOLO('runs/detect/model_feuille_v1/weights/best.pt')
 
     model.export(
-        format='tfjs',
+        format='onnx',
         imgsz=640,
-        int8=True,
-        data='dataset/leaf_data.yml',
+        simplify=True
     )
 
 if __name__ == '__main__':
