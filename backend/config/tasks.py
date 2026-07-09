@@ -44,4 +44,4 @@ def run_ai_prediction(self, diagnostic_id, image_name):
 
     except Exception:
         print(traceback.format_exc())
-        Diagnostic.objects.filter(id=diagnostic_id).update(status=DiagnosticStatusChoice.FAILED)
+        Diagnostic.objects.filter(id=diagnostic_id).update(status=DiagnosticStatusChoice.AI_ERROR)

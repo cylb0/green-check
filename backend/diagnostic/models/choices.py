@@ -56,4 +56,5 @@ class DiagnosticStatusChoice(models.TextChoices):
     PROCESSING = 'processing', _('Processing')
     SUCCESS = 'success', _('Success')
     LOW_CONFIDENCE = 'low_confidence', _('Low confidence')
-    FAILED = 'failed', _('Failed')
+    NO_ADVICE_AVAILABLE = 'no_advice', _('No advice available')
+    AI_ERROR = 'ai_error', _('Ai error')

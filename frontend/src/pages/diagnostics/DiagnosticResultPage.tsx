@@ -19,7 +19,7 @@ export default function DiagnosticResultPage() {
     useEffect(() => {
         setTitle(title)
         setTo(HOME_PAGE)
-    }, [setTitle])
+    }, [setTitle, setTo])
 
     useEffect(() => {
         if (error) toast.error(DIAGNOSTIC_FETCH_FAIL)
@@ -30,6 +30,7 @@ export default function DiagnosticResultPage() {
 
     const isHealthy = data.detected_disease == "healthy"
     const isLowConfidence = data.status == "low_confidence"
+    const hasAdvice = data.advice_text != null
 
     return (
         <div className="flex flex-col items-start px-6">
@@ -52,6 +53,7 @@ export default function DiagnosticResultPage() {
                     disease={data.disease_label}
                     severity={data.severity}
                     isLowConfidence={isLowConfidence}
+                    hasAdvice={hasAdvice}
                 />
             )}
         </div>

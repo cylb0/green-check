@@ -71,7 +71,7 @@ class TestDiagnostic:
         diagnostic.save()
         diagnostic.apply_advice()
 
-        assert diagnostic.status == DiagnosticStatusChoice.FAILED
+        assert diagnostic.status == DiagnosticStatusChoice.NO_ADVICE_AVAILABLE
 
     def test_apply_advice_low_confidence(self, diagnostic):
         diagnostic.confidence = 0.01

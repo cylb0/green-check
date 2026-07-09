@@ -6,8 +6,11 @@ class DiagnosticQuerySet(models.QuerySet):
     def pending(self):
         return self.filter(status=DiagnosticStatusChoice.PENDING)
     
-    def failed(self):
-        return self.filter(status=DiagnosticStatusChoice.FAILED)
+    def no_advice(self):
+        return self.filter(status=DiagnosticStatusChoice.NO_ADVICE_AVAILABLE)
+    
+    def ai_error(self):
+        return self.filter(status=DiagnosticStatusChoice.AI_ERROR)
     
     def success(self):
         return self.filter(status=DiagnosticStatusChoice.SUCCESS)
@@ -19,8 +22,11 @@ class DiagnosticManager(models.Manager):
     def pending(self):
         return self.get_queryset().pending()
     
-    def failed(self):
-        return self.get_queryset().failed()
+    def no_advice(self):
+        return self.get_queryset().no_advice()
+    
+    def ai_error(self):
+        return self.get_queryset().ai_error()
     
     def success(self):
         return self.get_queryset().success()
@@ -65,7 +71,7 @@ class Diagnostic(models.Model):
         )
 
         if not rule:
-            self.status = DiagnosticStatusChoice.FAILED
+            self.status = DiagnosticStatusChoice.NO_ADVICE_AVAILABLE
             self.save(update_fields=['status'])
             return
         
