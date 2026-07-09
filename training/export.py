@@ -1,7 +1,7 @@
 from ultralytics import YOLO
 
 def main():
-    model = YOLO('runs/detect/model_feuille_v1/weights/best.pt')
+    model = YOLO('runs/detect/model_leaf_detector/weights/best.pt')
 
     model.export(
         format='onnx',

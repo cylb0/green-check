@@ -30,8 +30,10 @@ backend/media/
 /ai-service/models/
 
 # --- Training ---
-training/dataset
-training/runs
+training/**/*.pt
+training/**/*.onnx
+training/dataset/
+training/runs/
 
 # --- Docker & Logs ---
 *.log

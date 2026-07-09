@@ -9,7 +9,7 @@ def main():
         imgsz=640,
         batch=16,
         patience=20,  
-        name='model_feuille_v1',
+        name='model_leaf_detector',
         device=0
     )
 
