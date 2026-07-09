@@ -45,11 +45,15 @@ export default function Preview({ blob, onRetry }: PreviewProps) {
         <div className="flex flex-col h-full p-4">
             <PageHeader title={title} to={HOME_PAGE} />
             <div className="relative self-center mt-6">
-                <img
-                    src={imagePreview || undefined}
-                    alt="Plant"
-                    className="w-screen max-w-none h-1/3 relative left-1/2 -translate-x-1/2 max-h-[33vh] h-full object-cover"
-                />
+                {imagePreview ? (
+                    <img
+                        src={imagePreview || undefined}
+                        alt="Plant"
+                        className="w-screen max-w-none h-1/3 relative left-1/2 -translate-x-1/2 max-h-[33vh] h-full object-cover"
+                    />
+                ) : (
+                    <div className="w-screen max-w-none h-[33vh] relative left-1/2 -translate-x-1/2 bg-foreground/10 animate-pulse" />
+                )}
                 <button className="absolute right-2 bottom-2 active:scale-110 hover:scale-110" onClick={onRetry}>
                     <FaArrowsRotate className="text-white" size={24} />
                 </button>

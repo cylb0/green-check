@@ -9,6 +9,7 @@ import { FaArrowLeft } from "react-icons/fa"
 
 export default function ScanPage() {
     const [capturedBlob, setCapturedBlob] = useState<Blob | null>(null)
+    const [isCameraReady, setIsCameraReady] = useState(false)
     const webcamRef = useRef<Webcam>(null!)
     const frameRef = useRef<HTMLDivElement>(null!)
     const [facingMode, setFacingMode] = useState<"user" | "environment">("environment")
@@ -17,10 +18,12 @@ export default function ScanPage() {
     const cameraLabel = useTranslation(CAMERA_TOOLTIP)
 
     const toggleCamera = () => {
+        setIsCameraReady(false)
         setFacingMode(prev => prev === "environment" ? "user" : "environment")
     }
 
     const handleCapture = () => {
+        if (!isCameraReady) return
         capture((blob) => setCapturedBlob(blob))
     }
 
@@ -49,6 +52,7 @@ export default function ScanPage() {
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
                 videoConstraints={{ facingMode }}
+                onUserMedia={() => setIsCameraReady(true)}
                 className="h-full w-full object-cover"
             />
 
@@ -61,6 +65,7 @@ export default function ScanPage() {
             <CaptureControls
                 onCapture={handleCapture}
                 onToggleCamera={toggleCamera}
+                disabled={!isCameraReady}
             />
         </div>
     )
