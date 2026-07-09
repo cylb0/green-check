@@ -8,12 +8,14 @@ import { ActionButton } from "@/components"
 
 interface PreviewFormProps {
     blob: Blob
+    isAnalyzing: boolean
+    isLeafDetected: boolean
 }
 
-export default function PreviewForm({ blob }: PreviewFormProps) {
+export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: PreviewFormProps) {
     const { mutate:submit, error, isPending } = useSubmissionContext()
     const [formState, setFormState] = useState<SubmissionPayload>({})
-    const { button, exposureLabel, loading, plantLabel, soilLabel } = useTranslation(PREVIEW_CONTENT)
+    const { buttonContinueAnyway, buttonAnalyzing, buttonLoading, buttonSubmit, exposureLabel, plantLabel, soilLabel, warning } = useTranslation(PREVIEW_CONTENT)
     const { SUBMISSION_FAIL } = useTranslation(ERRORS)
     const metadata = useMetadata()
 
@@ -46,6 +48,14 @@ export default function PreviewForm({ blob }: PreviewFormProps) {
         submit({ blob, payload: formState })
     }
 
+    const buttonLabel = isPending
+        ? buttonLoading
+        : isAnalyzing
+            ? buttonAnalyzing
+            : isLeafDetected
+                ? buttonSubmit
+                : buttonContinueAnyway
+
     return (
         <form onSubmit={handleSubmit} noValidate className="relative w-full">
             {error && (
@@ -77,12 +87,19 @@ export default function PreviewForm({ blob }: PreviewFormProps) {
                 ))}
             </div>
 
+            {!isAnalyzing && !isLeafDetected && (
+                <p className="text-xs text-error italic my-4">
+                    {warning}
+                </p>
+            )}
+
             <ActionButton
                 type="submit"
-                label={isPending ? loading : button}
-                bgColor="bg-primary"
+                label={buttonLabel}
+                bgColor={!isAnalyzing && !isLeafDetected ? "bg-warning" : "bg-primary"}
                 textColor="text-white"
                 borderColor="border-transparent"
+                disabled={isAnalyzing || isPending}
             />
         </form>
     )

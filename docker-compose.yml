@@ -1,6 +1,11 @@
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        VITE_LEAF_DETECTION_MODEL_PATH: ${VITE_LEAF_DETECTION_MODEL_PATH}
+        VITE_LEAF_SCAN_CONFIDENCE_TRESHOLD: ${VITE_LEAF_SCAN_CONFIDENCE_TRESHOLD}
+        VITE_LEAF_DETECTION_DEBUG: ${VITE_LEAF_DETECTION_DEBUG}
     networks:
       - greencheck-frontend-nw
     restart: unless-stopped
