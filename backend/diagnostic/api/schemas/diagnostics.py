@@ -10,7 +10,7 @@ class DiagnosticOut(ModelSchema):
 
     class Meta:
         model = Diagnostic
-        fields = ['id', 'status', 'detected_plant', 'detected_disease', 'confidence', 'advice_text', 'created_at']
+        fields = ['id', 'status', 'detected_plant', 'detected_disease', 'confidence', 'created_at']
 
     @staticmethod
     def resolve_plant_label(obj: Diagnostic):

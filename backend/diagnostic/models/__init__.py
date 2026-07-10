@@ -5,6 +5,7 @@ from .diagnostic import Diagnostic
 from .plan import Plan
 from .plant_submission import PlantSubmission
 from .subscription import Subscription
+from .treatment import Treatment
 from .user import User
 
 __all__ = [
@@ -18,5 +19,6 @@ __all__ = [
     'PlantTypeChoice',
     'SoilTypeChoice',
     'Subscription',
+    'Treatment',
     'User',
     ]

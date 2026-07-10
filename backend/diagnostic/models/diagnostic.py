@@ -33,7 +33,7 @@ class DiagnosticQuerySet(models.QuerySet):
 class Diagnostic(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     submission = models.OneToOneField('diagnostic.PlantSubmission', on_delete=models.CASCADE, related_name="diagnostic")
-    advice_rule = models.ForeignKey('diagnostic.AdviceRule', on_delete=models.SET_NULL, null=True, blank=True, related_name="diagnostics")
+    advice_rule = models.ForeignKey('diagnostic.AdviceRule', on_delete=models.PROTECT, null=True, blank=True, related_name="diagnostics")
 
     status = models.CharField(max_length=50, choices=DiagnosticStatusChoice.choices, default=DiagnosticStatusChoice.PENDING)
 
@@ -41,7 +41,6 @@ class Diagnostic(models.Model):
     detected_disease = models.CharField(max_length=255, choices=DiseaseLabelChoice.choices, null=True, blank=True)
     confidence = models.FloatField(null=True, blank=True)
 
-    advice_text = models.TextField(null=True, blank=True)
     raw_model_response = models.JSONField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -75,9 +74,8 @@ class Diagnostic(models.Model):
             return
         
         self.advice_rule = rule
-        self.advice_text = rule.advice_text
         self.status = DiagnosticStatusChoice.SUCCESS
-        self.save(update_fields=['advice_rule', 'advice_text', 'status'])
+        self.save(update_fields=['advice_rule', 'status'])
 
     def __str__(self):
         return f"{self.detected_plant} — {self.detected_disease} ({self.status})"
