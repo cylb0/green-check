@@ -1,5 +1,5 @@
 from diagnostic.api.schemas.advice_rules import AdviceRuleOut
-from diagnostic.api.schemas.diagnostics import DiagnosticOut
+from diagnostic.api.schemas.diagnostics import DiagnosticOut, DiagnosticStatsOut
 from ninja import Router, Status
 from diagnostic.models import Diagnostic
 import uuid
@@ -11,6 +11,10 @@ router = Router()
 @router.get('', response={200: list[DiagnosticOut]})
 def list_diagnostics(request):
     return Diagnostic.objects.filter(submission__user=request.auth).order_by('-created_at')
+
+@router.get('/stats', response={200: DiagnosticStatsOut})
+def get_diagnostic_stats(request):
+    return Diagnostic.objects.for_user(request.auth).not_errored().stats()
 
 @router.get('/{diagnostic_id}', response={200: DiagnosticOut})
 def get_diagnostic(request, diagnostic_id: uuid.UUID):

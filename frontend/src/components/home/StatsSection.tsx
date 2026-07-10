@@ -3,7 +3,7 @@ import { useTranslation } from "@/hooks"
 import { STATS_CONFIG, STATS_TRANSLATIONS, type StatsKey } from "@/data"
 
 interface StatsSectionProps {
-    values: readonly string[]
+    values: Record<StatsKey, string>
     className?: string
 }
 
@@ -18,7 +18,7 @@ export default function StatsSection({ values, className = "" }: StatsSectionPro
             <div className="grid grid-cols-3 gap-4 mt-2">
                 {statKeys.map((key, i) => (
                     <Card key={`qas-${i}`}>
-                        <p className="text-heading flex text-center">{values[i]}</p>
+                        <p className="text-heading flex text-center">{values[key]}</p>
                         <span className="h-10 flex items-center text-sm font-semibold text-center text-foreground">{trad.labels[key]}</span>
                     </Card>
                 ))}

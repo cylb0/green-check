@@ -28,3 +28,9 @@ export interface Advice {
     exposure?: string
     advice_text: string
 }
+
+export interface DiagnosticStats {
+    total: number
+    alerts: number
+    average_confidence: number | null
+}
