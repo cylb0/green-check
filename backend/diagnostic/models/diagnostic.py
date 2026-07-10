@@ -1,5 +1,7 @@
 import uuid
 from django.db import models
+from django.db.models import Avg, Count, Q
+from diagnostic.models.advice_rule import AdviceRule
 from diagnostic.models.choices import DiseaseLabelChoice, PlantTypeChoice, DiagnosticStatusChoice
 
 class DiagnosticQuerySet(models.QuerySet):
@@ -15,22 +17,19 @@ class DiagnosticQuerySet(models.QuerySet):
     def success(self):
         return self.filter(status=DiagnosticStatusChoice.SUCCESS)
     
-class DiagnosticManager(models.Manager):
-    def get_queryset(self):
-        return DiagnosticQuerySet(self.model, using=self._db)
+    def not_errored(self):
+        return self.exclude(status=DiagnosticStatusChoice.AI_ERROR)
     
-    def pending(self):
-        return self.get_queryset().pending()
+    def for_user(self, user):
+        return self.filter(submission__user=user)
     
-    def no_advice(self):
-        return self.get_queryset().no_advice()
+    def stats(self):
+        return self.aggregate(
+            total=Count('id'),
+            alerts=Count('id', filter=Q(advice_rule__severity=AdviceRule.SeverityChoice.HIGH.value)),
+            average_confidence=Avg('confidence')
+        )
     
-    def ai_error(self):
-        return self.get_queryset().ai_error()
-    
-    def success(self):
-        return self.get_queryset().success()
-
 class Diagnostic(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     submission = models.OneToOneField('diagnostic.PlantSubmission', on_delete=models.CASCADE, related_name="diagnostic")
@@ -47,7 +46,7 @@ class Diagnostic(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-    objects = DiagnosticManager()
+    objects = DiagnosticQuerySet.as_manager()
 
     def apply_advice(self):
         from diagnostic.models.advice_rule import AdviceRule

@@ -1,4 +1,4 @@
-from ninja import ModelSchema, Field
+from ninja import ModelSchema, Field, Schema
 from diagnostic.models import Diagnostic
 
 class DiagnosticOut(ModelSchema):
@@ -20,3 +20,7 @@ class DiagnosticOut(ModelSchema):
     def resolve_disease_label(obj: Diagnostic):
         return obj.get_detected_disease_display()
     
+class DiagnosticStatsOut(Schema):
+    total: int
+    alerts: int
+    average_confidence: float | None
