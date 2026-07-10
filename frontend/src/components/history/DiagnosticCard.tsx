@@ -12,13 +12,15 @@ export default function DiagnosticCard(props: DiagnosticCardProps) {
         <div className="flex flex-col mt-2">
             <Link
                 to={`/diagnostic/${props.id}/result`}
-                className="flex gap-2 items-center w-full active:scale-110 active:shadow-lg hover:scale-110 hover:shadow-lg overflow-hidden"
+                className="group flex gap-3 items-center w-full p-2 rounded-xl transition-all duration-200 ease-in-out hover:bg-foreground/5 active:scale-[0.98]"
             >
-                <img
-                    src={props.original_image_url}
-                    className="w-12 h-12 rounded-lg"
-                    alt={props.detected_plant || "Plant image"}
-                />
+                <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+                    <img
+                        src={props.original_image_url}
+                        className="w-12 h-12 rounded-lg"
+                        alt={props.detected_plant || "Plant image"}
+                    />
+                </div>
                 <div>
                     <p className="text-md text-foreground font-bold">{capitalize(props.plant_label)}</p>
                     <p className="text-sm text-foreground font-bold">{capitalize(props.disease_label)}</p>

@@ -3,9 +3,10 @@ import { IoImagesOutline, IoRefreshOutline } from "react-icons/io5"
 interface CaptureControlsProps {
     onCapture: () => void
     onToggleCamera: () => void
+    disabled?: boolean
 }
 
-export default function CaptureControls({ onCapture, onToggleCamera }: CaptureControlsProps) {
+export default function CaptureControls({ onCapture, onToggleCamera, disabled = false }: CaptureControlsProps) {
     return (
         <div className="absolute bottom-0 left-0 right-0 flex justify-around items-center px-8 pb-12 pt-4">
             <button className="text-white/30 active:text-white hover:text-white transition-colors duration-300">
@@ -14,6 +15,7 @@ export default function CaptureControls({ onCapture, onToggleCamera }: CaptureCo
 
             <button
                 onClick={onCapture}
+                disabled={disabled}
                 className="w-20 h-20 rounded-full bg-white flex items-center justify-center active:scale-95 transition-transform"
             >
                 <div className="w-17 h-17 rounded-full bg-primary" />

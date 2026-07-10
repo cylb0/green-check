@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react"
+import { useLanguage } from "./LanguageContext"
 
 interface Metadata {
     plant: { value: string, label: string }[]
@@ -12,15 +13,24 @@ const MetadataContext = createContext<Metadata | null>(null)
 
 export const MetadataProvider = ({ children }: { children: ReactNode }) => {
     const [metadata, setMetadata] = useState<Metadata | null>(null)
+    const { language } = useLanguage()
+    const isFirstLoad = useRef(true)
 
     useEffect(() => {
-        fetch('/api/metadata')
+        fetch('/api/metadata', {
+            headers: {
+                'Accept-Language': language
+            }
+        })
             .then(res => res.json())
-            .then(data => setMetadata(data))
+            .then(data => {
+                setMetadata(data)
+                isFirstLoad.current = false
+            })
             .catch(err => console.error("Error fetching metadata: ", err))
-    }, [])
+    }, [language])
 
-    if (!metadata) {
+    if (isFirstLoad.current && !metadata) {
         return <div>Loading...</div>
     }
 

@@ -7,35 +7,53 @@ export const CAMERA_TOOLTIP: Translations<ReactNode> = {
 }
 
 interface PreviewContent {
-    title: string
-    formTitle: string
-    limitations: string
-    plantLabel: string
-    soilLabel: string
+    buttonAnalyzing: string
+    buttonContinueAnyway: string
+    buttonLoading: string
+    buttonSubmit: string
     exposureLabel: string
-    button: string
-    loading: string
+    formTitle: string
+    leafDetected: string
+    limitations: string
+    noLeafDetected: string
+    plantLabel: string
+    preliminary: string
+    soilLabel: string
+    title: string
+    warning: string
 }
 
 export const PREVIEW_CONTENT: Translations<PreviewContent> = {
     fr: {
-        title: "Aperçu",
-        formTitle: "Informations complémentaires (optionnel)",
-        limitations: "*Seules les plantes listées sont supportées par le modèle.",
-        plantLabel: "Sélectionner une espèce de plante",
-        soilLabel: "Renseigner le type de sol",
+        buttonAnalyzing: "Analyse en cours...",
+        buttonContinueAnyway: "Continuer quand même",
+        buttonLoading: "Chargement...",
+        buttonSubmit: "Envoyer",
         exposureLabel: "Renseigner le type d'exposition",
-        button: "Envoyer",
-        loading: "Chargement..."
+        formTitle: "Informations complémentaires (optionnel)",
+        leafDetected: "Feuille détectée",
+        limitations: "*Seules les plantes listées sont supportées par le modèle.",
+        noLeafDetected: "Aucune feuille détectée",
+        plantLabel: "Sélectionner une espèce de plante",
+        preliminary: 'Analyse préliminaire...',
+        soilLabel: "Renseigner le type de sol",
+        title: "Aperçu",
+        warning: "Aucune feuille détectée. Le modèle peut se tromper — vous pouvez continuer, mais le résultat sera peut-être moins précis.",
     },
     en: {
-        title: "Preview",
-        formTitle: "Additional Details (optional)",
-        limitations: "*Only listed plants are supported by the model.",
-        plantLabel: "Select a plant species",
-        soilLabel: "Indicate the soil type",
+        buttonAnalyzing: "Analyzing...",
+        buttonContinueAnyway: "Continue anyway",
+        buttonLoading: "Loading...",
+        buttonSubmit: "Submit",
         exposureLabel: "Indicate the exposure type",
-        button: "Submit",
-        loading: "Loading..."
+        formTitle: "Additional Details (optional)",
+        leafDetected: "Leaf detected",
+        limitations: "*Only listed plants are supported by the model.",
+        noLeafDetected: "No leaf detected",
+        plantLabel: "Select a plant species",
+        preliminary: "Running preliminary check...",
+        soilLabel: "Indicate the soil type",
+        title: "Preview",
+        warning: "No leaf detected. The model isn't always right — you can continue, but the result may be less accurate.",
     }
 }
