@@ -38,6 +38,8 @@ class AdviceRule(models.Model):
     exposure = models.CharField(max_length=20, choices=ExposureChoice.choices, null=True, blank=True)
     soil_type = models.CharField(max_length=20, choices=SoilTypeChoice.choices, null=True, blank=True)
 
+    treatments = models.ManyToManyField('diagnostic.Treatment', related_name='advice_rules', blank=True)
+
     advice_text = models.TextField(null=False, blank=False)
     
     objects = AdviceRuleQuerySet.as_manager()
