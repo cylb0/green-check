@@ -1,0 +1,398 @@
+[
+  {
+    "model": "diagnostic.treatment",
+    "pk": 1,
+    "fields": {
+      "icon": "pruning",
+      "title_en": "Remove infected leaves",
+      "title_fr": "Retirer les feuilles infectées",
+      "description_en": "Pick off and bag every spotted or discoloured leaf as soon as you see it. Do not compost them: most spores survive a home compost pile and will re-infect the plant next season.",
+      "description_fr": "Retirez et ensachez chaque feuille tachée ou décolorée dès son apparition. Ne les compostez pas : la plupart des spores survivent à un compost domestique et recontamineront la plante la saison suivante."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 2,
+    "fields": {
+      "icon": "pruning",
+      "title_en": "Clear fallen debris",
+      "title_fr": "Ramasser les débris au sol",
+      "description_en": "Rake up fallen leaves and fruit under the plant, especially in autumn. This litter is where the fungus overwinters, and clearing it is the single most effective way to break the cycle.",
+      "description_fr": "Ramassez les feuilles et fruits tombés sous la plante, surtout à l'automne. Cette litière est l'endroit où le champignon hiverne : la retirer est le moyen le plus efficace de briser le cycle."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 3,
+    "fields": {
+      "icon": "pruning",
+      "title_en": "Prune for airflow",
+      "title_fr": "Tailler pour aérer",
+      "description_en": "Thin out crowded branches and inner growth so air moves freely through the canopy. Leaves that dry within a couple of hours of rain or dew rarely get infected.",
+      "description_fr": "Éclaircissez les branches trop denses et la végétation intérieure pour que l'air circule librement. Un feuillage qui sèche en deux heures après la pluie ou la rosée s'infecte rarement."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 4,
+    "fields": {
+      "icon": "pruning",
+      "title_en": "Disinfect your tools",
+      "title_fr": "Désinfecter vos outils",
+      "description_en": "Wipe blades with 70% alcohol between each plant, and between cuts when you are removing diseased wood. Contaminated secateurs spread more infections than wind or rain.",
+      "description_fr": "Essuyez les lames à l'alcool à 70% entre chaque plante, et entre chaque coupe lorsque vous retirez du bois malade. Un sécateur contaminé propage plus d'infections que le vent ou la pluie."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 5,
+    "fields": {
+      "icon": "pruning",
+      "title_en": "Remove mummified fruit",
+      "title_fr": "Retirer les fruits momifiés",
+      "description_en": "Shrivelled fruit left hanging on the plant is a spore factory for next spring. Pick every mummy off the branches and out of the soil and destroy them.",
+      "description_fr": "Les fruits desséchés laissés sur la plante sont une usine à spores pour le printemps suivant. Retirez chaque momie des branches et du sol, puis détruisez-les."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 6,
+    "fields": {
+      "icon": "pruning",
+      "title_en": "Uproot and destroy the plant",
+      "title_fr": "Arracher et détruire la plante",
+      "description_en": "There is no cure for this infection. Pull the plant, roots included, seal it in a bag and dispose of it away from your garden to protect its neighbours.",
+      "description_fr": "Cette infection ne se soigne pas. Arrachez la plante, racines comprises, enfermez-la dans un sac et évacuez-la loin du jardin pour protéger ses voisines."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 7,
+    "fields": {
+      "icon": "pruning",
+      "title_en": "Cut back to healthy wood",
+      "title_fr": "Recéper jusqu'au bois sain",
+      "description_en": "Trace the affected branch back until the cut face shows clean, unstained wood, then cut 15 cm further down. Burn or bin the prunings.",
+      "description_fr": "Remontez la branche atteinte jusqu'à ce que la coupe montre un bois sain et non taché, puis coupez 15 cm plus bas. Brûlez ou jetez les tailles."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 8,
+    "fields": {
+      "icon": "pruning",
+      "title_en": "Increase spacing",
+      "title_fr": "Espacer les plants",
+      "description_en": "Give each plant room to breathe. Crowded rows trap humidity and let leaves touch, which is how most leaf diseases travel from one plant to the next.",
+      "description_fr": "Laissez à chaque plante de la place pour respirer. Des rangs serrés retiennent l'humidité et laissent les feuilles se toucher : c'est ainsi que la plupart des maladies foliaires passent d'un plant à l'autre."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 9,
+    "fields": {
+      "icon": "pruning",
+      "title_en": "Remove nearby junipers",
+      "title_fr": "Éliminer les genévriers voisins",
+      "description_en": "This rust needs a juniper or red cedar to complete its life cycle. Removing or pruning the galls from hosts within a few hundred metres cuts the infection off at the source.",
+      "description_fr": "Cette rouille a besoin d'un genévrier ou d'un cèdre rouge pour boucler son cycle. Supprimer ces hôtes, ou en retirer les galles, dans un rayon de quelques centaines de mètres coupe l'infection à la source."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 10,
+    "fields": {
+      "icon": "fungicide",
+      "title_en": "Copper-based fungicide",
+      "title_fr": "Fongicide à base de cuivre",
+      "description_en": "Apply a copper spray on a dry, windless day, covering both sides of the leaves. Repeat every 7 to 10 days while conditions stay wet, and always respect the pre-harvest interval.",
+      "description_fr": "Appliquez une pulvérisation de cuivre par temps sec et sans vent, en couvrant les deux faces des feuilles. Renouvelez tous les 7 à 10 jours tant que le temps reste humide, en respectant le délai avant récolte."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 11,
+    "fields": {
+      "icon": "fungicide",
+      "title_en": "Sulfur spray",
+      "title_fr": "Pulvérisation de soufre",
+      "description_en": "Wettable sulfur is the classic remedy for powdery mildew. Never apply it above 28 °C or within two weeks of an oil spray, as it will scorch the foliage.",
+      "description_fr": "Le soufre mouillable est le remède classique contre l'oïdium. Ne l'appliquez jamais au-dessus de 28 °C ni dans les deux semaines suivant une huile, sous peine de brûler le feuillage."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 12,
+    "fields": {
+      "icon": "fungicide",
+      "title_en": "Neem oil",
+      "title_fr": "Huile de neem",
+      "description_en": "Neem smothers mites and slows fungal growth. Spray at dusk so beneficial insects are not foraging and the leaves are not in direct sun, and coat the undersides thoroughly.",
+      "description_fr": "Le neem étouffe les acariens et freine le développement fongique. Pulvérisez au crépuscule, quand les auxiliaires ne butinent plus et que les feuilles ne sont pas au soleil direct, en insistant sur le revers."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 13,
+    "fields": {
+      "icon": "fungicide",
+      "title_en": "Bordeaux mixture",
+      "title_fr": "Bouillie bordelaise",
+      "description_en": "A preventive copper-and-lime treatment applied at bud break and again before flowering. It protects new growth but does not cure tissue that is already infected.",
+      "description_fr": "Traitement préventif à base de cuivre et de chaux, appliqué au débourrement puis avant la floraison. Il protège les pousses nouvelles mais ne guérit pas les tissus déjà infectés."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 14,
+    "fields": {
+      "icon": "fungicide",
+      "title_en": "Baking soda and soap spray",
+      "title_fr": "Pulvérisation bicarbonate et savon",
+      "description_en": "Mix a teaspoon of baking soda and a few drops of liquid soap into a litre of water. It raises the leaf-surface pH just enough to stop mildew spores germinating.",
+      "description_fr": "Mélangez une cuillère à café de bicarbonate et quelques gouttes de savon liquide dans un litre d'eau. Cela relève juste assez le pH de la feuille pour empêcher les spores d'oïdium de germer."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 15,
+    "fields": {
+      "icon": "fungicide",
+      "title_en": "Insecticidal soap",
+      "title_fr": "Savon insecticide",
+      "description_en": "Contact soap kills mites and the insects that carry viruses, but only where the spray lands. Repeat every 5 to 7 days for three applications to catch newly hatched eggs.",
+      "description_fr": "Le savon de contact tue les acariens et les insectes vecteurs de virus, mais uniquement là où il touche. Renouvelez tous les 5 à 7 jours, trois fois, pour atteindre les œufs fraîchement éclos."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 16,
+    "fields": {
+      "icon": "fungicide",
+      "title_en": "Control insect vectors",
+      "title_fr": "Lutter contre les insectes vecteurs",
+      "description_en": "The disease itself is not sprayable, but the insect spreading it is. Use fine mesh netting, yellow sticky traps and regular scouting to keep the vector population down.",
+      "description_fr": "La maladie elle-même ne se traite pas, mais l'insecte qui la propage, oui. Utilisez un filet à mailles fines, des pièges collants jaunes et une surveillance régulière pour contenir la population de vecteurs."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 17,
+    "fields": {
+      "icon": "fungicide",
+      "title_en": "Preventive fungicide programme",
+      "title_fr": "Programme fongicide préventif",
+      "description_en": "Start spraying before symptoms appear, following the label interval through the wet part of the season. Alternate active ingredients so the fungus does not build resistance.",
+      "description_fr": "Commencez les traitements avant l'apparition des symptômes et respectez l'intervalle indiqué pendant la période humide. Alternez les matières actives pour éviter que le champignon ne développe une résistance."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 18,
+    "fields": {
+      "icon": "watering",
+      "title_en": "Water at the base",
+      "title_fr": "Arroser au pied",
+      "description_en": "Aim the hose at the soil, never at the foliage. Splashing water is the main way spores climb from the ground onto the lower leaves.",
+      "description_fr": "Dirigez le jet vers le sol, jamais vers le feuillage. Les éclaboussures sont le principal moyen par lequel les spores remontent du sol vers les feuilles basses."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 19,
+    "fields": {
+      "icon": "watering",
+      "title_en": "Water in the morning",
+      "title_fr": "Arroser le matin",
+      "description_en": "Morning watering gives the leaves a full day to dry. Evening watering leaves them damp all night, which is exactly the window fungi need to germinate.",
+      "description_fr": "Un arrosage matinal laisse au feuillage toute la journée pour sécher. Arroser le soir le laisse humide toute la nuit, précisément la fenêtre dont les champignons ont besoin pour germer."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 20,
+    "fields": {
+      "icon": "watering",
+      "title_en": "Reduce watering frequency",
+      "title_fr": "Réduire la fréquence d'arrosage",
+      "description_en": "The soil is staying wet for too long. Let the top 3 to 5 cm dry out between waterings; constantly saturated roots invite rot and weaken the plant's own defences.",
+      "description_fr": "Le sol reste humide trop longtemps. Laissez sécher les 3 à 5 premiers centimètres entre deux arrosages : des racines constamment saturées favorisent la pourriture et affaiblissent les défenses de la plante."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 21,
+    "fields": {
+      "icon": "watering",
+      "title_en": "Water deeply, less often",
+      "title_fr": "Arroser abondamment, moins souvent",
+      "description_en": "One long soak beats several light sprinklings. Deep watering pushes roots downwards where the soil stays cool and moist, making the plant far more resilient to stress.",
+      "description_fr": "Un arrosage long vaut mieux que plusieurs arrosages légers. Un apport profond fait descendre les racines là où le sol reste frais et humide, rendant la plante bien plus résistante au stress."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 22,
+    "fields": {
+      "icon": "watering",
+      "title_en": "Hose down the foliage",
+      "title_fr": "Doucher le feuillage",
+      "description_en": "Spider mites hate humidity. A forceful jet of water on the undersides of the leaves, repeated every few days, physically knocks the colonies off the plant.",
+      "description_fr": "Les acariens détestent l'humidité. Un jet d'eau puissant sous les feuilles, répété tous les deux ou trois jours, délogent physiquement les colonies."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 23,
+    "fields": {
+      "icon": "soil",
+      "title_en": "Improve drainage",
+      "title_fr": "Améliorer le drainage",
+      "description_en": "Water is sitting around the roots. Work in coarse grit or well-rotted compost, or move the plant to a raised bed or mound so excess water can escape.",
+      "description_fr": "L'eau stagne autour des racines. Incorporez du gravier grossier ou du compost bien décomposé, ou replantez sur une butte ou en bac surélevé pour que l'excès d'eau s'évacue."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 24,
+    "fields": {
+      "icon": "soil",
+      "title_en": "Mulch the base",
+      "title_fr": "Pailler le pied",
+      "description_en": "A 5 cm layer of straw or wood chips forms a barrier between the contaminated soil and the lowest leaves, and keeps moisture steady between waterings.",
+      "description_fr": "Une couche de 5 cm de paille ou de copeaux forme une barrière entre le sol contaminé et les feuilles basses, tout en stabilisant l'humidité entre deux arrosages."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 25,
+    "fields": {
+      "icon": "soil",
+      "title_en": "Rotate crops",
+      "title_fr": "Pratiquer la rotation",
+      "description_en": "Do not plant the same family in this spot for at least three years. The pathogen survives in the soil, and a break in the host cycle starves it out.",
+      "description_fr": "Ne replantez pas la même famille à cet endroit avant au moins trois ans. Le pathogène survit dans le sol et une rupture du cycle hôte finit par l'affamer."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 26,
+    "fields": {
+      "icon": "soil",
+      "title_en": "Enrich with compost",
+      "title_fr": "Enrichir en compost",
+      "description_en": "Work two or three centimetres of mature compost into the topsoil. It feeds the microbial life that competes with soil-borne pathogens and buffers both moisture and pH.",
+      "description_fr": "Incorporez deux à trois centimètres de compost mûr en surface. Il nourrit la vie microbienne qui concurrence les pathogènes du sol et tamponne à la fois l'humidité et le pH."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 27,
+    "fields": {
+      "icon": "soil",
+      "title_en": "Balance the fertilisation",
+      "title_fr": "Équilibrer la fertilisation",
+      "description_en": "Too much nitrogen produces soft, sappy growth that fungi and mites love. Switch to a balanced feed with enough potassium to toughen up the leaves.",
+      "description_fr": "Un excès d'azote produit une végétation tendre et gorgée de sève, dont raffolent champignons et acariens. Passez à un engrais équilibré, suffisamment riche en potassium pour durcir le feuillage."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 28,
+    "fields": {
+      "icon": "soil",
+      "title_en": "Hill up the plants",
+      "title_fr": "Butter les plants",
+      "description_en": "Draw soil up around the stems so the tubers are covered by at least 10 cm. This stops spores washing down from the leaves and infecting the crop underground.",
+      "description_fr": "Ramenez de la terre autour des tiges pour couvrir les tubercules d'au moins 10 cm. Cela empêche les spores lessivées depuis les feuilles d'atteindre la récolte sous terre."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 29,
+    "fields": {
+      "icon": "soil",
+      "title_en": "Lighten heavy soil",
+      "title_fr": "Alléger un sol lourd",
+      "description_en": "Clay holds water long after the rain has stopped. Fork in coarse sand, grit and organic matter to open up the structure and let the root zone breathe.",
+      "description_fr": "L'argile retient l'eau longtemps après la pluie. Incorporez à la fourche du sable grossier, du gravier et de la matière organique pour ouvrir la structure et laisser respirer la zone racinaire."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 30,
+    "fields": {
+      "icon": "soil",
+      "title_en": "Correct the soil pH",
+      "title_fr": "Corriger le pH du sol",
+      "description_en": "Chalky soil locks up iron and manganese, which shows up as yellowing between the veins. Feed with a chelated trace-element mix and mulch with acidic organic matter.",
+      "description_fr": "Un sol calcaire bloque le fer et le manganèse, ce qui se traduit par un jaunissement entre les nervures. Apportez un mélange d'oligo-éléments chélatés et paillez avec une matière organique acidifiante."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 31,
+    "fields": {
+      "icon": "sunlight",
+      "title_en": "Give it more sun",
+      "title_fr": "Donner plus de soleil",
+      "description_en": "In shade the foliage stays damp for hours and the plant grows weak. Move it, or clear what is casting the shade, so it gets at least six hours of direct light.",
+      "description_fr": "À l'ombre, le feuillage reste humide des heures durant et la plante s'affaiblit. Déplacez-la, ou dégagez ce qui lui fait de l'ombre, pour lui assurer au moins six heures de lumière directe."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 32,
+    "fields": {
+      "icon": "sunlight",
+      "title_en": "Provide afternoon shade",
+      "title_fr": "Ombrager l'après-midi",
+      "description_en": "Full sun on top of drought stress scorches leaf margins. A shade cloth from midday onwards lets the plant keep its stomata open and cool itself properly.",
+      "description_fr": "Un plein soleil ajouté à un stress hydrique brûle le bord des feuilles. Une toile d'ombrage à partir de midi permet à la plante de garder ses stomates ouverts et de se rafraîchir correctement."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 33,
+    "fields": {
+      "icon": "sunlight",
+      "title_en": "Keep monitoring",
+      "title_fr": "Continuer à surveiller",
+      "description_en": "Nothing to treat right now. Check the undersides of the leaves once a week: catching a problem in its first days is worth more than any spray afterwards.",
+      "description_fr": "Rien à traiter pour le moment. Inspectez le revers des feuilles une fois par semaine : repérer un problème dès les premiers jours vaut mieux que n'importe quel traitement ensuite."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 34,
+    "fields": {
+      "icon": null,
+      "title_en": "Plant resistant varieties",
+      "title_fr": "Choisir des variétés résistantes",
+      "description_en": "Next season, start from certified disease-free stock and pick a cultivar bred for resistance to this pathogen. It is the cheapest control measure there is.",
+      "description_fr": "La saison prochaine, partez de plants certifiés sains et choisissez un cultivar sélectionné pour sa résistance à ce pathogène. C'est la mesure de lutte la moins coûteuse qui soit."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 35,
+    "fields": {
+      "icon": null,
+      "title_en": "Wash your hands before handling",
+      "title_fr": "Se laver les mains avant manipulation",
+      "description_en": "This virus spreads by simple contact, and it survives in tobacco products. Wash with soap and avoid smoking near the plants before touching them.",
+      "description_fr": "Ce virus se transmet par simple contact et survit dans les produits du tabac. Lavez-vous les mains au savon et évitez de fumer près des plantes avant de les manipuler."
+    }
+  },
+  {
+    "model": "diagnostic.treatment",
+    "pk": 36,
+    "fields": {
+      "icon": null,
+      "title_en": "Isolate the plant",
+      "title_fr": "Isoler la plante",
+      "description_en": "Keep this plant away from healthy ones and handle it last when you work in the garden, so you do not carry the infection back down the row on your hands and tools.",
+      "description_fr": "Éloignez cette plante des plantes saines et manipulez-la en dernier lors de vos travaux, afin de ne pas ramener l'infection sur le rang avec vos mains et vos outils."
+    }
+  }
+]
