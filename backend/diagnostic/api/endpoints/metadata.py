@@ -4,7 +4,7 @@ from ninja import Router
 
 router = Router()
 
-@router.get("", response={200: MetadataResponse})
+@router.get("", response={200: MetadataResponse}, auth=None)
 def get_metadata(request):
     return {
         "plant": [{"value": c.value, "label": str(c.label)} for c in PlantTypeChoice],

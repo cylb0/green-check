@@ -28,8 +28,13 @@ def delete_diagnostic(request, diagnostic_id: uuid.UUID):
 
 @router.get('/{diagnostic_id}/advice', response={200: AdviceRuleOut})
 def get_diagnostic_advice(request, diagnostic_id: uuid.UUID):
-    diagnostic = get_object_or_404(Diagnostic, id=diagnostic_id, submission__user=request.auth)
+    diagnostic = get_object_or_404(
+        Diagnostic.objects
+            .select_related('advice_rule')
+            .prefetch_related('advice_rule__treatments'),
+        id=diagnostic_id,
+        submission__user=request.auth
+    )
     if not diagnostic.advice_rule:
         raise Http404("Advice rule not found")
-        
     return diagnostic.advice_rule

@@ -30,7 +30,6 @@ export default function DiagnosticResultPage() {
 
     const isHealthy = data.detected_disease == "healthy"
     const isLowConfidence = data.status == "low_confidence"
-    const hasAdvice = data.advice_text != null
 
     return (
         <div className="flex flex-col items-start px-6">
@@ -53,7 +52,7 @@ export default function DiagnosticResultPage() {
                     disease={data.disease_label}
                     severity={data.severity}
                     isLowConfidence={isLowConfidence}
-                    hasAdvice={hasAdvice}
+                    hasAdvice={data.has_advice}
                 />
             )}
         </div>

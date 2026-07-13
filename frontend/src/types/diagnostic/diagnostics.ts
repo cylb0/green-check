@@ -12,6 +12,7 @@ export interface Diagnostic {
     created_at: string
     severity: Severity
     original_image_url: string
+    has_advice: boolean
 }
 
 const DIAGNOSTIC_STATUSES = ['pending', 'processing', 'success', 'low_confidence', 'no_advice', 'ai_error'] as const
@@ -20,6 +21,12 @@ export const isDiagnosticStatus = (status: string): status is DiagnosticStatus =
 
 export type DiagnosticStatusResponse = Pick<Diagnostic, 'status'>
 
+export interface Treatment {
+    icon?: string
+    title: string
+    description: string
+}
+
 export interface Advice {
     plant_label?: string
     disease_label: string
@@ -27,6 +34,7 @@ export interface Advice {
     soil_type?: string
     exposure?: string
     advice_text: string
+    treatments: Treatment[]
 }
 
 export interface DiagnosticStats {

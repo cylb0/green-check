@@ -4,13 +4,17 @@ from diagnostic.models import Diagnostic
 class DiagnosticOut(ModelSchema):
     severity: str | None = Field(None, alias="advice_rule.severity")
     original_image_url: str | None = Field(None, alias="submission.image.url")
-
     plant_label: str | None = None
     disease_label: str | None = None
+    has_advice: bool = False
 
     class Meta:
         model = Diagnostic
-        fields = ['id', 'status', 'detected_plant', 'detected_disease', 'confidence', 'advice_text', 'created_at']
+        fields = ['id', 'status', 'detected_plant', 'detected_disease', 'confidence', 'created_at']
+
+    @staticmethod
+    def resolve_has_advice(obj: Diagnostic):
+        return obj.advice_rule_id is not None
 
     @staticmethod
     def resolve_plant_label(obj: Diagnostic):

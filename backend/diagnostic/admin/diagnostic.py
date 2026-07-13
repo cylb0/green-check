@@ -8,7 +8,7 @@ class DiagnosticAdmin(admin.ModelAdmin):
     search_fields = ['submission__user__email', 'detected_plant']
     readonly_fields = [
         'id', 'submission', 'advice_rule', 'status', 'detected_plant', 'detected_disease', 'confidence', 
-        'advice_text', 'raw_model_response', 'created_at'
+        'raw_model_response', 'created_at'
     ]
 
     fieldsets = (
@@ -24,7 +24,7 @@ class DiagnosticAdmin(admin.ModelAdmin):
             'description': "Score de confiance retourné par le modèle."
         }),
         ("Conseils et résultats", {
-            'fields': ('advice_rule', 'advice_text'),
+            'fields': ('advice_rule',),
         }),
         ("Données brutes", {
             'fields': ('raw_model_response',),

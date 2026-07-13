@@ -48,14 +48,13 @@ class TestDiagnostic:
         assert diagnostic.detected_plant == PlantTypeChoice.TOMATO
         assert diagnostic.detected_disease == DiseaseLabelChoice.BACTERIAL_SPOT
         assert diagnostic.confidence == 0.85
-        assert diagnostic.advice_text is None
 
     def test_apply_advice(self, diagnostic, rule):
         diagnostic.advice_rule = rule
         diagnostic.save()
         diagnostic.apply_advice()
 
-        assert diagnostic.advice_text == rule.advice_text
+        assert diagnostic.advice_rule == rule
 
     def test_diagnostic_state_success(self, diagnostic, rule):
         assert diagnostic.status == DiagnosticStatusChoice.PENDING
@@ -79,8 +78,8 @@ class TestDiagnostic:
         diagnostic.apply_advice()
         assert diagnostic.status == DiagnosticStatusChoice.LOW_CONFIDENCE
 
-    def test_advice_text_not_set_on_failure(self, diagnostic):
+    def test_advice_rule_not_set_on_failure(self, diagnostic):
         diagnostic.detected_disease = DiseaseLabelChoice.BLACK_ROT
         diagnostic.save()
         diagnostic.apply_advice()
-        assert diagnostic.advice_text is None
+        assert diagnostic.advice_rule is None

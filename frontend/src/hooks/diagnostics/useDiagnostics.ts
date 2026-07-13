@@ -8,7 +8,7 @@ export function useDiagnostics() {
     const { language } = useLanguage()
 
     return useQuery({
-        queryKey: ["diagnostics"],
+        queryKey: ["diagnostics", language],
         queryFn: () => apiFetch<Diagnostic[]>(API_DIAGNOSTICS, { language })
     })
 }
