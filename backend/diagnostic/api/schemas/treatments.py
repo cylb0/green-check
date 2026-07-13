@@ -1,6 +1,6 @@
 from ninja import Schema
 
 class TreatmentOut(Schema):
-    icon: str
+    icon: str | None = None
     title: str
     description: str

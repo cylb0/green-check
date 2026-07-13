@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, get_language
 from diagnostic.models.choices import DiseaseLabelChoice, ExposureChoice, PlantTypeChoice, SoilTypeChoice
 from django.db.models import Case, When, IntegerField, Value
 
@@ -40,7 +40,8 @@ class AdviceRule(models.Model):
 
     treatments = models.ManyToManyField('diagnostic.Treatment', related_name='advice_rules', blank=True)
 
-    advice_text = models.TextField(null=False, blank=False)
+    advice_text_en = models.TextField()
+    advice_text_fr = models.TextField(blank=True)
     
     objects = AdviceRuleQuerySet.as_manager()
 
@@ -51,6 +52,12 @@ class AdviceRule(models.Model):
                 name='unique_advice_rule'
             )
         ]
+
+    @property
+    def advice_text(self):
+        if get_language() == 'fr':
+            return self.advice_text_fr or self.advice_text_en
+        return self.advice_text_en
 
     def __str__(self):
         return f"{self.plant_type or '*'} - {self.disease_label} ({self.severity or '*'})"

@@ -26,7 +26,7 @@ def rule():
     return AdviceRule.objects.create(
         plant_type=PlantTypeChoice.TOMATO,
         disease_label=DiseaseLabelChoice.BACTERIAL_SPOT,
-        advice_text='Advice text'
+        advice_text_en='Advice text'
     )
 
 @pytest.fixture

@@ -25,7 +25,7 @@ class AdviceRuleAdmin(admin.ModelAdmin):
         'soil_type'
     ]
     
-    search_fields = ['advice_text', 'disease_label']
+    search_fields = ['advice_text_en', 'advice_text_fr', 'disease_label']
 
     filter_horizontal = ['treatments']
 
@@ -38,7 +38,7 @@ class AdviceRuleAdmin(admin.ModelAdmin):
             'description': "Laissez vide si la règle s'applique à tous les types d'expositions/sols."
         }),
         ("Contenu du conseil", {
-            'fields': ('advice_text',),
+            'fields': ('advice_text_en', 'advice_text_fr'),
         }),
         ("Traitements associés", {
             'fields': ('treatments',),
