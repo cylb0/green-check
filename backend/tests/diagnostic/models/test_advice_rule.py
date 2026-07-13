@@ -12,7 +12,7 @@ def rule():
         severity=AdviceRule.SeverityChoice.MEDIUM,
         exposure=ExposureChoice.FULL_SUN,
         soil_type=SoilTypeChoice.CLAY,
-        advice_text='Advice text'
+        advice_text_en='Advice text'
     )
 
 def make_rule(**kwargs):
@@ -21,7 +21,7 @@ def make_rule(**kwargs):
         plant_type=None,
         soil_type=None,
         exposure=None,
-        advice_text='Advice',
+        advice_text_en='Advice',
     )
     return AdviceRule.objects.create(**defaults | kwargs)
 
@@ -94,7 +94,7 @@ class TestAdviceRule:
         assert rule.severity == AdviceRule.SeverityChoice.MEDIUM
         assert rule.exposure == ExposureChoice.FULL_SUN
         assert rule.soil_type == SoilTypeChoice.CLAY
-        assert rule.advice_text == 'Advice text'
+        assert rule.advice_text_en == 'Advice text'
 
     def test_create_advice_rule_with_empty_fields(self):
         rule = AdviceRule(
@@ -103,7 +103,7 @@ class TestAdviceRule:
             severity=AdviceRule.SeverityChoice.MEDIUM,
             exposure=ExposureChoice.FULL_SUN,
             soil_type=SoilTypeChoice.CLAY,
-            advice_text='Advice text'
+            advice_text_en='Advice text'
         )
 
         with pytest.raises(ValidationError) as e:
@@ -118,7 +118,7 @@ class TestAdviceRule:
             severity=AdviceRule.SeverityChoice.MEDIUM,
             exposure=ExposureChoice.FULL_SUN,
             soil_type=SoilTypeChoice.CLAY,
-            advice_text='Advice text'
+            advice_text_en='Advice text'
         )
 
         with pytest.raises(ValidationError) as e:
@@ -128,12 +128,12 @@ class TestAdviceRule:
 
     def test_update_advice_rule(self, rule):
         new_advice_text = 'Updated advice text'
-        rule.advice_text = new_advice_text
+        rule.advice_text_en = new_advice_text
         rule.save()
 
         updated_rule = AdviceRule.objects.get(pk=rule.pk)
 
-        assert updated_rule.advice_text == new_advice_text
+        assert updated_rule.advice_text_en == new_advice_text
 
     def test_delete_advice_rule(self, rule):
         rule.delete()
@@ -149,5 +149,5 @@ class TestAdviceRule:
                 severity=AdviceRule.SeverityChoice.MEDIUM,
                 exposure=ExposureChoice.FULL_SUN,
                 soil_type=SoilTypeChoice.CLAY,
-                advice_text='Advice text'
+                advice_text_en='Advice text'
             )

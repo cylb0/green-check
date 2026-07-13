@@ -4,19 +4,16 @@ from diagnostic.models import Treatment
 
 @admin.register(Treatment)
 class TreatmentAdmin(admin.ModelAdmin):
-    list_display = ['title', 'icon', 'rules_count']
+    list_display = ['title_en', 'icon', 'rules_count']
     list_filter = ['icon']
-    search_fields = ['title', 'description']
+    search_fields = ['title_en', 'title_fr', 'description_en', 'description_fr']
+    ordering = ('title_en',)
 
     fieldsets = (
         ("Présentation", {'fields': ('icon',)}),
         ("Français", {'fields': ('title_fr', 'description_fr')}),
         ("English", {'fields': ('title_en', 'description_en')}),
     )
-    list_display = ['title_en', 'icon', 'rules_count']
-    search_fields = ['title_en', 'title_fr', 'description_en', 'description_fr']
-
-    ordering = ('title_en',)
 
     def get_queryset(self, request):
         return super().get_queryset(request).annotate(_rules_count=Count('advice_rules'))
