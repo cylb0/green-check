@@ -2,6 +2,7 @@ import { DIAGNOSTIC_ADVICE_PAGE_CONTENT } from "@/data"
 import { useTranslation } from "@/hooks"
 import type { Treatment } from "@/types"
 import { TREATMENT_ICONS } from "@/data"
+import { capitalize } from "@/services"
 
 function Treatment({ treatment }: { treatment: Treatment}) {
     const Icon = treatment.icon ? TREATMENT_ICONS[treatment.icon] : null
@@ -14,8 +15,8 @@ function Treatment({ treatment }: { treatment: Treatment}) {
                 {Icon && <Icon className="text-primary active:text-primary/80 w-5 h-5" />}
             </div>
             <div className="flex flex-col justify-center flex-1">
-                <p className="text-heading-sm">{treatment.title}</p>
-                <p className="text-sm text-foreground-500 mt-0.5 leading-normal">{treatment.description}</p>
+                <p className="text-heading-sm">{capitalize(treatment.title)}</p>
+                <p className="text-sm text-foreground-500 mt-0.5 leading-normal">{capitalize(treatment.description)}</p>
             </div>
         </div>
     )

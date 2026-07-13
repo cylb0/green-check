@@ -9,16 +9,14 @@ class TreatmentAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description']
 
     fieldsets = (
-        ("Présentation", {
-            'fields': ('title', 'icon'),
-            'description': "L'icône est une clé sémantique, associée à un pictogramme côté application."
-        }),
-        ("Contenu", {
-            'fields': ('description',),
-        }),
+        ("Présentation", {'fields': ('icon',)}),
+        ("Français", {'fields': ('title_fr', 'description_fr')}),
+        ("English", {'fields': ('title_en', 'description_en')}),
     )
+    list_display = ['title_en', 'icon', 'rules_count']
+    search_fields = ['title_en', 'title_fr', 'description_en', 'description_fr']
 
-    ordering = ('title',)
+    ordering = ('title_en',)
 
     def get_queryset(self, request):
         return super().get_queryset(request).annotate(_rules_count=Count('advice_rules'))

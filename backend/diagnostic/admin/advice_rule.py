@@ -5,7 +5,7 @@ from diagnostic.models import AdviceRule
 
 class TreatmentChoiceField(forms.ModelMultipleChoiceField):
     def label_from_instance(self, obj):
-        return f"{obj.title} - {Truncator(obj.description).chars(100)}"
+        return f"{obj.title_en} - {Truncator(obj.description_en).chars(100)}"
 
 @admin.register(AdviceRule)
 class AdviceRuleAdmin(admin.ModelAdmin):
