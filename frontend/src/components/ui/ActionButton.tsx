@@ -30,10 +30,10 @@ export default function ActionButton({
             type={type}
             onClick={onClick}
             disabled={disabled}
-            className={`w-full font-bold border rounded-lg p-2 mt-4 transition-all duration-200
+            className={`w-full font-bold border rounded-xl p-2 mt-4 transition-all duration-200
                 flex items-center justify-center gap-2
-                active:scale-95 hover:scale-95
-                disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 disable:hover:scale-100
+                hover:-translate-y-0.5 active:translate-y-0 active:scale-95 
+                disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:active:scale-100
                 ${borderColor} ${textColor} ${bgColor} ${hoverColor}`}
         >
             {Icon && iconSide === "left" && <Icon size={20} />}

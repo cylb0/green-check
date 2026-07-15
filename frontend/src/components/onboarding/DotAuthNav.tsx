@@ -15,14 +15,14 @@ export default function DotAuthNav() {
                     onTouchEnd={() => setHoveredDot(null)}
                     onMouseEnter={() => setHoveredDot(i)}
                     onMouseLeave={() => setHoveredDot(null)}
-                    className={`flex-shrink-0 rounded-full transition-all duration-300 ease-out h-3 bg-primary
+                    className={`flex-shrink-0 rounded-full transition-all duration-300 ease-out h-3
                         ${hoveredDot === i
-                            ? "w-8"
+                            ? "w-8 bg-primary-light"
                             : hoveredDot !== null
-                                ? "w-3 bg-primary/50"
+                                ? "w-3 bg-ink-inverse/30"
                                 : step === i
-                                    ? "w-8"
-                                    : "w-3 bg-primary/50"
+                                    ? "w-8 bg-primary-light"
+                                    : "w-3 bg-ink-inverse/30"
                         }`
                     }
                 />

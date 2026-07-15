@@ -6,6 +6,52 @@
     --color-success: #90ccac;      
     --color-warning: #f7b64d;      
     --color-error: #ba473b;
+    /*Primary - Vivid green, buttons/active/icons*/
+    --color-primary: #1fa24c;
+    --color-primary-light: #6fe377;
+    --color-primary-dark: #155c33;
+    --color-on-primary: #0f241d;
+
+    /*PINE - Dark green, immersive backgrounds/hero cards*/
+    --color-pine-900: #0e3320;
+    --color-pine-800: #155c33;
+
+    /*Highlight - Vibrant green, falling leaves, links on dark backgrounds*/
+    --color-lime: #b6ff3c;
+    --color-mint: #8cff6e;
+
+    /*Ink - texts*/
+    --color-ink-900: #152019;
+    --color-ink-600: #4c5d54;
+    --color-ink-400: #8aa096;
+    --color-ink-inverse: #f3faf5;
+
+    /*Surface - backgrounds and borders*/
+    --color-cream: #f6f8f4;
+    --color-paper: #ffffff;
+    --color-line: #e4eae4;
+
+    /*Semantic - severity & alerts*/
+    --color-severity-low-bg: #e1f7e4;
+    --color-severity-low-text: #1fa24c;
+    --color-severity-moderate-bg: #fbf0dc;
+    --color-severity-moderate-text: #8a6a2a;
+    --color-severity-high-bg: #fbe3dd;
+    --color-severity-high-text: #b5523a;
+
+    /*Garden palette (svg)*/
+    --color-garden-leaf-deep: #1f5b3b;
+    --color-garden-leaf-base: #2e7d4f;
+    --color-garden-leaf-mid: #256b45;
+    --color-garden-leaf-light: #4fae6c;
+    --color-garden-sky-top: #eaf8ea;
+    --color-garden-sky-bottom: #4fae6c;
+    --color-tomato: #e5533d;
+    --color-tomato-dark: #d8432c;
+    --color-tomato-highlight: #ff8a72;
+    --color-wood: #8b6b44;
+
+    --font-sans: "Manrope", sans-serif;
 }
 
 @layer components {
@@ -28,11 +74,11 @@
 
 @layer utilities {
     .text-heading {
-        @apply text-2xl font-bold text-foreground;
+        @apply text-2xl font-bold;
     }
 
     .text-subheading {
-        @apply text-base font-medium text-foreground/80;
+        @apply text-base font-medium;
     }
 
     .text-heading-sm {
