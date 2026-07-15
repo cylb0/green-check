@@ -1,0 +1,844 @@
+[
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 1,
+    "fields": {
+      "plant_type": null,
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 19, 26],
+      "advice_text_en": "No disease detected. The foliage looks healthy, so the best thing you can do is keep the routine that got you here: water in the morning at the base of the plant, keep the soil covered, and take a quick look under the leaves once a week. Most problems are trivial to fix in their first days and painful to fix later.",
+      "advice_text_fr": "Aucune maladie détectée. Le feuillage est sain : le mieux à faire est de conserver la routine qui vous a mené là, à savoir arroser le matin au pied de la plante, garder le sol couvert et jeter un œil sous les feuilles une fois par semaine. La plupart des problèmes se règlent facilement dans les premiers jours et deviennent pénibles ensuite."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 2,
+    "fields": {
+      "plant_type": null,
+      "disease_label": "powdery_mildew",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 3, 11, 14],
+      "advice_text_en": "Powdery mildew, recognisable by its white flour-like film on the upper leaf surface. Unlike most fungi it thrives in dry air with high humidity around the leaves, so it is really an airflow problem. Remove the worst leaves, open up the plant, and treat with sulfur or a baking-soda spray before it spreads to the growing tips.",
+      "advice_text_fr": "Oïdium, reconnaissable à son film blanc farineux sur le dessus des feuilles. Contrairement à la plupart des champignons, il prospère par air sec avec une forte humidité autour du feuillage : c'est donc avant tout un problème d'aération. Retirez les feuilles les plus atteintes, aérez la plante et traitez au soufre ou au bicarbonate avant que cela ne gagne les jeunes pousses."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 3,
+    "fields": {
+      "plant_type": null,
+      "disease_label": "bacterial_spot",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 18, 10, 4],
+      "advice_text_en": "Bacterial spot. Because it is a bacterium and not a fungus, no spray will cure the leaves that are already marked, and the infection travels almost entirely through splashing water. Stop wetting the foliage, remove the spotted leaves, and use copper preventively on the growth that is still clean.",
+      "advice_text_fr": "Tache bactérienne. Comme il s'agit d'une bactérie et non d'un champignon, aucun traitement ne guérira les feuilles déjà marquées, et l'infection se propage presque uniquement par les éclaboussures. Cessez de mouiller le feuillage, retirez les feuilles tachées et utilisez le cuivre en préventif sur les pousses encore saines."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 4,
+    "fields": {
+      "plant_type": null,
+      "disease_label": "black_rot",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [5, 2, 3, 13],
+      "advice_text_en": "Black rot. The fungus overwinters in mummified fruit and dead wood left on or under the plant, which is why it comes back year after year in the same spot. Sanitation matters more than spraying here: strip every mummy, clear the debris, and apply a preventive copper treatment at bud break next spring.",
+      "advice_text_fr": "Pourriture noire. Le champignon hiverne dans les fruits momifiés et le bois mort laissés sur ou sous la plante, d'où son retour chaque année au même endroit. L'hygiène compte ici plus que les traitements : retirez chaque momie, nettoyez les débris et appliquez un traitement cuivrique préventif au débourrement le printemps prochain."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 5,
+    "fields": {
+      "plant_type": null,
+      "disease_label": "early_blight",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 24, 18, 27],
+      "advice_text_en": "Early blight, showing as brown spots with concentric rings that start on the oldest, lowest leaves. The spores live in the soil and are splashed upwards, so a good mulch and base watering will do more than anything else. Remove the affected lower leaves and keep the plant well fed so it can outgrow the infection.",
+      "advice_text_fr": "Alternariose, qui se manifeste par des taches brunes à anneaux concentriques débutant sur les feuilles les plus vieilles et les plus basses. Les spores vivent dans le sol et remontent par éclaboussure : un bon paillage et un arrosage au pied feront plus que tout le reste. Retirez les feuilles basses atteintes et nourrissez bien la plante pour qu'elle prenne le dessus."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 6,
+    "fields": {
+      "plant_type": null,
+      "disease_label": "late_blight",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [6, 10, 23, 36],
+      "advice_text_en": "Late blight. This is the most aggressive disease in the vegetable garden: in warm, wet weather it can destroy a plant in under a week and spread to every neighbour. Act today. Remove and destroy the affected plants, protect the rest with copper, and never compost the debris.",
+      "advice_text_fr": "Mildiou. C'est la maladie la plus agressive du potager : par temps chaud et humide, elle peut détruire une plante en moins d'une semaine et gagner toutes ses voisines. Agissez aujourd'hui. Arrachez et détruisez les plants atteints, protégez les autres au cuivre et ne compostez jamais les débris."
+    }
+  },
+
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 7,
+    "fields": {
+      "plant_type": "apple",
+      "disease_label": "apple_scab",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [2, 3, 1, 13],
+      "advice_text_en": "Apple scab. The olive-brown, velvety blotches on the leaves come from spores released by last year's fallen leaves during spring rain. The tree will survive, but repeated defoliation weakens it and ruins the fruit. Rake and destroy all the leaf litter this autumn, thin the canopy so it dries faster after rain, and spray Bordeaux mixture from bud break until the shoots have hardened off.",
+      "advice_text_fr": "Tavelure du pommier. Les taches veloutées brun olive sur les feuilles proviennent des spores libérées par les feuilles tombées l'an dernier lors des pluies de printemps. L'arbre survivra, mais des défoliations répétées l'affaiblissent et abîment les fruits. Ramassez et détruisez toute la litière cet automne, éclaircissez la couronne pour qu'elle sèche plus vite après la pluie et pulvérisez de la bouillie bordelaise du débourrement jusqu'à l'aoûtement des pousses."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 8,
+    "fields": {
+      "plant_type": "apple",
+      "disease_label": "black_rot",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [7, 5, 2, 4],
+      "advice_text_en": "Black rot on apple, which attacks on three fronts at once: leaf spots, rotting fruit, and cankers that girdle the branches. The cankers are what actually kill limbs, so start there. Cut every affected branch back to clean wood, disinfecting your saw between cuts, then remove all the mummified fruit and fallen debris.",
+      "advice_text_fr": "Pourriture noire du pommier, qui attaque sur trois fronts à la fois : taches foliaires, fruits pourris et chancres qui étranglent les branches. Ce sont les chancres qui tuent réellement les charpentières : commencez par là. Recoupez chaque branche atteinte jusqu'au bois sain en désinfectant la scie entre les coupes, puis retirez tous les fruits momifiés et les débris au sol."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 9,
+    "fields": {
+      "plant_type": "apple",
+      "disease_label": "cedar_apple_rust",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [9, 1, 17, 34],
+      "advice_text_en": "Cedar apple rust, the bright orange spots with tiny tubes on the leaf underside. It cannot survive on apple alone: it needs a juniper or red cedar within a few hundred metres to complete its cycle. Removing those hosts, or at least cutting out their galls in winter, is the only durable fix; sprays only protect the current season's leaves.",
+      "advice_text_fr": "Rouille grillagée du pommier, ces taches orange vif portant de petits tubes au revers des feuilles. Elle ne peut survivre sur le pommier seul : il lui faut un genévrier ou un cèdre rouge à quelques centaines de mètres pour boucler son cycle. Supprimer ces hôtes, ou au moins retirer leurs galles en hiver, est la seule solution durable ; les traitements ne protègent que le feuillage de l'année."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 10,
+    "fields": {
+      "plant_type": "apple",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 3, 2],
+      "advice_text_en": "Your apple tree looks healthy. The two habits that keep it that way are winter pruning to open the centre of the crown, so the foliage dries quickly after rain, and a thorough autumn clean-up of the fallen leaves, which is where scab would otherwise spend the winter.",
+      "advice_text_fr": "Votre pommier est en bonne santé. Les deux habitudes qui le maintiendront ainsi sont une taille hivernale qui ouvre le centre de la couronne, pour que le feuillage sèche vite après la pluie, et un ramassage soigneux des feuilles mortes à l'automne, là où la tavelure passerait autrement l'hiver."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 11,
+    "fields": {
+      "plant_type": "blueberry",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 24, 30],
+      "advice_text_en": "Your blueberry looks healthy. The thing to watch on this plant is not disease but soil pH: it needs acidic ground, between 4.5 and 5.5, and the first sign that it is drifting is yellowing leaves with green veins. Keep it mulched with pine bark and it should stay trouble-free.",
+      "advice_text_fr": "Votre myrtillier est en bonne santé. Ce qu'il faut surveiller ici n'est pas une maladie mais le pH du sol : il lui faut un terrain acide, entre 4,5 et 5,5, et le premier signe de dérive est un jaunissement des feuilles avec des nervures restées vertes. Gardez un paillis d'écorce de pin et tout devrait bien se passer."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 12,
+    "fields": {
+      "plant_type": "cherry",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 3, 4],
+      "advice_text_en": "Your cherry tree looks healthy. One point specific to cherries: prune in summer, never in winter, because cold-weather cuts on stone fruit heal slowly and are the usual entry point for canker.",
+      "advice_text_fr": "Votre cerisier est en bonne santé. Un point propre aux fruits à noyau : taillez en été et jamais en hiver, car les plaies faites par temps froid cicatrisent mal et constituent la porte d'entrée habituelle du chancre."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 13,
+    "fields": {
+      "plant_type": "cherry",
+      "disease_label": "powdery_mildew",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [3, 1, 11, 27],
+      "advice_text_en": "Powdery mildew on cherry. It attacks the soft new shoots and the suckers first, which is where it builds up before moving to the fruit. Cut out the water sprouts and any dense inner growth, ease off the nitrogen that is driving all that soft growth, and apply sulfur while temperatures stay below 28 °C.",
+      "advice_text_fr": "Oïdium du cerisier. Il attaque d'abord les jeunes pousses tendres et les gourmands, où il s'installe avant de gagner les fruits. Supprimez les gourmands et la végétation intérieure trop dense, réduisez l'azote qui provoque cette croissance molle, et appliquez du soufre tant que les températures restent sous 28 °C."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 14,
+    "fields": {
+      "plant_type": "corn",
+      "disease_label": "cercospora_leaf_spot",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [25, 8, 17, 34],
+      "advice_text_en": "Gray leaf spot, showing as long rectangular lesions running between the leaf veins. It survives on corn residue left on the surface, so continuous corn on the same plot is what feeds it. Rotate away from corn for two seasons and bury or remove the stubble; fungicide is only worth it if the lesions reach the leaf below the ear before flowering.",
+      "advice_text_fr": "Cercosporiose (tache grise), qui se manifeste par de longues lésions rectangulaires courant entre les nervures. Elle survit sur les résidus de maïs laissés en surface : c'est la monoculture sur la même parcelle qui l'entretient. Faites une rotation de deux saisons sans maïs et enfouissez ou retirez les chaumes ; le fongicide ne se justifie que si les lésions atteignent la feuille sous l'épi avant la floraison."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 15,
+    "fields": {
+      "plant_type": "corn",
+      "disease_label": "common_rust",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 34, 17],
+      "advice_text_en": "Common rust on corn, the small cinnamon-brown pustules scattered on both sides of the leaf. On a garden scale this is mostly cosmetic and rarely costs you any yield, because the spores blow in on the wind each year rather than surviving locally. Keep an eye on it, and if it appears every season, switch to a resistant variety next year.",
+      "advice_text_fr": "Rouille commune du maïs, ces petites pustules brun cannelle réparties sur les deux faces de la feuille. À l'échelle du jardin, c'est surtout esthétique et cela coûte rarement du rendement, car les spores arrivent chaque année par le vent plutôt que de survivre sur place. Surveillez, et si elle revient chaque saison, passez à une variété résistante l'an prochain."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 16,
+    "fields": {
+      "plant_type": "corn",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 21, 27],
+      "advice_text_en": "Your corn looks healthy. It is a hungry, thirsty crop, and the critical window is from tasselling to grain fill: any water stress in those few weeks costs you kernels that no later watering can bring back.",
+      "advice_text_fr": "Votre maïs est en bonne santé. C'est une culture gourmande en eau et en éléments nutritifs, et la période critique va de la floraison mâle au remplissage des grains : un stress hydrique durant ces quelques semaines coûte des grains qu'aucun arrosage ultérieur ne rattrapera."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 17,
+    "fields": {
+      "plant_type": "corn",
+      "disease_label": "northern_leaf_blight",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [25, 17, 8, 34],
+      "advice_text_en": "Northern leaf blight, the long cigar-shaped grey-green lesions. It matters far more than common rust: if it reaches the upper leaves before the ear fills, it can take a serious bite out of your harvest. Rotate the plot, clear the residue, and treat early if the weather stays cool and humid.",
+      "advice_text_fr": "Helminthosporiose du nord, ces longues lésions gris-vert en forme de cigare. Elle est bien plus grave que la rouille commune : si elle atteint les feuilles hautes avant le remplissage de l'épi, elle peut sérieusement entamer la récolte. Faites une rotation, éliminez les résidus et traitez tôt si le temps reste frais et humide."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 18,
+    "fields": {
+      "plant_type": "grape",
+      "disease_label": "black_rot",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [5, 2, 3, 13],
+      "advice_text_en": "Black rot on grape. It can take the entire bunch: the berries shrivel into hard black mummies that stay attached and reinfect the vine the following spring. Strip every mummy from the vine and the ground, open up the canopy so the clusters get air and light, and treat preventively from bud break through to when the berries touch.",
+      "advice_text_fr": "Pourriture noire de la vigne. Elle peut emporter la grappe entière : les baies se dessèchent en momies noires et dures qui restent accrochées et recontaminent le cep au printemps suivant. Retirez chaque momie du cep et du sol, aérez le feuillage pour que les grappes reçoivent air et lumière, et traitez en préventif du débourrement jusqu'à la fermeture de la grappe."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 19,
+    "fields": {
+      "plant_type": "grape",
+      "disease_label": "esca",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [7, 4, 36, 33],
+      "advice_text_en": "Esca, or black measles: a wood disease, not a leaf disease. The tiger-striped leaves are only the visible symptom of fungi that are already established inside the trunk, and there is no chemical cure. Your options are to cut back hard to clean wood, disinfecting between every cut, and to protect large pruning wounds in future. An apparently healthy vine can collapse suddenly in midsummer, so plan on replacing it eventually.",
+      "advice_text_fr": "Esca, ou maladie de l'apoplexie : c'est une maladie du bois, pas du feuillage. Les feuilles tigrées ne sont que le symptôme visible de champignons déjà installés dans le tronc, et il n'existe aucun traitement curatif. Vos options sont de recéper jusqu'au bois sain en désinfectant entre chaque coupe, et de protéger à l'avenir les grosses plaies de taille. Un cep en apparence sain peut s'effondrer brutalement en plein été : prévoyez son remplacement à terme."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 20,
+    "fields": {
+      "plant_type": "grape",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 3, 2],
+      "advice_text_en": "Your vine looks healthy. Grapes reward airflow above all else: keep the fruiting zone open by removing the leaves that shade the clusters, and clear the fallen leaves each autumn so black rot has nowhere to overwinter.",
+      "advice_text_fr": "Votre vigne est en bonne santé. La vigne récompense avant tout l'aération : dégagez la zone fructifère en effeuillant autour des grappes et ramassez les feuilles mortes chaque automne pour que la pourriture noire n'ait nulle part où hiverner."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 21,
+    "fields": {
+      "plant_type": "grape",
+      "disease_label": "leaf_blight",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 2, 3, 10],
+      "advice_text_en": "Isariopsis leaf blight, the dark angular patches that appear on the lower, older leaves late in the season. It rarely touches the fruit itself, but heavy defoliation before harvest leaves the grapes underripe and the vine short of reserves for winter. Clear the debris, open up the canopy, and treat with copper if it starts climbing towards the clusters.",
+      "advice_text_fr": "Isariopsis, ces plages sombres et anguleuses qui apparaissent en fin de saison sur les vieilles feuilles du bas. Elle touche rarement les fruits eux-mêmes, mais une défoliation importante avant récolte laisse des raisins peu mûrs et un cep sans réserves pour l'hiver. Nettoyez les débris, aérez le feuillage et traitez au cuivre si elle remonte vers les grappes."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 22,
+    "fields": {
+      "plant_type": "orange",
+      "disease_label": "haunglongbing",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [6, 16, 36, 34],
+      "advice_text_en": "Huanglongbing, or citrus greening. This is the most serious thing that can happen to a citrus tree: it is incurable, always fatal, and spread by the Asian citrus psyllid. An infected tree is a reservoir that will infect every other citrus around it, so the responsible action is to remove and destroy it, control the psyllid, and report it to your local plant health authority if it is a regulated disease where you live.",
+      "advice_text_fr": "Huanglongbing, ou maladie du dragon jaune. C'est ce qui peut arriver de pire à un agrume : incurable, toujours mortelle, et transmise par le psylle asiatique. Un arbre infecté devient un réservoir qui contaminera tous les agrumes alentour ; la seule attitude responsable est de l'arracher et de le détruire, de lutter contre le psylle et de le signaler aux autorités phytosanitaires si la maladie est réglementée chez vous."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 23,
+    "fields": {
+      "plant_type": "peach",
+      "disease_label": "bacterial_spot",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 18, 10, 34],
+      "advice_text_en": "Bacterial spot on peach. The small angular lesions often fall out of the leaf and leave a shot-hole appearance, and the fruit develops sunken pits. Copper helps but must be used at low rates on stone fruit or it will burn the leaves. The real answer for peaches is a resistant cultivar and a sheltered spot: this bacterium is driven into the leaves by wind-blown rain and sand.",
+      "advice_text_fr": "Tache bactérienne du pêcher. Les petites lésions anguleuses se détachent souvent de la feuille en laissant un aspect criblé, et les fruits présentent des cratères creusés. Le cuivre aide, mais doit être utilisé à faible dose sur fruits à noyau sous peine de brûler le feuillage. La vraie réponse pour le pêcher est un cultivar résistant et un emplacement abrité : cette bactérie est projetée dans les feuilles par la pluie et le sable poussés par le vent."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 24,
+    "fields": {
+      "plant_type": "peach",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 3, 13],
+      "advice_text_en": "Your peach tree looks healthy. The one preventive treatment worth planning is a copper spray at leaf fall and again just before the buds swell, which is what keeps peach leaf curl from disfiguring the tree in spring.",
+      "advice_text_fr": "Votre pêcher est en bonne santé. Le seul traitement préventif à prévoir est une pulvérisation de cuivre à la chute des feuilles, puis juste avant le gonflement des bourgeons : c'est ce qui empêche la cloque du pêcher de défigurer l'arbre au printemps."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 25,
+    "fields": {
+      "plant_type": "pepper",
+      "disease_label": "bacterial_spot",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 18, 10, 25],
+      "advice_text_en": "Bacterial spot on bell pepper. The dark water-soaked spots turn the leaves yellow and drop them, and once the plant is bare the fruit gets sunscald. The bacteria arrive on the seed and spread by splashing, so switch to base watering immediately, remove the marked leaves, and do not save seed from these plants.",
+      "advice_text_fr": "Tache bactérienne du poivron. Les taches sombres et huileuses font jaunir puis tomber les feuilles, et une fois la plante dénudée, les fruits attrapent des coups de soleil. La bactérie arrive avec la semence et se propage par éclaboussure : passez immédiatement à un arrosage au pied, retirez les feuilles marquées et ne conservez pas de graines de ces plants."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 26,
+    "fields": {
+      "plant_type": "pepper",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 18, 27],
+      "advice_text_en": "Your pepper plant looks healthy. Peppers are sensitive to swings in soil moisture, and the most common problem you will meet is not a disease at all but blossom end rot, caused by irregular watering. Keep the moisture steady and you will avoid it.",
+      "advice_text_fr": "Votre poivron est en bonne santé. Les poivrons sont sensibles aux variations d'humidité du sol, et le problème le plus fréquent n'est pas une maladie mais la nécrose apicale, provoquée par un arrosage irrégulier. Maintenez une humidité constante et vous l'éviterez."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 27,
+    "fields": {
+      "plant_type": "potato",
+      "disease_label": "early_blight",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 24, 27, 25],
+      "advice_text_en": "Early blight on potato, the bullseye spots on the oldest leaves at the bottom of the plant. It is a disease of stress: plants short of nitrogen or water succumb far faster than well-fed ones. Remove the affected lower leaves, mulch to stop the soil splashing up, and keep the plant fed through tuber bulking.",
+      "advice_text_fr": "Alternariose de la pomme de terre, ces taches en cible sur les vieilles feuilles du bas. C'est une maladie de stress : les plants manquant d'azote ou d'eau succombent bien plus vite que ceux qui sont bien nourris. Retirez les feuilles basses atteintes, paillez pour empêcher la terre de rejaillir et continuez à nourrir la plante pendant la tubérisation."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 28,
+    "fields": {
+      "plant_type": "potato",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 28, 25],
+      "advice_text_en": "Your potato plants look healthy. Keep hilling soil up around the stems as they grow: it protects the tubers from light, which turns them green and bitter, and it puts a physical barrier between the leaves and the crop should blight ever arrive.",
+      "advice_text_fr": "Vos plants de pomme de terre sont en bonne santé. Continuez à butter au fur et à mesure de leur croissance : cela protège les tubercules de la lumière, qui les verdit et les rend amers, et interpose une barrière physique entre le feuillage et la récolte si le mildiou venait à arriver."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 29,
+    "fields": {
+      "plant_type": "potato",
+      "disease_label": "late_blight",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [6, 10, 28, 36],
+      "advice_text_en": "Late blight on potato: the disease of the Irish famine, and it still moves just as fast. Once you see the greasy dark patches with white mould on the leaf underside, the spores are already washing down to the tubers. Cut off and destroy all the haulm immediately, wait two weeks before lifting so the spores on the soil surface die off, and never store a tuber with a rotten patch.",
+      "advice_text_fr": "Mildiou de la pomme de terre : la maladie de la grande famine irlandaise, et elle va toujours aussi vite. Dès l'apparition des plages sombres et huileuses avec un feutrage blanc au revers, les spores descendent déjà vers les tubercules. Fauchez et détruisez immédiatement tous les fanes, attendez deux semaines avant d'arracher pour que les spores en surface meurent, et ne stockez jamais un tubercule présentant une tache pourrie."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 30,
+    "fields": {
+      "plant_type": "raspberry",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 3, 2],
+      "advice_text_en": "Your raspberry looks healthy. The habit that keeps canes disease-free is simple: cut the canes that have just fruited right down to the ground after harvest. They will never fruit again, and leaving them standing only crowds the row and traps moisture.",
+      "advice_text_fr": "Votre framboisier est en bonne santé. L'habitude qui garde les cannes saines est simple : rabattez au ras du sol, après la récolte, les cannes qui viennent de fructifier. Elles ne refructifieront jamais, et les laisser en place ne fait qu'encombrer le rang et retenir l'humidité."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 31,
+    "fields": {
+      "plant_type": "soybean",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 25, 26],
+      "advice_text_en": "Your soybean looks healthy. Bear in mind that soy fixes its own nitrogen through root nodules, so extra nitrogen fertiliser does nothing but produce lush foliage that fungal diseases love. Feed the soil, not the plant.",
+      "advice_text_fr": "Votre soja est en bonne santé. Gardez à l'esprit qu'il fixe lui-même son azote grâce à ses nodosités racinaires : un apport d'azote supplémentaire ne fait que produire un feuillage exubérant dont raffolent les maladies fongiques. Nourrissez le sol, pas la plante."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 32,
+    "fields": {
+      "plant_type": "squash",
+      "disease_label": "powdery_mildew",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 8, 14, 11],
+      "advice_text_en": "Powdery mildew on squash. Almost every squash gets it eventually; the goal is to delay it long enough to finish the harvest. Cut off the worst leaves to let light into the plant, spray the rest with a baking-soda or sulfur solution every week, and remember that the white bloom on the stems of some varieties is natural and not the disease.",
+      "advice_text_fr": "Oïdium de la courge. Presque toutes les courges finissent par l'attraper ; l'objectif est de le retarder assez pour terminer la récolte. Supprimez les feuilles les plus atteintes pour laisser entrer la lumière, pulvérisez les autres au bicarbonate ou au soufre chaque semaine, et rappelez-vous que les marbrures blanches sur les tiges de certaines variétés sont naturelles et ne sont pas la maladie."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 33,
+    "fields": {
+      "plant_type": "strawberry",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 24, 8],
+      "advice_text_en": "Your strawberry looks healthy. Keep a layer of straw under the plants so the fruit never touches the soil, and replace your plants every three years: strawberries accumulate viruses with age and the crop quietly declines.",
+      "advice_text_fr": "Votre fraisier est en bonne santé. Gardez une couche de paille sous les plants pour que les fruits ne touchent jamais la terre, et renouvelez vos pieds tous les trois ans : les fraisiers accumulent les virus avec l'âge et la récolte décline insidieusement."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 34,
+    "fields": {
+      "plant_type": "strawberry",
+      "disease_label": "leaf_scorch",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 2, 8, 10],
+      "advice_text_en": "Leaf scorch on strawberry: irregular purple blotches that spread until the whole leaf looks burnt. It builds up in crowded, ageing beds where old leaves are never cleared. Strip the affected leaves, thin the runners so air can move between the crowns, and renovate the bed right after harvest.",
+      "advice_text_fr": "Brûlure des feuilles du fraisier : des taches pourpres irrégulières qui s'étendent jusqu'à donner à la feuille un aspect brûlé. Elle s'installe dans les planches vieillissantes et encombrées où les vieilles feuilles ne sont jamais retirées. Éliminez les feuilles atteintes, éclaircissez les stolons pour laisser circuler l'air entre les collets et rénovez la planche juste après la récolte."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 35,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "bacterial_spot",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 18, 10, 4],
+      "advice_text_en": "Bacterial spot on tomato. The small dark greasy spots have a yellow halo, and no spray will make them disappear, because this is a bacterium. What you can do is stop it spreading: water only at the base, never handle the plants while the foliage is wet, remove the marked leaves, and protect the clean growth with copper.",
+      "advice_text_fr": "Tache bactérienne de la tomate. Les petites taches sombres et huileuses portent un halo jaune, et aucun traitement ne les fera disparaître, car il s'agit d'une bactérie. Ce que vous pouvez faire, c'est stopper sa progression : arrosez uniquement au pied, ne manipulez jamais les plants quand le feuillage est mouillé, retirez les feuilles marquées et protégez les pousses saines au cuivre."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 36,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "early_blight",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 24, 18, 27],
+      "advice_text_en": "Early blight on tomato, the target-like brown spots that always start on the lowest leaves. The spores come up from the soil with every splash of water, which tells you exactly what to do: mulch thickly, water at the base, and strip the bottom 30 cm of leaves so nothing is left within splashing range.",
+      "advice_text_fr": "Alternariose de la tomate, ces taches brunes en cible qui débutent toujours sur les feuilles les plus basses. Les spores remontent du sol à chaque éclaboussure, ce qui indique exactement la marche à suivre : paillez généreusement, arrosez au pied et effeuillez les 30 premiers centimètres pour qu'il ne reste rien à portée d'éclaboussure."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 37,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [33, 24, 18],
+      "advice_text_en": "Your tomato plant looks healthy. Three habits will keep it that way through the season: mulch the soil, water at the base in the morning, and remove the leaves touching the ground. Almost every tomato disease starts on the lowest leaves, so that is where prevention pays.",
+      "advice_text_fr": "Votre plant de tomate est en bonne santé. Trois habitudes le maintiendront ainsi toute la saison : pailler le sol, arroser au pied le matin et supprimer les feuilles qui touchent la terre. Presque toutes les maladies de la tomate commencent par les feuilles basses : c'est là que la prévention paie."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 38,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "late_blight",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [6, 10, 36, 23],
+      "advice_text_en": "Late blight on tomato. This is an emergency, not a nuisance: in warm humid weather it kills a plant in three or four days and jumps to every tomato and potato nearby. Pull out the affected plants today, bag them, and put them in the bin rather than the compost. Protect what is left with copper, and pick any fruit that is still firm and unmarked.",
+      "advice_text_fr": "Mildiou de la tomate. C'est une urgence et non une gêne : par temps chaud et humide, il tue un plant en trois ou quatre jours et se propage à toutes les tomates et pommes de terre voisines. Arrachez les plants atteints aujourd'hui, ensachez-les et mettez-les à la poubelle plutôt qu'au compost. Protégez le reste au cuivre et récoltez les fruits encore fermes et sans marque."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 39,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "leaf_mold",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [3, 8, 19, 1],
+      "advice_text_en": "Leaf mold, the pale yellow patches on top of the leaf with velvety olive fuzz underneath. It is almost exclusively a greenhouse and polytunnel disease, and it is caused by one thing: humidity above 85% with no air movement. Open the vents day and night, space the plants out, and stop watering in the evening. Fungicide is close to useless if the air stays still.",
+      "advice_text_fr": "Cladosporiose, ces plages jaune pâle sur le dessus de la feuille avec un feutrage velouté vert olive au revers. C'est presque exclusivement une maladie de serre et de tunnel, et elle a une seule cause : une humidité supérieure à 85% sans mouvement d'air. Ouvrez les aérations jour et nuit, espacez les plants et cessez d'arroser le soir. Le fongicide ne sert quasiment à rien si l'air reste immobile."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 40,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "septoria_leaf_spot",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 24, 18, 10],
+      "advice_text_en": "Septoria leaf spot: many small round spots with grey centres and dark edges, always starting low and working upwards. It will not touch the fruit, but it can strip the plant of leaves and leave the tomatoes to ripen without any shade. Remove the affected leaves as they appear, mulch, and water at the base only.",
+      "advice_text_fr": "Septoriose : de nombreuses petites taches rondes à centre gris et bordure sombre, qui partent toujours du bas et remontent. Elle n'atteint pas les fruits, mais peut dénuder complètement le plant et laisser les tomates mûrir sans ombrage. Retirez les feuilles atteintes au fur et à mesure, paillez et arrosez uniquement au pied."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 41,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "spider_mites",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [22, 15, 12, 21],
+      "advice_text_en": "Two-spotted spider mites. This is a pest, not a disease: look under the leaves and you will find fine webbing and specks that move. They explode in hot, dry, dusty conditions, which is why the answer is water. Hose the undersides of the leaves down hard every few days, then follow with insecticidal soap or neem, and repeat twice at five-day intervals to catch the eggs hatching.",
+      "advice_text_fr": "Acariens tétranyques à deux points. C'est un ravageur et non une maladie : regardez sous les feuilles, vous y trouverez de fines toiles et des points qui bougent. Ils prolifèrent par temps chaud, sec et poussiéreux, et c'est pourquoi la réponse est l'eau. Douchez énergiquement le revers des feuilles tous les deux ou trois jours, enchaînez avec un savon insecticide ou du neem, et renouvelez deux fois à cinq jours d'intervalle pour attraper les éclosions."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 42,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "target_spot",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [1, 3, 17, 25],
+      "advice_text_en": "Target spot. It is easy to confuse with early blight, but the lesions appear all over the plant rather than starting at the bottom, and they attack the fruit as well as the leaves, leaving small sunken pits. Remove the affected foliage, open up the plant, and treat preventively while the weather stays warm and wet.",
+      "advice_text_fr": "Tache cible. On la confond facilement avec l'alternariose, mais les lésions apparaissent sur toute la plante au lieu de partir du bas, et elles attaquent les fruits autant que les feuilles, y laissant de petits cratères creusés. Retirez le feuillage atteint, aérez la plante et traitez en préventif tant que le temps reste chaud et humide."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 43,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "mosaic_virus",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [6, 35, 4, 36],
+      "advice_text_en": "Tomato mosaic virus: mottled light and dark green leaves, often puckered or fern-like. There is no treatment, and no plant recovers. It spreads by simple contact, on your hands and tools, and it survives in tobacco. Remove the plant, wash your hands with soap before touching any other tomato, and disinfect everything that touched it.",
+      "advice_text_fr": "Virus de la mosaïque de la tomate : feuilles marbrées de vert clair et de vert foncé, souvent gaufrées ou filiformes. Il n'existe aucun traitement et aucune plante ne s'en remet. Il se transmet par simple contact, par vos mains et vos outils, et survit dans le tabac. Arrachez le plant, lavez-vous les mains au savon avant de toucher une autre tomate et désinfectez tout ce qui l'a touché."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 44,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "yellow_leaf_curl_virus",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": null,
+      "treatments": [6, 16, 15, 34],
+      "advice_text_en": "Tomato yellow leaf curl virus: the leaves curl upwards, turn yellow at the margins and the plant stops growing, usually with no fruit set at all. It is incurable and transmitted by whitefly. Remove the plant, but do it inside a bag so the whiteflies do not simply fly to the next tomato, and get the whitefly population under control before you replant.",
+      "advice_text_fr": "Virus des feuilles jaunes en cuillère de la tomate : les feuilles s'enroulent vers le haut, jaunissent sur les bords et la plante cesse de croître, généralement sans nouer un seul fruit. Il est incurable et transmis par les aleurodes. Arrachez le plant, mais faites-le à l'intérieur d'un sac pour que les aleurodes ne s'envolent pas vers la tomate voisine, et maîtrisez leur population avant de replanter."
+    }
+  },
+
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 45,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "late_blight",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": "clay",
+      "treatments": [6, 23, 29, 10],
+      "advice_text_en": "Late blight on tomato, made worse by your clay soil. Clay stays saturated long after the rain has stopped, and that permanent film of moisture around the base of the plant is exactly what the spores need to germinate. Destroy the affected plants immediately, then deal with the ground: fork in grit and organic matter, or grow on a raised mound next season. On heavy soil, drainage is the treatment.",
+      "advice_text_fr": "Mildiou de la tomate, aggravé par votre sol argileux. L'argile reste saturée longtemps après la pluie, et ce film d'humidité permanent autour du pied est précisément ce dont les spores ont besoin pour germer. Détruisez immédiatement les plants atteints, puis occupez-vous du sol : incorporez du gravier et de la matière organique, ou cultivez sur butte la saison prochaine. En terre lourde, le drainage est le traitement."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 46,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "late_blight",
+      "severity": "high",
+      "exposure": "full_shade",
+      "soil_type": "clay",
+      "treatments": [6, 23, 31, 36],
+      "advice_text_en": "Late blight on tomato in the worst possible combination: heavy clay that holds water and deep shade that never lets the leaves dry. Frankly, this spot will lose tomatoes to blight every single year, and no amount of copper will change that. Remove the plants now, and next season move the tomatoes somewhere with at least six hours of direct sun and free-draining ground. Changing the location will do more than any treatment.",
+      "advice_text_fr": "Mildiou de la tomate dans la pire combinaison possible : une argile lourde qui retient l'eau et une ombre dense qui ne laisse jamais sécher le feuillage. Très honnêtement, cet emplacement perdra ses tomates au mildiou chaque année, et aucune dose de cuivre n'y changera rien. Arrachez les plants maintenant et, la saison prochaine, déplacez les tomates vers un endroit bénéficiant d'au moins six heures de soleil direct et d'un sol drainant. Changer de place fera plus que n'importe quel traitement."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 47,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "early_blight",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": "sandy",
+      "treatments": [1, 24, 21, 27],
+      "advice_text_en": "Early blight on tomato, on sandy soil. Sand drains fast and holds neither water nor nutrients, and early blight is opportunistic: it takes hold on plants that are hungry and drought-stressed. So beyond removing the marked leaves, the fix here is agronomic. Water deeply rather than often, mulch heavily to slow evaporation, and feed regularly with a balanced fertiliser, because sand leaches nitrogen away with every watering.",
+      "advice_text_fr": "Alternariose de la tomate, en sol sableux. Le sable draine vite et ne retient ni l'eau ni les éléments nutritifs, or l'alternariose est opportuniste : elle s'installe sur des plants affamés et stressés par la sécheresse. Au-delà du retrait des feuilles marquées, la solution est ici agronomique. Arrosez abondamment plutôt que souvent, paillez épais pour ralentir l'évaporation et fertilisez régulièrement avec un engrais équilibré, car le sable lessive l'azote à chaque arrosage."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 48,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "spider_mites",
+      "severity": "high",
+      "exposure": "full_sun",
+      "soil_type": "sandy",
+      "treatments": [22, 15, 24, 21],
+      "advice_text_en": "Spider mites on tomato, in full sun on sandy soil, which is the perfect storm for them. Mites multiply fastest on hot, dusty, drought-stressed plants, and sand in full sun gives them all three. Treating the mites alone will not hold: you have to remove the conditions. Water deeply, mulch to cool the root zone and keep the dust down, and hose the leaf undersides every few days. Consider a shade cloth over the hottest hours.",
+      "advice_text_fr": "Acariens sur tomate, en plein soleil et sol sableux : c'est pour eux la combinaison idéale. Les acariens se multiplient d'autant plus vite que la plante est chaude, poussiéreuse et stressée par la sécheresse, et un sable en plein soleil leur offre les trois. Traiter les acariens seuls ne tiendra pas : il faut supprimer les conditions. Arrosez en profondeur, paillez pour rafraîchir la zone racinaire et limiter la poussière, et douchez le revers des feuilles tous les deux ou trois jours. Envisagez une ombrière aux heures les plus chaudes."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 49,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "leaf_mold",
+      "severity": "high",
+      "exposure": "full_shade",
+      "soil_type": "loamy",
+      "treatments": [3, 8, 31, 19],
+      "advice_text_en": "Leaf mold on tomato, in full shade. Your soil is fine; the problem is entirely the light. Leaf mold needs leaves that stay damp for hours, and in full shade they never dry between one dew and the next. No spray will fix a plant that is permanently wet. Prune hard for airflow, water only in the morning, and above all move this plant into the sun, because leaf mold effectively disappears on foliage that dries out each morning.",
+      "advice_text_fr": "Cladosporiose de la tomate, à l'ombre complète. Votre sol n'est pas en cause : le problème vient entièrement de la lumière. La cladosporiose a besoin de feuilles qui restent humides des heures durant, et à l'ombre elles ne sèchent jamais d'une rosée à l'autre. Aucun traitement ne sauvera une plante en permanence mouillée. Taillez franchement pour aérer, n'arrosez que le matin et surtout déplacez ce plant au soleil, car la cladosporiose disparaît pratiquement sur un feuillage qui sèche chaque matin."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 50,
+    "fields": {
+      "plant_type": "tomato",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": "full_sun",
+      "soil_type": "sandy",
+      "treatments": [21, 24, 27],
+      "advice_text_en": "Your tomato is healthy, and full sun is exactly where it should be. The one thing to keep an eye on is the sandy soil: it drains so fast that the plant swings between wet and bone dry, which is what causes blossom end rot and split fruit. Water deeply and regularly, keep a thick mulch on, and feed a little more often than you would on richer ground.",
+      "advice_text_fr": "Votre tomate est en bonne santé, et le plein soleil est exactement ce qu'il lui faut. Le seul point à surveiller est le sol sableux : il draine si vite que la plante alterne entre humide et complètement sec, ce qui provoque la nécrose apicale et l'éclatement des fruits. Arrosez abondamment et régulièrement, gardez un paillis épais et fertilisez un peu plus souvent que sur une terre riche."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 51,
+    "fields": {
+      "plant_type": "potato",
+      "disease_label": "late_blight",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": "clay",
+      "treatments": [6, 23, 29, 28],
+      "advice_text_en": "Late blight on potato, on clay soil. This is worse than it sounds: clay stays wet, and the spores washed off the leaves persist in that damp soil and rot the tubers underground, sometimes weeks after you have lifted them. Destroy the haulm now, hill the rows up high, and wait at least two weeks before harvesting. Next season, plant on ridges in the lightest ground you have.",
+      "advice_text_fr": "Mildiou de la pomme de terre, en sol argileux. C'est plus grave qu'il n'y paraît : l'argile reste humide, et les spores lessivées depuis le feuillage persistent dans cette terre détrempée et font pourrir les tubercules sous terre, parfois des semaines après l'arrachage. Détruisez les fanes maintenant, buttez fortement les rangs et attendez au moins deux semaines avant de récolter. La saison prochaine, plantez sur billons dans la terre la plus légère dont vous disposez."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 52,
+    "fields": {
+      "plant_type": "grape",
+      "disease_label": "black_rot",
+      "severity": "high",
+      "exposure": "partial_shade",
+      "soil_type": "clay",
+      "treatments": [5, 3, 13, 23],
+      "advice_text_en": "Black rot on grape, on clay and in partial shade, which explains why it is so severe. Vines want heat and dry leaves; here the canopy stays humid all morning and the clay keeps the root zone wet. Strip out every mummified berry, then thin the canopy aggressively, right back to the fruiting zone, and remove whatever is casting shade if you can. Improving the drainage will pay off over several seasons.",
+      "advice_text_fr": "Pourriture noire de la vigne, sur argile et à mi-ombre, ce qui explique sa sévérité. La vigne veut de la chaleur et un feuillage sec ; ici la végétation reste humide toute la matinée et l'argile maintient la zone racinaire détrempée. Retirez chaque baie momifiée, puis éclaircissez énergiquement le feuillage jusqu'à dégager la zone fructifère, et supprimez si possible ce qui fait de l'ombre. Améliorer le drainage portera ses fruits sur plusieurs saisons."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 53,
+    "fields": {
+      "plant_type": "apple",
+      "disease_label": "apple_scab",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": "clay",
+      "treatments": [2, 3, 13, 23],
+      "advice_text_en": "Apple scab, on clay soil. The clay is not infecting the tree, but it keeps the leaf litter underneath permanently damp, and damp litter is a spore factory that keeps firing all through the spring rains. Clearing the fallen leaves matters twice as much here as on light ground. Rake the ground bare each autumn, thin the crown, and spray preventively from bud break.",
+      "advice_text_fr": "Tavelure du pommier, en sol argileux. L'argile n'infecte pas l'arbre, mais elle maintient la litière de feuilles en permanence humide, et une litière humide est une usine à spores qui tire sans discontinuer pendant toutes les pluies de printemps. Ramasser les feuilles mortes compte ici deux fois plus qu'en terre légère. Nettoyez le sol à nu chaque automne, éclaircissez la couronne et traitez en préventif dès le débourrement."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 54,
+    "fields": {
+      "plant_type": "apple",
+      "disease_label": "cedar_apple_rust",
+      "severity": "medium",
+      "exposure": "full_sun",
+      "soil_type": "sandy",
+      "treatments": [9, 1, 21, 34],
+      "advice_text_en": "Cedar apple rust in full sun on sandy soil. The good news is that your conditions are working for you: sun dries the leaves quickly and sand drains well, so the infection window each spring is short. Focus your effort where it counts, which is finding and clearing the junipers nearby, and keep the tree well watered, because sandy ground dries out and a stressed tree sheds infected leaves faster than it can replace them.",
+      "advice_text_fr": "Rouille grillagée du pommier, en plein soleil et sol sableux. La bonne nouvelle est que vos conditions jouent en votre faveur : le soleil sèche vite le feuillage et le sable draine bien, la fenêtre d'infection printanière est donc courte. Concentrez vos efforts là où c'est utile, c'est-à-dire repérer et supprimer les genévriers alentour, et arrosez bien l'arbre, car un sol sableux se dessèche et un arbre stressé perd ses feuilles infectées plus vite qu'il ne les remplace."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 55,
+    "fields": {
+      "plant_type": "cherry",
+      "disease_label": "powdery_mildew",
+      "severity": "high",
+      "exposure": "full_shade",
+      "soil_type": "loamy",
+      "treatments": [3, 31, 11, 27],
+      "advice_text_en": "Powdery mildew on cherry, in full shade. This is the counter-intuitive one: unlike most fungi, mildew does not need wet leaves, it needs stagnant humid air and soft shade-grown growth. Your tree is producing exactly that. Sulfur will help in the short term, but the durable fix is light and air. Prune to open the crown, clear what is shading the tree, and cut back on nitrogen.",
+      "advice_text_fr": "Oïdium du cerisier, à l'ombre complète. C'est le cas contre-intuitif : contrairement à la plupart des champignons, l'oïdium n'a pas besoin de feuilles mouillées, mais d'un air humide et stagnant et d'une végétation tendre poussée à l'ombre. Votre arbre produit exactement cela. Le soufre aidera à court terme, mais la solution durable est la lumière et l'air. Taillez pour ouvrir la couronne, dégagez ce qui ombrage l'arbre et réduisez l'azote."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 56,
+    "fields": {
+      "plant_type": "squash",
+      "disease_label": "powdery_mildew",
+      "severity": "high",
+      "exposure": "full_shade",
+      "soil_type": "clay",
+      "treatments": [1, 8, 31, 14],
+      "advice_text_en": "Powdery mildew on squash, in shade on clay. Squash needs full sun and it is not getting any, which is why the mildew is this severe: shaded plants grow soft leaves that the fungus colonises immediately, and the dense damp air over clay never clears. Treat with baking soda or sulfur to hold the line this season, but plan to move the squash into full sun next year. In shade you will fight mildew every summer and lose.",
+      "advice_text_fr": "Oïdium de la courge, à l'ombre et sur argile. La courge exige le plein soleil et n'en reçoit aucun, d'où la sévérité de l'attaque : à l'ombre, la plante produit des feuilles tendres que le champignon colonise aussitôt, et l'air dense et humide au-dessus de l'argile ne s'assainit jamais. Traitez au bicarbonate ou au soufre pour tenir cette saison, mais prévoyez de déplacer la courge en plein soleil l'an prochain. À l'ombre, vous lutterez contre l'oïdium chaque été et vous perdrez."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 57,
+    "fields": {
+      "plant_type": "strawberry",
+      "disease_label": "leaf_scorch",
+      "severity": "medium",
+      "exposure": null,
+      "soil_type": "chalky",
+      "treatments": [30, 1, 26, 8],
+      "advice_text_en": "Leaf scorch on strawberry, on chalky soil. Watch out for a diagnosis trap here: strawberries hate lime, and chalky ground locks up iron, which produces yellowing between the veins that looks a lot like the early stages of scorch. Treat the fungal scorch by clearing the affected leaves and thinning the bed, but also correct the soil with chelated iron and acidic organic matter, or the plants will keep struggling regardless.",
+      "advice_text_fr": "Brûlure des feuilles du fraisier, en sol calcaire. Attention au piège de diagnostic : le fraisier déteste le calcaire, et un sol crayeux bloque le fer, ce qui provoque un jaunissement entre les nervures très proche des premiers stades de la brûlure. Traitez la brûlure fongique en retirant les feuilles atteintes et en éclaircissant la planche, mais corrigez aussi le sol avec du fer chélaté et de la matière organique acidifiante, sans quoi les plants continueront de végéter."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 58,
+    "fields": {
+      "plant_type": "corn",
+      "disease_label": "northern_leaf_blight",
+      "severity": "high",
+      "exposure": null,
+      "soil_type": "clay",
+      "treatments": [25, 23, 17, 8],
+      "advice_text_en": "Northern leaf blight on corn, on clay. Clay holds the crop residue wet at the surface, and that residue is where the fungus overwinters, so the infection pressure on this plot will stay high year after year unless you break the cycle. Rotate away from corn for at least two seasons, work the residue in rather than leaving it on top, and improve the drainage so the soil is not saturated through the spring.",
+      "advice_text_fr": "Helminthosporiose du nord sur maïs, en sol argileux. L'argile maintient les résidus de culture humides en surface, et c'est dans ces résidus que le champignon hiverne : la pression d'infection sur cette parcelle restera donc élevée année après année tant que vous ne briserez pas le cycle. Faites une rotation d'au moins deux saisons sans maïs, enfouissez les résidus au lieu de les laisser en surface et améliorez le drainage pour que le sol ne soit pas saturé tout le printemps."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 59,
+    "fields": {
+      "plant_type": "pepper",
+      "disease_label": "bacterial_spot",
+      "severity": "medium",
+      "exposure": "full_sun",
+      "soil_type": "sandy",
+      "treatments": [1, 18, 24, 10],
+      "advice_text_en": "Bacterial spot on bell pepper, in full sun on sandy soil. Sun is on your side here, since it dries the leaves fast and bacteria need surface moisture to enter them. The problem is the sand: it splashes hard when you water, and every splash drives bacteria onto the lower leaves. Mulch the ground to kill the splash, water gently at the base, and remember that once the plant defoliates, full sun will scald the exposed fruit.",
+      "advice_text_fr": "Tache bactérienne du poivron, en plein soleil et sol sableux. Le soleil joue en votre faveur, car il sèche vite le feuillage et la bactérie a besoin d'humidité en surface pour y pénétrer. Le problème vient du sable : il rejaillit fortement à l'arrosage, et chaque éclaboussure projette des bactéries sur les feuilles basses. Paillez le sol pour supprimer les éclaboussures, arrosez doucement au pied, et n'oubliez pas qu'une fois la plante défoliée, le plein soleil brûlera les fruits exposés."
+    }
+  },
+  {
+    "model": "diagnostic.advicerule",
+    "pk": 60,
+    "fields": {
+      "plant_type": "blueberry",
+      "disease_label": "healthy",
+      "severity": "low",
+      "exposure": null,
+      "soil_type": "chalky",
+      "treatments": [30, 26, 24],
+      "advice_text_en": "Your blueberry looks healthy, but the chalky soil is a real problem waiting to happen. Blueberries need acidic ground between 4.5 and 5.5 pH, and chalk sits far above that: it will lock up iron, and within a season or two you will see yellow leaves with green veins. Do not wait for that. Mulch with pine bark, water with rainwater rather than tap water, and if the pH is genuinely high, grow the plant in a container of ericaceous compost instead.",
+      "advice_text_fr": "Votre myrtillier est en bonne santé, mais le sol calcaire est un vrai problème en germe. La myrtille exige un terrain acide, entre 4,5 et 5,5 de pH, et le calcaire se situe bien au-dessus : il bloquera le fer et, en une saison ou deux, vous verrez des feuilles jaunes aux nervures restées vertes. N'attendez pas ce stade. Paillez à l'écorce de pin, arrosez à l'eau de pluie plutôt qu'à l'eau du robinet, et si le pH est réellement élevé, cultivez plutôt la plante en pot dans une terre de bruyère."
+    }
+  }
+]
