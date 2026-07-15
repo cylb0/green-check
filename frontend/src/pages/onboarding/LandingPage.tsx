@@ -18,8 +18,8 @@ export default function LandingPage() {
                 onClick={() => goTo(1)}
                 borderColor="border-transparent"
                 textColor="text-on-primary"
-                bgColor="bg-gradient-to-br from-primary-light to-primary"
-                hoverColor="hover:brightness-105 active:brightness-105"
+                bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/20"
+                hoverColor="hover:brightness-105 active:brightness-95"
             />
         </div>
     )

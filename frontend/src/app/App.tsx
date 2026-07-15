@@ -32,7 +32,7 @@ import {
   TERMS_OF_USE_PAGE
 } from '@/constants'
 import { Toaster } from 'react-hot-toast'
-import { GardenBackGround } from '@/components'
+import { GardenBackground } from '@/components'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
@@ -55,7 +55,7 @@ export default function App() {
 
   return (
     <>
-      <GardenBackGround />
+      <GardenBackground />
       <div className="relative z-10">
         <Routes>
           <Route path="/" element={

@@ -28,7 +28,7 @@ function AuthLayout() {
     if (isAuthenticated) return <Navigate to="/home" replace />
 
     return (
-        <div className="relative w-full h-screen overflow-hidder">
+        <div className="relative w-full h-screen overflow-hidden">
             <div
                 className="absolute inset-0 bg-gradient-to-b from-pine-800/20 via pine-900/40 to-pine-900/60 pointer-events-none z-0"
                 aria-hidden="true"

@@ -59,13 +59,46 @@
         @apply border-2 border-foreground/20 rounded-lg
     }
 
-    .input-field {
-        @apply w-full border-2 rounded-lg border-primary/30 p-2 mt-1;
+    .field-card {
+        @apply relative rounded-xl bg-pine-900/40 border border-ink-inverse/45 h-[68px];
     }
 
     .input-label {
-        @apply text-foreground/80 font-bold
+        @apply absolute left-4 top-1/2 -translate-y-1/2 text-sm text-ink-inverse/70
+        origin-left pointer-events-none
+        transition-transform duration-150 ease-out
+        group-has-[input:focus]:-translate-y-[22px] group-has-[input:focus]:scale-[0.72] group-has-[input:focus]:text-ink-inverse
+        group-has-[input:not(:placeholder-shown)]:-translate-y-[22px] group-has-[input:not(:placeholder-shown)]:scale-[0.72] group-has-[input:not(:placeholder-shown)]:text-ink-inverse;
     }
+
+    .input-field {
+        @apply absolute inset-0 w-full h-full rounded-xl bg-transparent border-none
+        px-4 pt-4
+        text-ink-inverse placeholder:text-transparent focus:placeholder:text-ink-inverse/40
+        outline-none transition-colors duration-150;
+    }
+
+    .input-field:-webkit-autofill,
+    .input-field:-webkit-autofill:hover,
+    .input-field:-webkit-autofill:focus {
+        -webkit-text-fill-color: var(--color-ink-inverse);
+        caret-color: var(--color-ink-inverse);
+        -webkit-box-shadow: 0 0 0px 1000px rgba(14, 51, 32, 0.55) inset;
+        border-radius: inherit;
+        transition: background-color 9999s ease-in-out 0s;
+    }
+
+    .input-error {
+        @apply text-xs text-tomato-highlight mt-1 font-medium;
+    }
+
+    /* .input-field {
+        @apply w-full border-2 rounded-lg border-primary/30 p-2 mt-1;
+    } */
+
+    /* .input-label {
+        @apply text-foreground/80 font-bold
+    } */
 
     .input-error {
         @apply absolute text-xs text-red-500
