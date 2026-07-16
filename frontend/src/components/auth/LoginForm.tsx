@@ -110,7 +110,7 @@ export default function LoginForm() {
                 label={isLoading ? loading : signIn}
                 disabled={isLoading}
                 borderColor="border-transparent"
-                textColor="text-on-primary"
+                textColor="text-ink-inverse"
                 bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/20"
                 hoverColor="hover:brightness-105 active:brightness-95"
             />

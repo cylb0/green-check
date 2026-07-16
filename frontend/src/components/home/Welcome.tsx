@@ -6,8 +6,8 @@ export default function Welcome({ className }: { className?: string }) {
 
     return (
         <div className={`fex flex-col ${className}`}>
-            <h1 className="text-heading">{title}</h1>
-            <p className="text-subheading">{subtext}</p>
+            <h1 className="text-heading text-ink-900">{title}</h1>
+            <p className="text-subheading text-ink-600">{subtext}</p>
         </div>
     )
 }
