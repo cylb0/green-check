@@ -1,3 +1,5 @@
+import type { DiagnosticStatus } from "@/constants"
+
 export type Severity = 'low' | 'medium' | 'high' | null
 
 export interface Diagnostic {
@@ -14,10 +16,6 @@ export interface Diagnostic {
     original_image_url: string
     has_advice: boolean
 }
-
-const DIAGNOSTIC_STATUSES = ['pending', 'processing', 'success', 'low_confidence', 'no_advice', 'ai_error'] as const
-export type DiagnosticStatus = typeof DIAGNOSTIC_STATUSES[number]
-export const isDiagnosticStatus = (status: string): status is DiagnosticStatus => (DIAGNOSTIC_STATUSES as readonly string[]).includes(status)
 
 export type DiagnosticStatusResponse = Pick<Diagnostic, 'status'>
 
