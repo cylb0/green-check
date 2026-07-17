@@ -1,4 +1,4 @@
-import { Alerts, FeatureCard, Header, QuickAccessSection, StatsSection } from "@/components";
+import { Alerts, FeatureCard, QuickAccessSection, StatsSection, Welcome } from "@/components";
 import { useDiagnosticStats, useTranslation } from "@/hooks";
 import { FEATURE_CARD_LINK, FEATURE_CARD_TRANSLATIONS, type StatsKey } from "@/data";
 
@@ -16,10 +16,10 @@ export default function HomePage() {
 
     return (
         <div className="flex flex-col w-full">
-            <div className="flex justify-end">
-                <Alerts />
+            <div className="flex items-center justify-between mt-6 mb-2">
+                <Welcome />
+                <Alerts hasAlerts={!!data?.alerts} />
             </div>
-            <Header className="mt-6 mb-2"/>
             <FeatureCard title={title} subtext={subtext} link={FEATURE_CARD_LINK} className="my-2" />
             <QuickAccessSection className="my-2" />
             <StatsSection className="my-2" values={values} />

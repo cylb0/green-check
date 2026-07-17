@@ -17,7 +17,7 @@ export default function StatusTicker({ messages }: StatusTickerProps) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.4 }}
-                    className="text-gray-600 font-medium"
+                    className="text-ink-inverse/60 font-medium"
                 >
                     {message}
                 </motion.p>

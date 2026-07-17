@@ -32,6 +32,7 @@ import {
   TERMS_OF_USE_PAGE
 } from '@/constants'
 import { Toaster } from 'react-hot-toast'
+import { GardenBackground } from '@/components'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
@@ -54,46 +55,49 @@ export default function App() {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={
-          isAuthenticated ? <Navigate to={HOME_PAGE} replace /> : <AuthLayout />
-        } />
-        <Route path={TERMS_OF_USE_PAGE} element={<TermsOfUsePage />} />
-        <Route path={PRIVACY_POLICY_PAGE} element={<PrivacyPolicyPage />} />
+      <GardenBackground />
+      <div className="relative z-10">
+        <Routes>
+          <Route path="/" element={
+            isAuthenticated ? <Navigate to={HOME_PAGE} replace /> : <AuthLayout />
+          } />
+          <Route path={TERMS_OF_USE_PAGE} element={<TermsOfUsePage />} />
+          <Route path={PRIVACY_POLICY_PAGE} element={<PrivacyPolicyPage />} />
 
-        <Route element={
-          <ProtectedRoute>
-            <MainLayout />
-          </ProtectedRoute>
-        }>
-          <Route path={HOME_PAGE} element={<HomePage />} />
-          <Route path={HISTORY_PAGE} element={<HistoryPage />} />
-          <Route path={PROFILE_PAGE} element={<ProfilePage />} />
-          <Route path={GUIDES_PAGE} element={<GuidesPage />} />
-          <Route path={ADVICE_PAGE} element={<AdvicePage />} />
-        </Route>
-        
-        <Route path={SCAN_PAGE} element={
-          <ProtectedRoute>
-            <ScanPage />
-          </ProtectedRoute>
-        } />
-
-        <Route
-          element={
+          <Route element={
             <ProtectedRoute>
-              <DiagnosticLayout />
+              <MainLayout />
             </ProtectedRoute>
-          }
-        >
-          <Route path={DIAGNOSTIC_PROCESSING_PAGE} element={<DiagnosticProcessingPage />} />
-          <Route path={DIAGNOSTIC_RESULT_PAGE} element={<DiagnosticResultPage />} />
-          <Route path={DIAGNOSTIC_ERROR_PAGE} element={<DiagnosticErrorPage />} />
-          <Route path={DIAGNOSTIC_ADVICE_PAGE} element={<DiagnosticAdvicePage />} />
-        </Route>
+          }>
+            <Route path={HOME_PAGE} element={<HomePage />} />
+            <Route path={HISTORY_PAGE} element={<HistoryPage />} />
+            <Route path={PROFILE_PAGE} element={<ProfilePage />} />
+            <Route path={GUIDES_PAGE} element={<GuidesPage />} />
+            <Route path={ADVICE_PAGE} element={<AdvicePage />} />
+          </Route>
+          
+          <Route path={SCAN_PAGE} element={
+            <ProtectedRoute>
+              <ScanPage />
+            </ProtectedRoute>
+          } />
 
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+          <Route
+            element={
+              <ProtectedRoute>
+                <DiagnosticLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path={DIAGNOSTIC_PROCESSING_PAGE} element={<DiagnosticProcessingPage />} />
+            <Route path={DIAGNOSTIC_RESULT_PAGE} element={<DiagnosticResultPage />} />
+            <Route path={DIAGNOSTIC_ERROR_PAGE} element={<DiagnosticErrorPage />} />
+            <Route path={DIAGNOSTIC_ADVICE_PAGE} element={<DiagnosticAdvicePage />} />
+          </Route>
+
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
       <Toaster position="bottom-center" reverseOrder={false} />
     </>
   )

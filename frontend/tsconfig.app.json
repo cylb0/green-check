@@ -11,6 +11,7 @@
     "baseUrl": ".",
     "paths": {
       "@/api": ["src/api/index.ts"],
+      "@/assets": ["src/assets/index.ts"],
       "@/components": ["src/components/index.ts"],
       "@/constants": ["src/constants/index.ts"],
       "@/context": ["src/context/index.ts"],

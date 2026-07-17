@@ -1,41 +1,99 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary: #347b60;
-    --color-foreground: #000;
-    --color-success: #90ccac;      
-    --color-warning: #f7b64d;      
-    --color-error: #ba473b;
+    /*Primary - Vivid green, buttons/active/icons*/
+    --color-primary: #1fa24c;
+    --color-primary-light: #6fe377;
+    --color-primary-dark: #155c33;
+    --color-on-primary: #0f241d;
+
+    /*PINE - Dark green, immersive backgrounds/hero cards*/
+    --color-pine-900: #0e3320;
+    --color-pine-800: #155c33;
+
+    /*Highlight - Vibrant green, falling leaves, links on dark backgrounds*/
+    --color-lime: #b6ff3c;
+    --color-mint: #8cff6e;
+
+    /*Ink - texts*/
+    --color-ink-900: #152019;
+    --color-ink-600: #4c5d54;
+    --color-ink-400: #8aa096;
+    --color-ink-inverse: #f3faf5;
+
+    /*Surface - backgrounds and borders*/
+    --color-cream: #f6f8f4;
+    --color-paper: #ffffff;
+    --color-line: #e4eae4;
+
+    /*Semantic - severity & alerts*/
+    --color-severity-low-bg: #e1f7e4;
+    --color-severity-low-text: #1fa24c;
+    --color-severity-moderate-bg: #fbf0dc;
+    --color-severity-moderate-text: #8a6a2a;
+    --color-severity-high-bg: #fbe3dd;
+    --color-severity-high-text: #b5523a;
+
+    /*Garden palette (svg)*/
+    --color-garden-leaf-deep: #1f5b3b;
+    --color-garden-leaf-base: #2e7d4f;
+    --color-garden-leaf-mid: #256b45;
+    --color-garden-leaf-light: #4fae6c;
+    --color-garden-sky-top: #eaf8ea;
+    --color-garden-sky-bottom: #4fae6c;
+    --color-tomato: #e5533d;
+    --color-tomato-dark: #d8432c;
+    --color-tomato-highlight: #ff8a72;
+    --color-wood: #8b6b44;
+
+    --font-sans: "Manrope", sans-serif;
 }
 
 @layer components {
-    .border-card {
-        @apply border-2 border-foreground/20 rounded-lg
-    }
-
-    .input-field {
-        @apply w-full border-2 rounded-lg border-primary/30 p-2 mt-1;
+    .field-card {
+        @apply relative rounded-xl bg-pine-900/40 border border-ink-inverse/45 h-[68px];
     }
 
     .input-label {
-        @apply text-foreground/80 font-bold
+        @apply absolute left-4 top-1/2 -translate-y-1/2 text-sm text-ink-inverse/70
+        origin-left pointer-events-none
+        transition-transform duration-150 ease-out
+        group-has-[input:focus]:-translate-y-[22px] group-has-[input:focus]:scale-[0.72] group-has-[input:focus]:text-ink-inverse
+        group-has-[input:not(:placeholder-shown)]:-translate-y-[22px] group-has-[input:not(:placeholder-shown)]:scale-[0.72] group-has-[input:not(:placeholder-shown)]:text-ink-inverse;
+    }
+
+    .input-field {
+        @apply absolute inset-0 w-full h-full rounded-xl bg-transparent border-none
+        px-4 pt-4
+        text-ink-inverse placeholder:text-transparent focus:placeholder:text-ink-inverse/40
+        outline-none transition-colors duration-150;
+    }
+
+    .input-field:-webkit-autofill,
+    .input-field:-webkit-autofill:hover,
+    .input-field:-webkit-autofill:focus {
+        -webkit-text-fill-color: var(--color-ink-inverse);
+        caret-color: var(--color-ink-inverse);
+        -webkit-box-shadow: 0 0 0px 1000px rgba(14, 51, 32, 0.55) inset;
+        border-radius: inherit;
+        transition: background-color 9999s ease-in-out 0s;
     }
 
     .input-error {
-        @apply absolute text-xs text-red-500
+        @apply text-xs text-severity-high-text font-medium bottom-1;
     }
 }
 
 @layer utilities {
     .text-heading {
-        @apply text-2xl font-bold text-foreground;
+        @apply text-2xl font-bold;
     }
 
     .text-subheading {
-        @apply text-base font-medium text-foreground/80;
+        @apply text-base font-medium;
     }
 
     .text-heading-sm {
-        @apply text-xl font-bold text-foreground;
+        @apply text-xl font-bold;
     }
 }

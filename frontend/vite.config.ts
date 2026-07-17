@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@/api': path.resolve(__dirname, './src/api/index.ts'),
+      '@/assets': path.resolve(__dirname, './src/assets/index.ts'),
       '@/components': path.resolve(__dirname, './src/components/index.ts'),
       '@/constants': path.resolve(__dirname, './src/constants/index.ts'),
       '@/context': path.resolve(__dirname, './src/context/index.ts'),

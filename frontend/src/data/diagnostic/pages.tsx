@@ -112,19 +112,21 @@ export const RESULTS_PAGE_NAME: Translations<string> = {
 }
 
 interface DiagnosticAdvicePageTranslation {
-    title: string
     treatments: string
     advice: string
 }
 
+export const DIAGNOSTIC_ADVICE_PAGE_NAME: Translations<string> = {
+    fr: "Plan d'action",
+    en: "Action plan",
+}
+
 export const DIAGNOSTIC_ADVICE_PAGE_CONTENT: Translations<DiagnosticAdvicePageTranslation> = {
     fr: {
-        title: "Plan d'action",
         treatments: "Traitements suggérés",
         advice: "Conseils d'entretien"
     },
     en: {
-        title: "Action Plan",
         treatments: "Suggested treatments",
         advice: "Care Tips"
     }

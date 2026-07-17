@@ -1,51 +1,39 @@
 import { useLocation, useNavigate } from "react-router-dom"
-import { SCAN_PAGE } from "@/constants"
-import { NAV_ITEMS, type NavItem } from "@/data"
-import { IoCameraOutline } from "react-icons/io5"
+import { BOTTOM_NAV_LABELS, NAV_ITEMS, type NavItem } from "@/data"
+import { useTranslation } from "@/hooks"
 
-function NavItem({ id, label, icon: Icon, activeIcon: ActiveIcon }: NavItem) {
+type NavItemProps = NavItem & { label: string }
+
+function NavItem({ id, label, icon: Icon, activeIcon: ActiveIcon }: NavItemProps) {
     const navigate = useNavigate()
     const location = useLocation()
 
     const isActive = location.pathname === id
-    const DisplayIcon = isActive ? ActiveIcon : Icon
+    const DisplayIcon = isActive && ActiveIcon ? ActiveIcon : Icon
 
     return (
         <button
             onClick={() => navigate(id)}
-            className="flex flex-col items-center gap-0.5 active:scale-90 transition-transform duration-150"
+            className={`flex flex-col items-center gap-0.5 transition-all
+                hover:-translate-y-0.5 active:translate-y-0 active:scale-90
+                ${isActive ? "text-primary" : "text-ink-400 hover:text-primary active:text-primary"}`}
         >
-            <DisplayIcon size={22} className={`transition-colors duration-200 ${isActive ? "text-primary" : "text-foreground/30"}`} />
-            <span className={`text-xs font-bold transition-colors duration-200 ${isActive ? "text-primary" : "text-foreground/30"}`}>
-                {label}
-            </span>
+            <DisplayIcon size={22} />
+            <span className="text-xs font-bold">{label}</span>
         </button>
     )
 }
 
 export default function BottomNav() {
-    const navigate = useNavigate()
+    const labels = useTranslation(BOTTOM_NAV_LABELS)
 
     return (
-        <nav className="fixed bottom-0 w-full border-t-2 border-primary/10 h-20 py-4 z-50 bg-white">
-            <div className="grid grid-cols-5 h-full items-end px-4">
-                <div aria-hidden="true"/>
-                <NavItem {...NAV_ITEMS[0]} />
-                <div aria-hidden="true"/>
-                <NavItem {...NAV_ITEMS[1]} />
-                <NavItem {...NAV_ITEMS[2]} />
-
-                <div className="absolute left-1/2 -translate-x-1/2">
-                    <button
-                        onClick={() => navigate(SCAN_PAGE)}
-                        className="p-4 rounded-full shadow-lg transition-all duration-200 active:scale-90 bg-primary"
-                    >
-                        <IoCameraOutline
-                            size={32}
-                            className="text-white transition-transform duration-300"
-                        />
-                    </button>
-                </div>
+        <nav className="fixed bottom-0 w-full border-t-2 border-paper/60 h-20 py-4 z-50
+            bg-paper/55 backdrop-blur-lg">
+            <div className="grid grid-cols-4 h-full items-end px-4">
+                {NAV_ITEMS.map((item, i) => (
+                    <NavItem key={i} {...item} label={labels[item.labelKey]} />
+                ))}
             </div>
         </nav>
     )

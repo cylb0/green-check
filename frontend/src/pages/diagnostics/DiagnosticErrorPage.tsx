@@ -1,41 +1,25 @@
-import { HOME_PAGE, SCAN_PAGE } from "@/constants"
-import { RESULTS_ERROR_PAGE_NAME, DIAGNOSTIC_ERROR_PAGE_CONTENT } from "@/data"
-import { useDiagnostic, useTranslation } from "@/hooks"
-import { useEffect } from "react"
-import { useNavigate, useOutletContext, useParams } from "react-router-dom"
+import { HOME_PAGE } from "@/constants"
+import { DIAGNOSTIC_ERROR_PAGE_CONTENT } from "@/data"
+import { useTranslation } from "@/hooks"
+import { useNavigate } from "react-router-dom"
 import { ActionButton } from "@/components"
 
 export default function DiagnosticErrorPage() {
-    const { diagnosticId } = useParams()
-    const { data, isLoading, error } = useDiagnostic(diagnosticId)
-    const { setTitle, setTo } = useOutletContext<{
-        setTitle: (t: string) => void,
-        setTo: (t: string | undefined) => void
-    }>()
-    const title = useTranslation(RESULTS_ERROR_PAGE_NAME)
-    const { message, retry } = useTranslation(DIAGNOSTIC_ERROR_PAGE_CONTENT)
+    const { message } = useTranslation(DIAGNOSTIC_ERROR_PAGE_CONTENT)
     const navigate = useNavigate()
-
-    useEffect(() => {
-        console.log(data)
-    }, [useDiagnostic])
-
-    useEffect(() => {
-        setTitle(title)
-        setTo(HOME_PAGE)
-    }, [setTitle, setTo])
 
     return (
         <div className="flex flex-col items-center justify-center h-full px-6 text-center gap-4">
-            <p className="text-subheading">
+            <p className="text-subheading text-ink-inverse">
                 {message}
             </p>
             <ActionButton
-                label={retry}
-                onClick={() => navigate(SCAN_PAGE)}
-                bgColor="bg-primary"
-                textColor="text-white"
+                label="Retour à l'accueil"
+                onClick={() => navigate(HOME_PAGE)}
                 borderColor="border-transparent"
+                textColor="text-on-primary"
+                bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/25"
+                hoverColor="hover:brightness-105 active:brightness-95"
             />
         </div>
     )

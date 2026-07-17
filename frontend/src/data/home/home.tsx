@@ -65,7 +65,7 @@ export const QUICK_ACCESS_TRANSLATIONS: Translations<QuickAccessTranslation> = {
         title: "Accès rapide",
         labels: {
             history: "Historique",
-            guides: "Guide des maladies",
+            guides: "Guides",
             advice: "Conseils"
         }
     },
@@ -73,7 +73,7 @@ export const QUICK_ACCESS_TRANSLATIONS: Translations<QuickAccessTranslation> = {
         title: "Quick Access",
         labels: {
             history: "History",
-            guides: "Diseases guides",
+            guides: "Guides",
             advice: "Advice"
         }
     }

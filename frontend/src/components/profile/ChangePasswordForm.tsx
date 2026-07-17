@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast'
 import { useState } from "react"
-import { PasswordField } from "@/components"
+import { ActionButton, PasswordField } from "@/components"
 import { useTranslation } from "@/hooks"
 import { authApi } from "@/api"
 import { CHANGE_PASSWORD_FORM, ERRORS, MESSAGES, type ErrorsTranslation } from "@/data"
@@ -37,12 +37,11 @@ export default function ChangePasswordForm() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
-        setValues(prev => ({...prev, [name]: value}))
+        setValues(prev => ({ ...prev, [name]: value }))
 
         if (errors[name as keyof FormErrors]) {
             setErrors(prev => ({ ...prev, [name]: undefined }))
         }
-
     }
 
     const handleSubmit = async (e: React.SubmitEvent) => {
@@ -74,47 +73,42 @@ export default function ChangePasswordForm() {
 
     return (
         <div className="flex flex-col w-full">
-            <p className="text-base font-semibold">{trad.title}</p>
-            <form onSubmit={handleSubmit} noValidate className="relative w-full flex flex-col gap-2">
+            <p className="text-sm font-bold text-ink-900 mb-2">{trad.title}</p>
+            <form onSubmit={handleSubmit} noValidate className="relative w-full flex flex-col gap-3">
                 <PasswordField
-                    name={"oldPassword"}
+                    name="oldPassword"
                     value={values.oldPassword}
                     onChange={handleChange}
                     disabled={isLoading}
                     label={trad.oldPassword}
                     error={errors.oldPassword}
-                    className="mt-2"
-                    variant={"floating"}
                 />
-
                 <PasswordField
-                    name={"newPassword"}
+                    name="newPassword"
                     value={values.newPassword}
                     onChange={handleChange}
                     disabled={isLoading}
                     label={trad.newPassword}
                     error={errors.newPassword}
-                    className="mt-2"
-                    variant={"floating"}
                 />
-
                 <PasswordField
-                    name={"newPasswordConfirm"}
+                    name="newPasswordConfirm"
                     value={values.newPasswordConfirm}
                     onChange={handleChange}
                     disabled={isLoading}
                     label={trad.newPasswordConfirm}
                     error={errors.newPasswordConfirm}
-                    className="mt-2"
-                    variant={"floating"}
                 />
 
-                <button
+                <ActionButton
                     type="submit"
-                    className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-white mt-4"
-                >
-                    {trad.button}
-                </button>
+                    label={trad.button}
+                    disabled={isLoading}
+                    borderColor="border-transparent"
+                    textColor="text-on-primary"
+                    bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/25"
+                    hoverColor="hover:brightness-105 active:brightness-95"
+                />
             </form>
         </div>
     )

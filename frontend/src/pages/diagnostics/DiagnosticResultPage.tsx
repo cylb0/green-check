@@ -1,25 +1,14 @@
 import toast from "react-hot-toast"
 import { useEffect } from "react"
-import { useOutletContext, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { DiseaseResult, HealthyResult } from "@/components"
 import { useDiagnostic, useTranslation } from "@/hooks"
-import { HOME_PAGE } from "@/constants"
-import { ERRORS, RESULTS_PAGE_NAME } from "@/data"
+import { ERRORS } from "@/data"
 
 export default function DiagnosticResultPage() {
     const { diagnosticId } = useParams()
     const { data, isLoading, error } = useDiagnostic(diagnosticId)
-    const { setTitle, setTo } = useOutletContext<{
-        setTitle: (t: string) => void,
-        setTo: (t: string | undefined) => void
-    }>()
-    const title = useTranslation(RESULTS_PAGE_NAME)
     const { DIAGNOSTIC_FETCH_FAIL } = useTranslation(ERRORS)
-
-    useEffect(() => {
-        setTitle(title)
-        setTo(HOME_PAGE)
-    }, [setTitle, setTo])
 
     useEffect(() => {
         if (error) toast.error(DIAGNOSTIC_FETCH_FAIL)
@@ -27,6 +16,9 @@ export default function DiagnosticResultPage() {
     
     if (isLoading) return <div>Loading ...</div>
     if (error || !data) return null
+
+    const { plant_label, disease_label, confidence } = data
+    if (plant_label === null || disease_label === null || confidence === null) return null
 
     const isHealthy = data.detected_disease == "healthy"
     const isLowConfidence = data.status == "low_confidence"
@@ -36,20 +28,20 @@ export default function DiagnosticResultPage() {
             <img
                 src={data.original_image_url}
                 alt="Plant"
-                className="w-screen max-w-none h-1/3 relative left-1/2 -translate-x-1/2 max-h-[33vh] h-full object-cover"
+                className="w-screen max-w-none h-[20%] max-h-56 relative left-1/2 -translate-x-1/2 relative left-1/2 -translate-x-1/2 object-cover"
             />
     
             {isHealthy && (
                 <HealthyResult
-                    plant={data.plant_label}
-                    confidence={data.confidence}
+                    plant={plant_label}
+                    confidence={confidence}
                 />
             )}
             {!isHealthy && (
                 <DiseaseResult
-                    plant={data.plant_label}
-                    confidence={data.confidence}
-                    disease={data.disease_label}
+                    plant={plant_label}
+                    confidence={confidence}
+                    disease={disease_label}
                     severity={data.severity}
                     isLowConfidence={isLowConfidence}
                     hasAdvice={data.has_advice}

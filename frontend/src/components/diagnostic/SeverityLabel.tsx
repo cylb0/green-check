@@ -13,7 +13,7 @@ export default function SeverityLabel({ severity }: SeverityLabelProps) {
     return (
         <div className="w-full my-4">
             <div className="flex justify-between items-center">
-                <span className="text-sm text-foreground/50">{label}</span>
+                <span className="text-sm text-ink-inverse/60">{label}</span>
                 <SeverityBadge severity={severity}/>
             </div>
         </div>

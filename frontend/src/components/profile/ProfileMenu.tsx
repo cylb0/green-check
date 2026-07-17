@@ -5,21 +5,12 @@ import { useAuth } from "@/context";
 import { useTranslation } from "@/hooks";
 import { PROFILE_PAGE_LABELS, PROFILE_PAGE_MENU, type ProfilePageMenu } from "@/data";
 
-const getMenuItemClasses = (index: number, total: number) => {
-    const isFirst = index === 0
-    const isLast = index === total - 1
-
-    const base = "relative border-x-2 border-foreground/20 p-2"
-    const top = isFirst ? "border-t-2 rounded-t-lg" : ""
-    const bottom = isLast ? "border-b-2 rounded-b-lg" : ""
-    const separator = !isLast
-        ? "after:absolute after:bottom-0 after:left-[10%] after:w-4/5 after:h-px after:bg-foreground/20"
-        : ""
-
-    return `${base} ${top} ${bottom} ${separator}`
-}
-
-export const CHEVRON_CLASSES = "hover:scale-110 active:scale-110"
+export const CARD_CLASSES = `rounded-2xl bg-paper/55 backdrop-blur-md border border-paper/60
+    transition-all duration-150
+    hover:-translate-y-0.5 hover:bg-paper/70 hover:shadow-md`
+export const ROW_CLASSES = `${CARD_CLASSES} flex w-full items-center gap-4 py-3 px-4 
+    active:translate-y-0 active:scale-[0.98]`
+export const CHEVRON_CLASSES = "text-ink-400"
 
 export default function ProfileMenu() {
     const { logout } = useAuth()
@@ -36,31 +27,44 @@ export default function ProfileMenu() {
 
     return (
         <div className="flex flex-col gap-4">
-            <div>
+            <div className="flex flex-col gap-2">
                 {menuItems.map((item, index) => {
-                    const itemClasses = getMenuItemClasses(index, menuItems.length)
                     const label = labels[item.labelKey]
 
                     switch (item.type) {
                         case "collapsible":
                             return (
-                                <CollapsibleMenuItem key={`mi-${index}`} item={item} label={label} className={`${itemClasses} py-3`}>
+                                <CollapsibleMenuItem
+                                    key={`mi-${index}`}
+                                    item={item}
+                                    label={label}
+                                    className={`${CARD_CLASSES} p-4`}
+                                >
                                     {item.renderChildren()}
                                 </CollapsibleMenuItem>
                             )
 
                         case "language": {
                             return (
-                                <ChangeLanguage key={`mi-${index}`} item={item} label={label} className={`${itemClasses} flex w-full items-center gap-4 py-3`}/>
+                                <ChangeLanguage
+                                    key={`mi-${index}`}
+                                    item={item}
+                                    label={label}
+                                    className={ROW_CLASSES}
+                                />
                             )
                         }
 
                         case "link":
                             return (
-                                <Link key={`mi-${index}`} className={`${itemClasses} flex w-full items-center gap-4 py-3`} to={item.href} >
+                                <Link
+                                    key={`mi-${index}`}
+                                    className={ROW_CLASSES}
+                                    to={item.href}
+                                >
                                     <MenuIcon icon={item.icon} />
-                                    <span className="flex-1 text-left">{label}</span> 
-                                    {item.chevron && <FaChevronRight className={`${CHEVRON_CLASSES}`} />}
+                                    <span className="flex-1 text-left text-sm font-semibold text-ink-900">{label}</span> 
+                                    {item.chevron && <FaChevronRight className={CHEVRON_CLASSES} />}
                                 </Link>
                             )
 
@@ -68,16 +72,16 @@ export default function ProfileMenu() {
                     }
                 })}
             </div>
-            <div>
+            <div className="flex flex-col gap-2">
                 {actionItems.map((item, index) => (
                     <button
                         key={`ai-${index}`}
                         type="button"
                         onClick={() => handleAction(item)}
-                        className={`${getMenuItemClasses(index, actionItems.length)} flex w-full items-center gap-4 text-error py-3`}
+                        className={`${ROW_CLASSES} text-severity-high-text hover:bg-severity-high-bg/60`}
                     >
-                        <MenuIcon icon={item.icon} className="text-error" />
-                        {labels[item.labelKey]}
+                        <MenuIcon icon={item.icon} className="text-severity-high-text" />
+                        <span className="text-sm font-semibold">{labels[item.labelKey]}</span>
                     </button>
                 ))}
             </div>

@@ -4,7 +4,7 @@ import { useAuth } from '@/context'
 import { ERRORS, LOGIN_CONTENT, type ErrorsTranslation } from '@/data';
 import { useTranslation } from '@/hooks';
 import toast from 'react-hot-toast';
-import { PasswordField } from '@/components';
+import { ActionButton, PasswordField } from '@/components';
 
 interface FormState {
     email: string
@@ -68,7 +68,7 @@ export default function LoginForm() {
 
     return (
         <form onSubmit={handleSubmit} noValidate className="relative w-full">
-            <div className="my-4 relative">
+            <div className="my-4 relative field-card group">
                 <label htmlFor="email" className="input-label">
                     {email}
                 </label>
@@ -77,6 +77,7 @@ export default function LoginForm() {
                     name="email"
                     type="email"
                     autoComplete="email"
+                    spellCheck={false}
                     value={values.email}
                     onChange={handleChange}
                     disabled={isLoading}
@@ -84,7 +85,7 @@ export default function LoginForm() {
                     className="input-field"
                 />
                 {errors.email && (
-                    <p className="input-error">{errors.email}</p>
+                    <p className="absolute input-error bottom-1">{errors.email}</p>
                 )}
             </div>
 
@@ -99,18 +100,20 @@ export default function LoginForm() {
             />
 
             <div className="text-right mt-4">
-                <a href="/forgot-password" className="text-sm font-bold text-foreground/50 underline">
+                <a href="/forgot-password" className="text-sm font-bold text-primary-light">
                     {forgotPassword}
                 </a>
             </div>
 
-            <button
+            <ActionButton
                 type="submit"
-                className="w-full bg-primary/80 text-white rounded-lg p-2 mt-4"
+                label={isLoading ? loading : signIn}
                 disabled={isLoading}
-            >
-                {isLoading ? loading : signIn}
-            </button>
+                borderColor="border-transparent"
+                textColor="text-ink-inverse"
+                bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/20"
+                hoverColor="hover:brightness-105 active:brightness-95"
+            />
         </form>
     )
 }
