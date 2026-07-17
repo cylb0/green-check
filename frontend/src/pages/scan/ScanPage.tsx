@@ -39,12 +39,14 @@ export default function ScanPage() {
     }
 
     return (
-        <div className="relative h-screen w-full bg-red overflow-hidden">
+        <div className="relative h-screen w-full bg-black overflow-hidden">
             <button
                 onClick={() => navigate("/")}
-                className="absolute top-4 left-4 z-10 justify-self-start text-white active:scale-110 hover:scale-110"
+                className="absolute top-4 left-4 z-10 justify-self-start text-ink-inverse
+                    transition-all duration-150
+                    hover:-translate-y-0.5 active:translate-y-0 active:scale-90"
             >
-                <FaArrowLeft size={24} />
+                <FaArrowLeft size={22} />
             </button>
 
             <Webcam

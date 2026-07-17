@@ -7,6 +7,7 @@ import { capitalize } from "@/services";
 import { PiPottedPlant } from "react-icons/pi";
 import { CiWarning } from "react-icons/ci";
 import { FaRegSadTear } from "react-icons/fa";
+import { SCAN_PAGE } from "@/constants";
 
 interface DiseaseResultProps extends BaseResultProps {
     disease: string
@@ -25,26 +26,58 @@ export default function DiseaseResult({ plant, confidence, disease, severity, is
     
     return (
         <div className="flex flex-col w-full mt-6">
-            <h1 className="text-heading">{capitalize(disease)}</h1>
-            <div className="flex items-center gap-1">
-                <PiPottedPlant />
-                <p>{capitalize(plant)}</p>
+            <h1 className="text-heading text-ink-inverse">{capitalize(disease)}</h1>
+            <div className="flex items-center gap-1.5 text-ink-inverse/70 mb-3">
+                <PiPottedPlant size={16} />
+                <p className="text-sm font-medium">{capitalize(plant)}</p>
             </div>
-            {isLowConfidence && <MessageCard icon={CiWarning} title={lowConfidenceTrad.title} message={lowConfidenceTrad.text} className="bg-warning/20 text-warning" />}
-            {!hasAdvice && <MessageCard icon={FaRegSadTear} title={noAdviceTrad.title} message={noAdviceTrad.text} className="bg-success/20 text-success" />}
-            <ConfidenceBar label={label} confidence={confidence} isLowConfidence={isLowConfidence} />
-            {hasAdvice && (
-                <>
-                    {severity && <SeverityLabel severity={severity!} />}
-                    <ActionButton
-                        label={seeRecommendations}
-                        onClick={() => navigate(`/diagnostic/${diagnosticId}/advice`)}
-                    />
-                </>
+
+            {isLowConfidence && (
+                <MessageCard
+                    icon={CiWarning}
+                    title={lowConfidenceTrad.title}
+                    message={lowConfidenceTrad.text}
+                    variant="warning"
+                    className="mb-3"
+                />
             )}
+
+            {!hasAdvice && (
+                <MessageCard
+                    icon={FaRegSadTear}
+                    title={noAdviceTrad.title}
+                    message={noAdviceTrad.text}
+                    variant="neutral"
+                    className="mb-3"
+                />
+            )}
+
+            <ConfidenceBar label={label} confidence={confidence} isLowConfidence={isLowConfidence} />
+
+            {hasAdvice && severity && (
+                <div className="mt-4">
+                    <SeverityLabel severity={severity} />
+                </div>
+            )}
+
+            {hasAdvice && (
+                <ActionButton
+                    label={seeRecommendations}
+                    onClick={() => navigate(`/diagnostic/${diagnosticId}/advice`)}
+                    borderColor="border-transparent"
+                    textColor="text-on-primary"
+                    bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/20"
+                    hoverColor="hover:brightness-105 active:brightness-95"
+                />
+            )}
+
             <ActionButton
                 label={newScan}
-                onClick={() => navigate("/scan")}
+                onClick={() => navigate(SCAN_PAGE)}
+                borderColor="border-ink-inverse-20"
+                textColor="text-ink-inverse"
+                bgColor="bg-ink-inverse/10 backdrop-blur-md"
+                hoverColor="hover:bg-ink-inverse/15 active:bg-ink-inverse/20"
             />
         </div>
     )

@@ -25,7 +25,7 @@ export default function HealthyResult({ plant, confidence }: HealthyResultProps)
                 <h1 className="text-heading">{trad.title}</h1>
                 <p className="text-sm text-foreground/80 font-medium">{plant} {trad.label}</p>
             </div>
-            <MessageCard icon={IoLeafOutline} title={trad.card.title} message={trad.card.text} className="bg-primary/20 text-primary" />
+            <MessageCard icon={IoLeafOutline} title={trad.card.title} message={trad.card.text} />
             <ConfidenceBar label={label} confidence={confidence} />
             <ActionButton
                 label={newScan}

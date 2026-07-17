@@ -6,18 +6,18 @@ interface ConfidenceBarProps {
 
 export default function ConfidenceBar({ label, confidence, isLowConfidence = false }: ConfidenceBarProps) {
     const score = Math.round(confidence * 100)
-    const colorClass = isLowConfidence ? "bg-warning" : "bg-success"
+    const barColor = isLowConfidence ? "bg-severity-moderate-text" : "bg-primary-light"
 
     return (
-        <div className="w-full">
-            <div className="flex justify-between items-center">
-                {label && <span className="text-[13px] text-foreground/50">{label}</span>}
-                <span className="text-md text-foreground/50 ml-auto">{score}%</span>
+        <div className="w-full mt-4">
+            <div className="flex justify-between items-center mb-1">
+                {label && <span className="text-xs font-semibold text-ink-inverse/60">{label}</span>}
+                <span className="text-sm font-bold text-ink-inverse ml-auto">{score}%</span>
             </div>
 
-            <div className="h-[5px] w-full bg-foreground/20 rounded-full overflow-hidden">
+            <div className="h-1.5 w-full bg-ink-inverse/20 rounded-full overflow-hidden">
                 <div 
-                    className={`h-full rounded-full transition-all duration-300 ease-in-out ${colorClass}`}
+                    className={`h-full rounded-full transition-all duration-500 ease-in-out ${barColor}`}
                     style={{ width: `${score}%` }}
                 />
             </div>

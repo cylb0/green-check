@@ -25,6 +25,10 @@ export const isDiagnosticStatus = (status: string): status is DiagnosticStatus =
     )
 }
 
+export const isDiagnosticPending = (status: DiagnosticStatus): boolean => {
+    return (DIAGNOSTIC_STATUS_PENDING as readonly string[]).includes(status)
+}
+
 export const isDiagnosticSuccess = (status: DiagnosticStatus): boolean => {
     return (DIAGNOSTIC_STATUS_SUCCESS as readonly string[]).includes(status)
 }

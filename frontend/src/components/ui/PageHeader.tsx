@@ -5,9 +5,10 @@ interface PageHeaderProps {
     title?: string
     className?: string
     to?: string
+    variant?: "light" | "dark"
 }
 
-export default function PageHeader({ title, className, to }: PageHeaderProps) {
+export default function PageHeader({ title, className, to, variant = "light" }: PageHeaderProps) {
     const navigate = useNavigate()
 
     const handleBack = () => {
@@ -18,8 +19,10 @@ export default function PageHeader({ title, className, to }: PageHeaderProps) {
         }
     }
     
+    const textColor = variant === "dark" ? "text-ink-inverse" : "text-ink-900"
+    
     return (
-        <div className={`grid grid-cols-[auto_1fr_auto] items-center w-full p-4 ${className}`}>
+        <div className={`grid grid-cols-[auto_1fr_auto] items-center w-full p-4 ${textColor} ${className}`}>
             <button
                 onClick={handleBack}
                 className="justify-self-start active:scale-110 hover:scale-110"

@@ -15,8 +15,8 @@ export default function HistoryPage() {
         const term = searchTerm.toLowerCase()
 
         return data && data.filter(diagnostic =>
-            diagnostic.plant_label?.toLowerCase().includes(term)
-            || diagnostic.disease_label?.toLowerCase().includes(term)
+            (diagnostic.plant_label ?? "").toLowerCase().includes(term)
+            || (diagnostic.disease_label ?? "").toLowerCase().includes(term)
         )
     }, [data, searchTerm])
 
@@ -39,7 +39,7 @@ export default function HistoryPage() {
             </div>
 
             <div className="flex-1 overflow-y-auto p-4">
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-3">
                     {filteredData && filteredData.map((diagnostic) => (
                         <DiagnosticCard
                             key={diagnostic.id}

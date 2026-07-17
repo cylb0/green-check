@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { FaArrowsRotate } from "react-icons/fa6";
 import { PageHeader, PreviewForm } from "@/components";
 import { useTranslation } from "@/hooks";
-import { HOME_PAGE, LEAF_DETECTION_DEBUG, LEAF_SCAN_CONFIDENCE_TRESHOLD } from "@/constants";
+import { HOME_PAGE, LEAF_DETECTION_DEBUG, LEAF_SCAN_CONFIDENCE_TRESHOLD, SCAN_PAGE } from "@/constants";
 import { PREVIEW_CONTENT } from "@/data";
 import { detectLeaf, type LeafDetectionResult } from "@/services";
 import toast from "react-hot-toast"
@@ -14,7 +14,7 @@ interface PreviewProps {
 
 export default function Preview({ blob, onRetry }: PreviewProps) {
     const [imagePreview, setImagePreview] = useState("")
-    const { title, formTitle, leafDetected, limitations, noLeafDetected, preliminary } = useTranslation(PREVIEW_CONTENT)
+    const { title, formTitle, leafDetected, limitations, preliminary } = useTranslation(PREVIEW_CONTENT)
     const [detectionResult, setDetectionResult] = useState<LeafDetectionResult | null>(null)
 
     useEffect(() => {
@@ -29,12 +29,7 @@ export default function Preview({ blob, onRetry }: PreviewProps) {
         detectLeaf(blob, LEAF_SCAN_CONFIDENCE_TRESHOLD, LEAF_DETECTION_DEBUG).then((res) => {
             setDetectionResult(res)
             toast.dismiss(toastId)
-
-            if (res.detected) {
-                toast.success(leafDetected)
-            } else {
-                toast.error(noLeafDetected)
-            }
+            if (res.detected) toast.success(leafDetected)
         })
     }, [blob])
 
@@ -42,31 +37,45 @@ export default function Preview({ blob, onRetry }: PreviewProps) {
     const isLeafDetected = detectionResult?.detected ?? false
 
     return (
-        <div className="flex flex-col h-full p-4">
-            <PageHeader title={title} to={HOME_PAGE} />
-            <div className="relative self-center mt-6">
-                {imagePreview ? (
-                    <img
-                        src={imagePreview || undefined}
-                        alt="Plant"
-                        className="w-screen max-w-none h-1/3 relative left-1/2 -translate-x-1/2 max-h-[33vh] h-full object-cover"
-                    />
-                ) : (
-                    <div className="w-screen max-w-none h-[33vh] relative left-1/2 -translate-x-1/2 bg-foreground/10 animate-pulse" />
-                )}
-                <button className="absolute right-2 bottom-2 active:scale-110 hover:scale-110" onClick={onRetry}>
-                    <FaArrowsRotate className="text-white" size={24} />
-                </button>
-            </div>
-            <div className="mt-8">
-                <h2 className="text-subheading">
+        <div className="relative min-h-screen flex flex-col overflow-hidden">
+            <div
+                className="absolute inset-0 bg-gradient-to-b from-pine-800/20 via-pine-900/40 to-pine-900/60 pointer-events-none z-0"
+                aria-hidden="true"
+            />
+
+            <div className="relative z-10 flex flex-col h-full p-4">
+                <PageHeader title={title} to={SCAN_PAGE} variant="dark" />
+
+                <div className="relative self-center mt-6 rounded-2xl overflow-hidden">
+                    {imagePreview ? (
+                        <img
+                            src={imagePreview}
+                            alt="Plant"
+                            className="w-screen max-w-none h-[33vh] max-h-72 relative left-1/2 -translate-x-1/2 object-cover"
+                        />
+                    ) : (
+                        <div className="w-screen max-w-none h-[33vh] max-h-72 relative left-1/2 -translate-x-1/2 bg-ink-inverse/10 animate-pulse" />
+                    )}
+                    <button
+                        className="absolute right-3 bottom-3 h-9 w-9 rounded-full
+                            bg-ink-inverse/15 backdrop-blur-md flex items-center justify-center
+                            transition-all duration-150
+                            hover:-translate-y-0.5 hover:bg-ink-inverse/22 active:translate-y-0 active:scale-90"
+                        onClick={onRetry}
+                    >
+                        <FaArrowsRotate className="text-ink-inverse" size={16} />
+                    </button>
+                </div>
+
+                <h2 className="text-subheading text-ink-inverse mt-8">
                     {formTitle}
                 </h2>
+                <p className="text-xs text-ink-inverse/50 italic my-1">
+                    {limitations}
+                </p>
+
+                <PreviewForm blob={blob} isAnalyzing={isAnalyzing} isLeafDetected={isLeafDetected} />
             </div>
-            <p className="text-xs text-primary/50 italic my-1">
-                {limitations}
-            </p>
-            <PreviewForm blob={blob} isAnalyzing={isAnalyzing} isLeafDetected={isLeafDetected} />
         </div>
     )
 }

@@ -5,11 +5,11 @@ export type Severity = 'low' | 'medium' | 'high' | null
 export interface Diagnostic {
     id: string
     status: DiagnosticStatus
-    detected_plant: string
-    detected_disease: string
-    plant_label: string
-    disease_label: string
-    confidence: number
+    detected_plant: string | null
+    detected_disease: string | null
+    plant_label: string | null
+    disease_label: string | null
+    confidence: number | null
     advice_text: string | null
     created_at: string
     severity: Severity

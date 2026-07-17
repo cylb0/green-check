@@ -15,7 +15,7 @@ interface PreviewFormProps {
 }
 
 export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: PreviewFormProps) {
-    const { mutate:submit, error, isPending } = useSubmissionContext()
+    const { mutate: submit, error, isPending } = useSubmissionContext()
     const [formState, setFormState] = useState<SubmissionPayload>({})
     const { buttonContinueAnyway, buttonAnalyzing, buttonLoading, buttonSubmit, exposureLabel, plantLabel, soilLabel, warning } = useTranslation(PREVIEW_CONTENT)
     const { SUBMISSION_FAIL } = useTranslation(ERRORS)
@@ -23,13 +23,13 @@ export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: Previ
 
     useEffect(() => {
         if (error) toast.error(SUBMISSION_FAIL)
-    }, [error, SUBMISSION_FAIL ])
+    }, [error, SUBMISSION_FAIL])
 
     const fields: {
         id: string
         name: keyof SubmissionPayload
         label: string
-        options: { value: string; label: string}[]
+        options: { value: string; label: string }[]
     }[] = [
         { id: 'plant', name: 'plant_type', label: plantLabel, options: metadata.plant },
         { id: 'soil', name: 'soil_type', label: soilLabel, options: metadata.soil },
@@ -58,14 +58,14 @@ export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: Previ
                 : buttonContinueAnyway
 
     return (
-        <form onSubmit={handleSubmit} noValidate className="relative w-full">
+        <form onSubmit={handleSubmit} noValidate className="relative w-full mt-4">
             {error && (
-                <div className="input-error absolute">
+                <div className="text-xs font-medium text-severity-high-text mb-3">
                     {error.message}
                 </div>
             )}
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
                 {fields.map((field) => (
                     <Select.Root
                         key={field.id}
@@ -75,11 +75,16 @@ export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: Previ
                         <Select.Trigger
                             id={field.id}
                             aria-label={field.label}
-                            className="flex w-full items-center justify-between gap-2 bg-transparent border-b border-gray-300 py-2 text-gray-700 outline-none focus:border-black data-[state=open]:border-black transition-colors"
+                            className="flex w-full items-center justify-between gap-2 rounded-2xl
+                                bg-ink-inverse/8 backdrop-blur-md border border-ink-inverse/15
+                                px-4 py-3 text-sm text-ink-inverse outline-none
+                                transition-colors duration-150
+                                hover:bg-ink-inverse/12
+                                data-[state=open]:border-primary-light data-[placeholder]:text-ink-inverse/45"
                         >
                             <Select.Value placeholder={field.label} />
                             <Select.Icon>
-                                <FaChevronDown size={12} className="text-foreground/50" />
+                                <FaChevronDown size={12} className="text-ink-inverse/50" />
                             </Select.Icon>
                         </Select.Trigger>
 
@@ -89,18 +94,22 @@ export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: Previ
                                 side="bottom"
                                 sideOffset={4}
                                 collisionPadding={8}
-                                className="z-50 w-[var(--radix-select-trigger-width)] max-h-[var(--radix-select-content-available-height)] overflow-y-auto bg-white border-2 border-primary/10 rounded-lg shadow-md"
+                                className="z-50 w-[var(--radix-select-trigger-width)] max-h-[var(--radix-select-content-available-height)]
+                                    overflow-y-auto rounded-2xl
+                                    bg-pine-900/90 backdrop-blur-xl border border-ink-inverse/15 shadow-lg"
                             >
-                                <Select.Viewport className="p-1">
+                                <Select.Viewport className="p-1.5">
                                     {field.options.map(o => (
                                         <Select.Item
                                             key={o.value}
                                             value={o.value}
-                                            className="flex items-center justify-between gap-2 px-3 py-2 text-sm text-gray-700 rounded outline-none cursor-pointer data-[highlighted]:bg-gray-100"
+                                            className="flex items-center justify-between gap-2 px-3 py-2.5
+                                                text-sm text-ink-inverse rounded-xl outline-none cursor-pointer
+                                                data-[highlighted]:bg-ink-inverse/10"
                                         >
                                             <Select.ItemText>{o.label}</Select.ItemText>
                                             <Select.ItemIndicator>
-                                                <FaCheck size={12} className="text-primary" />
+                                                <FaCheck size={12} className="text-primary-light" />
                                             </Select.ItemIndicator>
                                         </Select.Item>
                                     ))}
@@ -112,7 +121,7 @@ export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: Previ
             </div>
 
             {!isAnalyzing && !isLeafDetected && (
-                <p className="text-xs text-error italic my-4">
+                <p className="text-xs text-severity-moderate-text bg-severity-moderate-bg/90 rounded-xl px-3 py-2 mt-4">
                     {warning}
                 </p>
             )}
@@ -120,9 +129,14 @@ export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: Previ
             <ActionButton
                 type="submit"
                 label={buttonLabel}
-                bgColor={!isAnalyzing && !isLeafDetected ? "bg-warning" : "bg-primary"}
-                textColor="text-white"
                 borderColor="border-transparent"
+                textColor={!isAnalyzing && !isLeafDetected ? "text-severity-moderate-text" : "text-on-primary"}
+                bgColor={
+                    !isAnalyzing && !isLeafDetected
+                        ? "bg-severity-moderate-bg"
+                        : "bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/25"
+                }
+                hoverColor="hover:brightness-105 active:brightness-95"
                 disabled={isAnalyzing || isPending}
             />
         </form>
