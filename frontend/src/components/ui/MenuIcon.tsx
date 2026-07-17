@@ -6,6 +6,6 @@ interface MenuIconProps {
     className?: string
 }
 
-export default function MenuIcon({ icon: Icon, size = 24, className = "text-primary active:text-primary/80" }: MenuIconProps) {
+export default function MenuIcon({ icon: Icon, size = 18, className = "text-ink-600" }: MenuIconProps) {
     return <Icon size={size} className={`shrink-0 ${className}`} />
 }

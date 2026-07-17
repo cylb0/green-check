@@ -5,9 +5,11 @@ export default function Identity() {
     const { user } = useAuth()
 
     return (
-        <div className="flex justify-center items-center gap-2 my-6">
-            <FaRegUser size={64} className="self-center bg-primary/20 rounded-full text-primary p-4 overflow-visible" />
-            <p className="text-subheading">{user?.email}</p>
+        <div className="flex flex-col items-center gap-2 my-6">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
+                <FaRegUser size={24} className="text-on-primary" />
+            </div>
+            <p className="text-subheading text-ink-900 font-semibold">{user?.email}</p>
         </div>
     )
 }

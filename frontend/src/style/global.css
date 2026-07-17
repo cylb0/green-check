@@ -1,11 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary: #347b60;
-    --color-foreground: #000;
-    --color-success: #90ccac;      
-    --color-warning: #f7b64d;      
-    --color-error: #ba473b;
     /*Primary - Vivid green, buttons/active/icons*/
     --color-primary: #1fa24c;
     --color-primary-light: #6fe377;
@@ -55,10 +50,6 @@
 }
 
 @layer components {
-    .border-card {
-        @apply border-2 border-foreground/20 rounded-lg
-    }
-
     .field-card {
         @apply relative rounded-xl bg-pine-900/40 border border-ink-inverse/45 h-[68px];
     }
@@ -89,7 +80,7 @@
     }
 
     .input-error {
-        @apply text-xs text-tomato-highlight mt-1 font-medium;
+        @apply text-xs text-severity-high-text font-medium bottom-1;
     }
 }
 

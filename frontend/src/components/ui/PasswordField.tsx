@@ -48,7 +48,7 @@ export default function PasswordField({
             >
                 {showPassword ? <FaEye size={16} /> : <FaRegEye size={16} />}
             </button>
-            {error && <p className="absolute input-error bottom-1">{error}</p>}
+            {error && <p className="absolute input-error">{error}</p>}
         </div>
     )
 }

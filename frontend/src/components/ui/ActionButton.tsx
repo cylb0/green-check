@@ -17,10 +17,10 @@ export default function ActionButton({
     label,
     type = "button",
     onClick,
-    borderColor = "border-foreground/20",
-    textColor = "text-foreground/80",
+    borderColor = "border-on-primary/20",
+    textColor = "text-on-primary/80",
     bgColor = "bg-transparent",
-    hoverColor = "active:bg-foreground/5 hover:bg-foreground/5",
+    hoverColor = "active:bg-on-primary/5 hover:bg-on-primary/5",
     icon: Icon,
     iconSide = "left",
     disabled = false
