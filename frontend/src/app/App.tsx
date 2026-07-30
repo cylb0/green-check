@@ -25,9 +25,11 @@ import {
   GUIDES_PAGE,
   HISTORY_PAGE,
   HOME_PAGE,
+  LANDING_PAGE,
   LOGIN_PAGE,
   PRIVACY_POLICY_PAGE,
   PROFILE_PAGE,
+  REGISTER_PAGE,
   SCAN_PAGE,
   TERMS_OF_USE_PAGE
 } from '@/constants'
@@ -49,8 +51,8 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
 }
 
 export default function App() {
-  const { isAuthenticated, isLoading } = useAuth()
-  
+  const { isLoading } = useAuth()
+
   if (isLoading) return null
 
   return (
@@ -58,9 +60,10 @@ export default function App() {
       <GardenBackground />
       <div className="relative z-10">
         <Routes>
-          <Route path="/" element={
-            isAuthenticated ? <Navigate to={HOME_PAGE} replace /> : <AuthLayout />
-          } />
+          <Route path={LANDING_PAGE} element={<AuthLayout />} />
+          <Route path={LOGIN_PAGE} element={<AuthLayout />} />
+          <Route path={REGISTER_PAGE} element={<AuthLayout />} />
+
           <Route path={TERMS_OF_USE_PAGE} element={<TermsOfUsePage />} />
           <Route path={PRIVACY_POLICY_PAGE} element={<PrivacyPolicyPage />} />
 
@@ -95,7 +98,7 @@ export default function App() {
             <Route path={DIAGNOSTIC_ADVICE_PAGE} element={<DiagnosticAdvicePage />} />
           </Route>
 
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to={LANDING_PAGE} replace />} />
         </Routes>
       </div>
       <Toaster position="bottom-center" reverseOrder={false} />

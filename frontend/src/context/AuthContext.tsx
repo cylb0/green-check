@@ -22,7 +22,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         const handler = () => {
             queryClient.setQueryData(["me"], null)
-            navigate(LOGIN_PAGE)
+            navigate(LOGIN_PAGE, { replace: true })
         }
 
         window.addEventListener("auth:expired", handler)
