@@ -37,7 +37,7 @@ export default function LoginPage() {
             <div className="flex text-right mt-4 gap-4">
                 <span className="text-sm text-ink-inverse/60 font-bold">{noAccount}</span>
                 <button
-                    onClick={() => goTo(1)}
+                    onClick={() => goTo(2)}
                     className="text-sm font-bold text-primary-light
                     transition-all duration-150
                     hover:brightness-110 hover:underline underline-offset-2

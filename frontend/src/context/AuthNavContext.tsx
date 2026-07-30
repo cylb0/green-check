@@ -1,4 +1,8 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { LANDING_PAGE, LOGIN_PAGE, REGISTER_PAGE } from "@/constants";
+
+const AUTH_STEP_PATHS = [LANDING_PAGE, LOGIN_PAGE, REGISTER_PAGE]
 
 interface AuthNavContextType {
     step: number
@@ -9,12 +13,23 @@ interface AuthNavContextType {
 const AuthNavContext = createContext<AuthNavContextType | null>(null)
 
 export function AuthNavProvider({ children }: { children: ReactNode }) {
-    const [step, setStep] = useState(0)
+    const navigate = useNavigate()
+    const { pathname } = useLocation()
+
+    const index = AUTH_STEP_PATHS.indexOf(pathname)
+    const step = index === -1 ? 0 : index
+
+    const [previousStep, setPreviousStep] = useState(step)
     const [direction, setDirection] = useState(1)
 
+    if (previousStep !== step) {
+        setDirection(step > previousStep ? 1 : -1)
+        setPreviousStep(step)
+    }
+
     const goTo = (nextStep: number) => {
-        setDirection(nextStep > step ? 1 : -1)
-        setStep(nextStep)
+        const path = AUTH_STEP_PATHS[nextStep]
+        if (path) navigate(path)
     }
 
     return (
