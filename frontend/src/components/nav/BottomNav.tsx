@@ -1,26 +1,28 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { BOTTOM_NAV_LABELS, NAV_ITEMS, type NavItem } from "@/data"
 import { useTranslation } from "@/hooks"
 
 type NavItemProps = NavItem & { label: string }
 
 function NavItem({ id, label, icon: Icon, activeIcon: ActiveIcon }: NavItemProps) {
-    const navigate = useNavigate()
-    const location = useLocation()
-
-    const isActive = location.pathname === id
-    const DisplayIcon = isActive && ActiveIcon ? ActiveIcon : Icon
-
     return (
-        <button
-            onClick={() => navigate(id)}
-            className={`flex flex-col items-center gap-0.5 transition-all
+        <NavLink
+            to={id}
+            end
+            className={({ isActive }) => `flex flex-col items-center gap-0.5 transition-all
                 hover:-translate-y-0.5 active:translate-y-0 active:scale-90
                 ${isActive ? "text-primary" : "text-ink-400 hover:text-primary active:text-primary"}`}
         >
-            <DisplayIcon size={22} />
-            <span className="text-xs font-bold">{label}</span>
-        </button>
+            {({ isActive }) => {
+                const DisplayIcon = isActive && ActiveIcon ? ActiveIcon : Icon
+                return (
+                    <>
+                        <DisplayIcon size={22} />
+                        <span className="text-xs font-bold">{label}</span>
+                    </>
+                )
+            }}
+        </NavLink>
     )
 }
 
