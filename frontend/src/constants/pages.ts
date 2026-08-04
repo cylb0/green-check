@@ -1,3 +1,4 @@
+export const LANDING_PAGE = "/"
 export const HOME_PAGE = "/home"
 export const HISTORY_PAGE = "/history"
 export const PROFILE_PAGE = "/profile"
