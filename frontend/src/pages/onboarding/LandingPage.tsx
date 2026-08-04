@@ -8,17 +8,18 @@ export default function LandingPage() {
     const trad = useTranslation(LANDING_PAGE_CONTENT)
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center px-6">
+        <div className="min-h-dvh flex flex-col items-center justify-center px-4">
             <PlantScannerIcon />
-            <h1 className="text-center text-heading text-ink-inverse">{trad.title}</h1>
-            <span className="text-center text-subheading text-ink-inverse/65 mt-4">{trad.catchphrase}</span>
-            <DotAuthNav />
+            <h1 className="text-center title-lg text-ink-inverse mt-6">{trad.title}</h1>
+            <span className="text-center title-sm text-ink-inverse/65 mt-2">{trad.catchphrase}</span>
+            <div className="mt-10"><DotAuthNav /></div>
             <ActionButton
+                className="mt-6"
                 label={trad.buttonLabel}
                 onClick={() => goTo(1)}
                 borderColor="border-transparent"
                 textColor="text-on-primary"
-                bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/20"
+                bgColor="bg-gradient-to-br from-primary-light to-primary"
                 hoverColor="hover:brightness-105 active:brightness-95"
             />
         </div>

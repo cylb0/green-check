@@ -137,12 +137,13 @@ export default function LoginForm() {
             </div>
     
             <ActionButton
+                className="mt-6"
                 type="submit"
                 label={isLoading ? loading : signUp}
                 disabled={isLoading}
                 borderColor="border-transparent"
                 textColor="text-on-primary"
-                bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/20"
+                bgColor="bg-gradient-to-br from-primary-light to-primary"
                 hoverColor="hover:brightness-105 active:brightness-95"
             />
         </form>

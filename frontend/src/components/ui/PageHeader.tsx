@@ -19,7 +19,7 @@ export default function PageHeader({ title, className, to, variant = "light" }: 
         }
     }
     
-    const textColor = variant === "dark" ? "text-ink-inverse" : "text-ink-900"
+    const textColor = variant === "dark" ? "text-ink-inverse" : "text-ink-inverse"
     
     return (
         <div className={`grid grid-cols-[auto_1fr_auto] items-center w-full p-4 ${textColor} ${className}`}>
@@ -30,7 +30,7 @@ export default function PageHeader({ title, className, to, variant = "light" }: 
                 <FaArrowLeft size={24} />
             </button>
 
-            <h1 className="text-heading text-center">
+            <h1 className="title-lg text-center">
                 {title}
             </h1>
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { FaArrowsRotate } from "react-icons/fa6";
 import { PageHeader, PreviewForm } from "@/components";
 import { useTranslation } from "@/hooks";
-import { HOME_PAGE, LEAF_DETECTION_DEBUG, LEAF_SCAN_CONFIDENCE_TRESHOLD, SCAN_PAGE } from "@/constants";
+import { LEAF_DETECTION_DEBUG, LEAF_SCAN_CONFIDENCE_TRESHOLD, SCAN_PAGE } from "@/constants";
 import { PREVIEW_CONTENT } from "@/data";
 import { detectLeaf, type LeafDetectionResult } from "@/services";
 import toast from "react-hot-toast"
@@ -37,9 +37,9 @@ export default function Preview({ blob, onRetry }: PreviewProps) {
     const isLeafDetected = detectionResult?.detected ?? false
 
     return (
-        <div className="relative min-h-screen flex flex-col overflow-hidden">
+        <div className="relative min-h-dvh flex flex-col overflow-hidden">
             <div
-                className="absolute inset-0 bg-gradient-to-b from-pine-800/20 via-pine-900/40 to-pine-900/60 pointer-events-none z-0"
+                className="absolute inset-0 bg-gradient-to-b from-emerald-800/20 via-emerald-900/40 to-emerald-900/60 pointer-events-none z-0"
                 aria-hidden="true"
             />
 
@@ -58,8 +58,8 @@ export default function Preview({ blob, onRetry }: PreviewProps) {
                     )}
                     <button
                         className="absolute right-3 bottom-3 h-9 w-9 rounded-full
-                            bg-ink-inverse/15 backdrop-blur-md flex items-center justify-center
-                            transition-all duration-150
+                            glass-strong flex items-center justify-center
+                            transition duration-150
                             hover:-translate-y-0.5 hover:bg-ink-inverse/22 active:translate-y-0 active:scale-90"
                         onClick={onRetry}
                     >
@@ -67,10 +67,10 @@ export default function Preview({ blob, onRetry }: PreviewProps) {
                     </button>
                 </div>
 
-                <h2 className="text-subheading text-ink-inverse mt-8">
+                <h2 className="title-sm text-ink-inverse mt-8">
                     {formTitle}
                 </h2>
-                <p className="text-xs text-ink-inverse/50 italic my-1">
+                <p className="label text-ink-inverse/50 italic my-1">
                     {limitations}
                 </p>
 

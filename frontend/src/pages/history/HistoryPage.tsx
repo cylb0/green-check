@@ -29,17 +29,17 @@ export default function HistoryPage() {
     if (!data) return null
 
     return (
-        <div className="flex flex-col">
-            <div className="flex items-center justify-between mt-6 mb-2">
-                <h1 className="text-heading text-ink-900">{title}</h1>
+        <div className="flex flex-col gap-6 pt-2">
+            <div className="flex items-center justify-between">
+                <h1 className="title-lg text-ink-inverse">{title}</h1>
             </div>
-                
-            <div className="sticky top-0 py-3 z-10 backdrop-blur-md">
+
+            <div className="sticky top-0 z-10">
                 <SearchBar value={searchTerm} onSearch={setSearchTerm} placeholder={placeholder} />
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4">
-                <div className="flex flex-col gap-3">
+            <div className="flex-1 overflow-y-auto">
+                <div className="flex flex-col gap-4">
                     {filteredData && filteredData.map((diagnostic) => (
                         <DiagnosticCard
                             key={diagnostic.id}

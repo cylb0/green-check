@@ -7,15 +7,15 @@ interface SeverityBadgeProps {
 
 export default function SeverityBadge({ severity }: SeverityBadgeProps) {
     const severityStyles: Record<Exclude<Severity, null>, string> = {
-        low: "text-severity-low-text bg-severity-low-bg",
-        medium: "text-severity-moderate-text bg-severity-moderate-bg",
-        high: "text-severity-high-text bg-severity-high-bg"
+        low: "text-severity-low-dark-text bg-severity-low-dark-bg",
+        medium: "text-severity-moderate-dark-text bg-severity-moderate-dark-bg",
+        high: "text-severity-high-dark-text bg-severity-high-dark-bg"
     }
 
     if (!severity) return null
 
     return (
-        <span className={`text-xs font-bold py-1 px-2.5 rounded-lg flex-shrink-0 ${severityStyles[severity]}`}>
+        <span className={`label py-1 px-2.5 rounded-full flex-shrink-0 ${severityStyles[severity]}`}>
             {capitalize(severity)}
         </span>
     )

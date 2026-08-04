@@ -24,7 +24,7 @@ export default function DiagnosticResultPage() {
     const isLowConfidence = data.status == "low_confidence"
 
     return (
-        <div className="flex flex-col items-start px-6">
+        <div className="flex flex-col items-start px-4">
             <img
                 src={data.original_image_url}
                 alt="Plant"

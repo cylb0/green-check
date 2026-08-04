@@ -60,7 +60,7 @@ export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: Previ
     return (
         <form onSubmit={handleSubmit} noValidate className="relative w-full mt-4">
             {error && (
-                <div className="text-xs font-medium text-severity-high-text mb-3">
+                <div className="label text-severity-high-dark-text mb-3">
                     {error.message}
                 </div>
             )}
@@ -75,9 +75,9 @@ export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: Previ
                         <Select.Trigger
                             id={field.id}
                             aria-label={field.label}
-                            className="flex w-full items-center justify-between gap-2 rounded-2xl
-                                bg-ink-inverse/8 backdrop-blur-md border border-ink-inverse/15
-                                px-4 py-3 text-sm text-ink-inverse outline-none
+                            className="flex w-full items-center justify-between gap-2 rounded-card
+                                glass-subtle
+                                px-4 py-3 body text-ink-inverse outline-none
                                 transition-colors duration-150
                                 hover:bg-ink-inverse/12
                                 data-[state=open]:border-primary-light data-[placeholder]:text-ink-inverse/45"
@@ -96,15 +96,15 @@ export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: Previ
                                 collisionPadding={8}
                                 className="z-50 w-[var(--radix-select-trigger-width)] max-h-[var(--radix-select-content-available-height)]
                                     overflow-y-auto rounded-2xl
-                                    bg-pine-900/90 backdrop-blur-xl border border-ink-inverse/15 shadow-lg"
+                                    bg-emerald-900/90 backdrop-blur-xl border border-parchment-200/20 shadow-ambient"
                             >
-                                <Select.Viewport className="p-1.5">
+                                <Select.Viewport className="p-2">
                                     {field.options.map(o => (
                                         <Select.Item
                                             key={o.value}
                                             value={o.value}
-                                            className="flex items-center justify-between gap-2 px-3 py-2.5
-                                                text-sm text-ink-inverse rounded-xl outline-none cursor-pointer
+                                            className="flex items-center justify-between gap-2 px-4 py-3
+                                                body text-ink-inverse rounded-xl outline-none cursor-pointer
                                                 data-[highlighted]:bg-ink-inverse/10"
                                         >
                                             <Select.ItemText>{o.label}</Select.ItemText>
@@ -121,20 +121,21 @@ export default function PreviewForm({ blob, isAnalyzing, isLeafDetected }: Previ
             </div>
 
             {!isAnalyzing && !isLeafDetected && (
-                <p className="text-xs text-severity-moderate-text bg-severity-moderate-bg/90 rounded-xl px-3 py-2 mt-4">
+                <p className="label text-severity-moderate-dark-text bg-severity-moderate-dark-bg/90 rounded-xl px-4 py-2 mt-4">
                     {warning}
                 </p>
             )}
 
             <ActionButton
+                className="mt-6"
                 type="submit"
                 label={buttonLabel}
                 borderColor="border-transparent"
-                textColor={!isAnalyzing && !isLeafDetected ? "text-severity-moderate-text" : "text-on-primary"}
+                textColor={!isAnalyzing && !isLeafDetected ? "text-severity-moderate-dark-text" : "text-on-primary"}
                 bgColor={
                     !isAnalyzing && !isLeafDetected
-                        ? "bg-severity-moderate-bg"
-                        : "bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/25"
+                        ? "bg-severity-moderate-dark-bg"
+                        : "bg-gradient-to-br from-primary-light to-primary"
                 }
                 hoverColor="hover:brightness-105 active:brightness-95"
                 disabled={isAnalyzing || isPending}

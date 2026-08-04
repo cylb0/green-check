@@ -11,6 +11,7 @@ interface ActionButtonProps {
     icon?: IconType
     iconSide?: "left" | "right"
     disabled?: boolean
+    className?: string
 }
 
 export default function ActionButton({
@@ -23,18 +24,19 @@ export default function ActionButton({
     hoverColor = "active:bg-on-primary/5 hover:bg-on-primary/5",
     icon: Icon,
     iconSide = "left",
-    disabled = false
+    disabled = false,
+    className = ""
 }: ActionButtonProps) {
     return (
         <button
             type={type}
             onClick={onClick}
             disabled={disabled}
-            className={`w-full font-bold border rounded-xl p-2 mt-4 transition-all duration-200
+            className={`w-full font-bold border rounded-full p-2 transition duration-200
                 flex items-center justify-center gap-2
                 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 
                 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:active:scale-100
-                ${borderColor} ${textColor} ${bgColor} ${hoverColor}`}
+                ${borderColor} ${textColor} ${bgColor} ${hoverColor} ${className}`}
         >
             {Icon && iconSide === "left" && <Icon size={20} />}
             <span>{label}</span>

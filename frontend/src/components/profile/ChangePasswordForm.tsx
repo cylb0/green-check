@@ -73,7 +73,7 @@ export default function ChangePasswordForm() {
 
     return (
         <div className="flex flex-col w-full">
-            <p className="text-sm font-bold text-ink-900 mb-2">{trad.title}</p>
+            <p className="body-strong text-ink-inverse mb-2">{trad.title}</p>
             <form onSubmit={handleSubmit} noValidate className="relative w-full flex flex-col gap-3">
                 <PasswordField
                     name="oldPassword"
@@ -101,12 +101,13 @@ export default function ChangePasswordForm() {
                 />
 
                 <ActionButton
+                className="mt-6"
                     type="submit"
                     label={trad.button}
                     disabled={isLoading}
                     borderColor="border-transparent"
                     textColor="text-on-primary"
-                    bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/25"
+                    bgColor="bg-gradient-to-br from-primary-light to-primary"
                     hoverColor="hover:brightness-105 active:brightness-95"
                 />
             </form>
