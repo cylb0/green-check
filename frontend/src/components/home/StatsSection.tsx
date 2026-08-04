@@ -8,9 +8,9 @@ interface StatsSectionProps {
 }
 
 const STAT_COLOR: Record<StatsKey, string> = {
-    analysis: "text-primary",
-    alerts: "text-severity-high-text",
-    accuracy: "text-ink-900"
+    analysis: "text-primary-light",
+    alerts: "text-severity-high-dark-text",
+    accuracy: "text-ink-inverse"
 }
 
 export default function StatsSection({ values, className = "" }: StatsSectionProps) {
@@ -20,14 +20,14 @@ export default function StatsSection({ values, className = "" }: StatsSectionPro
 
     return (
         <div className={`${className}`}>
-            <h2 className="text-heading-sm text-ink-900">{trad.title}</h2>
+            <h2 className="title-md text-ink-inverse">{trad.title}</h2>
             <div className="grid grid-cols-3 gap-4 mt-2">
                 {statKeys.map((key, i) => (
                     <Card key={`qas-${i}`}>
-                        <p className={`text-heading flex text-center ${STAT_COLOR[key]}`}>
+                        <p className={`display-sm flex text-center ${STAT_COLOR[key]}`}>
                             {values[key]}
                         </p>
-                        <span className="h-10 flex items-center text-sm font-semibold text-center text-ink-900">
+                        <span className="h-10 flex items-center label text-center text-ink-inverse">
                             {trad.labels[key]}
                         </span>
                     </Card>

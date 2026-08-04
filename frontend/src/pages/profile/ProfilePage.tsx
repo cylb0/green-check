@@ -7,7 +7,7 @@ export default function ProfilePage() {
 
     return (
         <div className="flex flex-col w-full"> 
-            <h1 className="text-heading text-center">{title}</h1>
+            <h1 className="title-lg text-center">{title}</h1>
             <Identity />
             <ProfileMenu />
         </div>

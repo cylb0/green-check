@@ -20,15 +20,16 @@ export default function DiagnosticAdvicePage() {
     if (error || !data) return null
 
     return (
-        <div className="min-h-screen flex flex-col px-6">
+        <div className="min-h-dvh flex flex-col px-4">
             <Treatments data={data.treatments} />
             <Advice text={data.advice_text} />
             <ActionButton
+                className="mt-6"
                 label="Retour à l'accueil"
                 onClick={() => navigate(HOME_PAGE)}
                 borderColor="border-transparent"
                 textColor="text-on-primary"
-                bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/25"
+                bgColor="bg-gradient-to-br from-primary-light to-primary"
                 hoverColor="hover:brightness-105 active:brightness-95"
             />
         </div>

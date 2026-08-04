@@ -16,13 +16,13 @@ export default function DiagnosticLayout() {
     const header = Object.entries(DIAGNOSTIC_HEADERS).find(([path]) => matchPath(path, pathname))?.[1]
 
     return (
-        <div className="relative min-h-screen flex flex-col overflow-hidden pb-8">
+        <div className="relative min-h-dvh flex flex-col overflow-hidden pb-8">
             <div
-                className="absolute inset-0 bg-gradient-to-b from-pine-800/40 via pine-900/40 to-pine-900/60 pointer-events-none z-0"
+                className="absolute inset-0 bg-gradient-to-b from-emerald-800/40 via-emerald-900/40 to-emerald-900/60 pointer-events-none z-0"
                 aria-hidden="true"
             />
 
-            <div className="relative z-10 flex flex-col min-h-screen">
+            <div className="relative z-10 flex flex-col min-h-dvh">
                 <PageHeader title={header?.title[language]} to={header?.to} variant="dark" />
                 <div className="flex-1 overflow-y-auto">
                     <Outlet />

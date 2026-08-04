@@ -28,9 +28,9 @@ function AuthLayout() {
     if (isAuthenticated) return <Navigate to="/home" replace />
 
     return (
-        <div className="relative w-full h-screen overflow-hidden">
+        <div className="relative w-full h-dvh overflow-hidden">
             <div
-                className="absolute inset-0 bg-gradient-to-b from-pine-800/20 via pine-900/40 to-pine-900/60 pointer-events-none z-0"
+                className="absolute inset-0 bg-gradient-to-b from-emerald-800/20 via-emerald-900/40 to-emerald-900/60 pointer-events-none z-0"
                 aria-hidden="true"
             />
             <AnimatePresence initial={false} custom={direction} mode="popLayout">

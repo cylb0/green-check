@@ -38,8 +38,8 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth()
 
     if (isLoading) return (
-      <div className="min-h-screen flex items-center justify-center">
-        <span className="text-sm text-gray-500">Chargement...</span>
+      <div className="min-h-dvh flex items-center justify-center">
+        <span className="body text-parchment-400">Chargement...</span>
       </div>
     )
 

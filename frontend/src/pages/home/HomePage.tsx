@@ -14,15 +14,16 @@ export default function HomePage() {
             : '-'
     }
 
+    // gap-6 = space-md (24px) entre blocs — §5.2
     return (
-        <div className="flex flex-col w-full">
-            <div className="flex items-center justify-between mt-6 mb-2">
+        <div className="flex flex-col w-full gap-6 pt-2">
+            <div className="flex items-center justify-between">
                 <Welcome />
                 <Alerts hasAlerts={!!data?.alerts} />
             </div>
-            <FeatureCard title={title} subtext={subtext} link={FEATURE_CARD_LINK} className="my-2" />
-            <QuickAccessSection className="my-2" />
-            <StatsSection className="my-2" values={values} />
+            <FeatureCard title={title} subtext={subtext} link={FEATURE_CARD_LINK} />
+            <QuickAccessSection />
+            <StatsSection values={values} />
         </div>
     )
 }

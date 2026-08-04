@@ -10,13 +10,13 @@ export default function DiagnosticProcessingPage() {
     useDiagnosticPolling(diagnosticId)
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center px-6">
+        <div className="min-h-dvh flex flex-col items-center justify-center px-4">
             <div className="relative flex items-center justify-center p-12">
                 <div className="absolute w-32 h-32 border-[6px] border-ink-inverse/15 border-t-primary-light rounded-full animate-spin" />
                 <LuBrain size={64} className="text-primary-light" />
             </div>
 
-            <h1 className="text-center text-heading text-ink-inverse">{title}</h1>
+            <h1 className="text-center title-lg text-ink-inverse">{title}</h1>
 
             <StatusTicker messages={messages} />
         </div>

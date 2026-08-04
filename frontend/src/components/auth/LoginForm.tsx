@@ -100,18 +100,19 @@ export default function LoginForm() {
             />
 
             <div className="text-right mt-4">
-                <a href="/forgot-password" className="text-sm font-bold text-primary-light">
+                <a href="/forgot-password" className="body-strong text-primary-light">
                     {forgotPassword}
                 </a>
             </div>
 
             <ActionButton
+                className="mt-6"
                 type="submit"
                 label={isLoading ? loading : signIn}
                 disabled={isLoading}
                 borderColor="border-transparent"
                 textColor="text-ink-inverse"
-                bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/20"
+                bgColor="bg-gradient-to-br from-primary-light to-primary"
                 hoverColor="hover:brightness-105 active:brightness-95"
             />
         </form>

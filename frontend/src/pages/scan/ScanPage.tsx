@@ -39,11 +39,11 @@ export default function ScanPage() {
     }
 
     return (
-        <div className="relative h-screen w-full bg-black overflow-hidden">
+        <div className="relative h-dvh w-full bg-black overflow-hidden">
             <button
                 onClick={() => navigate("/")}
                 className="absolute top-4 left-4 z-10 justify-self-start text-ink-inverse
-                    transition-all duration-150
+                    transition duration-150
                     hover:-translate-y-0.5 active:translate-y-0 active:scale-90"
             >
                 <FaArrowLeft size={22} />

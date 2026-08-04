@@ -26,10 +26,10 @@ export default function DiseaseResult({ plant, confidence, disease, severity, is
     
     return (
         <div className="flex flex-col w-full mt-6">
-            <h1 className="text-heading text-ink-inverse">{capitalize(disease)}</h1>
+            <h1 className="title-lg text-ink-inverse">{capitalize(disease)}</h1>
             <div className="flex items-center gap-1.5 text-ink-inverse/70 mb-3">
                 <PiPottedPlant size={16} />
-                <p className="text-sm font-medium">{capitalize(plant)}</p>
+                <p className="body">{capitalize(plant)}</p>
             </div>
 
             {isLowConfidence && (
@@ -62,21 +62,23 @@ export default function DiseaseResult({ plant, confidence, disease, severity, is
 
             {hasAdvice && (
                 <ActionButton
+                className="mt-6"
                     label={seeRecommendations}
                     onClick={() => navigate(`/diagnostic/${diagnosticId}/advice`)}
                     borderColor="border-transparent"
                     textColor="text-on-primary"
-                    bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/20"
+                    bgColor="bg-gradient-to-br from-primary-light to-primary"
                     hoverColor="hover:brightness-105 active:brightness-95"
                 />
             )}
 
             <ActionButton
+                className="mt-6"
                 label={newScan}
                 onClick={() => navigate(SCAN_PAGE)}
                 borderColor="border-ink-inverse-20"
                 textColor="text-ink-inverse"
-                bgColor="bg-ink-inverse/10 backdrop-blur-md"
+                bgColor="glass"
                 hoverColor="hover:bg-ink-inverse/15 active:bg-ink-inverse/20"
             />
         </div>

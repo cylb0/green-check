@@ -5,12 +5,12 @@ import { useAuth } from "@/context";
 import { useTranslation } from "@/hooks";
 import { PROFILE_PAGE_LABELS, PROFILE_PAGE_MENU, type ProfilePageMenu } from "@/data";
 
-export const CARD_CLASSES = `rounded-2xl bg-paper/55 backdrop-blur-md border border-paper/60
-    transition-all duration-150
-    hover:-translate-y-0.5 hover:bg-paper/70 hover:shadow-md`
+export const CARD_CLASSES = `rounded-card glass
+    transition duration-150
+    hover:-translate-y-0.5 hover:shadow-ambient`
 export const ROW_CLASSES = `${CARD_CLASSES} flex w-full items-center gap-4 py-3 px-4 
     active:translate-y-0 active:scale-[0.98]`
-export const CHEVRON_CLASSES = "text-ink-400"
+export const CHEVRON_CLASSES = "text-parchment-400/70"
 
 export default function ProfileMenu() {
     const { logout } = useAuth()
@@ -63,7 +63,7 @@ export default function ProfileMenu() {
                                     to={item.href}
                                 >
                                     <MenuIcon icon={item.icon} />
-                                    <span className="flex-1 text-left text-sm font-semibold text-ink-900">{label}</span> 
+                                    <span className="flex-1 text-left body-strong text-ink-inverse">{label}</span> 
                                     {item.chevron && <FaChevronRight className={CHEVRON_CLASSES} />}
                                 </Link>
                             )
@@ -78,10 +78,10 @@ export default function ProfileMenu() {
                         key={`ai-${index}`}
                         type="button"
                         onClick={() => handleAction(item)}
-                        className={`${ROW_CLASSES} text-severity-high-text hover:bg-severity-high-bg/60`}
+                        className={`${ROW_CLASSES} text-severity-high-dark-text hover:bg-severity-high-dark-bg/60`}
                     >
-                        <MenuIcon icon={item.icon} className="text-severity-high-text" />
-                        <span className="text-sm font-semibold">{labels[item.labelKey]}</span>
+                        <MenuIcon icon={item.icon} className="text-severity-high-dark-text" />
+                        <span className="body-strong">{labels[item.labelKey]}</span>
                     </button>
                 ))}
             </div>

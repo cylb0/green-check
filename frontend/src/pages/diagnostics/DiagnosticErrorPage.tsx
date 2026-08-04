@@ -9,16 +9,17 @@ export default function DiagnosticErrorPage() {
     const navigate = useNavigate()
 
     return (
-        <div className="flex flex-col items-center justify-center h-full px-6 text-center gap-4">
-            <p className="text-subheading text-ink-inverse">
+        <div className="flex flex-col items-center justify-center h-full px-4 text-center gap-4">
+            <p className="title-sm text-ink-inverse">
                 {message}
             </p>
             <ActionButton
+                className="mt-6"
                 label="Retour à l'accueil"
                 onClick={() => navigate(HOME_PAGE)}
                 borderColor="border-transparent"
                 textColor="text-on-primary"
-                bgColor="bg-gradient-to-br from-primary-light to-primary shadow-lg shadow-primary-light/25"
+                bgColor="bg-gradient-to-br from-primary-light to-primary"
                 hoverColor="hover:brightness-105 active:brightness-95"
             />
         </div>
